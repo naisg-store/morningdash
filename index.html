@@ -171,58 +171,73 @@
     font-weight:700;
   }
 
-  /* ---------- Split Card (Wind & Rain) ---------- */
-  .split-card {
-    display:block;
-    padding:0;
-    background: linear-gradient(to top right, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
-  }
-  .split-section {
-    position: absolute;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
-  .split-top-left {
-    top: 10px;
-    left: 14px;
-    align-items: flex-start;
-  }
-  .split-bottom-right {
-    bottom: 10px;
-    right: 14px;
-    align-items: flex-end;
-    text-align: right;
-  }
-  .split-val-large {
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--amber-bright);
-    letter-spacing:-0.03em;
-  }
-  .split-val-unit {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--amber-bright);
-    display:flex;
-    align-items:center;
-    gap:4px;
-  }
-  .split-val-small {
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--text);
-  }
-  .split-label-text {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 700;
-    margin-top:2px;
-  }
+/* ==========================================================================
+   Split Card (Wind & Rain) - Slanted Forward Slash ( / )
+   ========================================================================== */
+
+.split-card {
+  display: block;
+  padding: 0;
+  position: relative;
+  /* 45deg creates the forward slash tilt: / */
+  background: linear-gradient(45deg, rgba(30,41,59,0.55) 48%, var(--amber) 48.5%, var(--amber) 51.5%, rgba(30,41,59,0.55) 52%);
+}
+
+.split-section {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+/* Top-Right: Wind (Shifted to top right half of the slash) */
+.split-top-right {
+  top: 12px;
+  right: 14px;
+  align-items: flex-end;
+  text-align: right;
+  max-width: 50%;
+}
+
+/* Bottom-Left: Rain (Shifted to bottom left half of the slash) */
+.split-bottom-left {
+  bottom: 12px;
+  left: 14px;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 50%;
+}
+.split-val-large {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+
+.split-val-unit {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.split-val-small {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+
+.split-label-text {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 3px;
+}
 /* ---------- Split Card (Wind & Rain) ---------- */
   .split-card {
     display:block;
@@ -424,17 +439,18 @@
       <div class="gauge-label">Humidity</div>
     </div>
 
-    <div class="gauge-card split-card">
-      <div class="split-section split-top-left">
-        <div class="split-val-large" id="split-wind-speed">--</div>
-        <div class="split-val-unit">MPH <span id="split-wind-dir"></span></div>
-        <div class="split-label-text" style="color:var(--amber-bright);">Wind</div>
-      </div>
-      <div class="split-section split-bottom-right">
-        <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
-        <div class="split-label-text">Rain Chance</div>
-      </div>
-    </div>
+<div class="gauge-card split-card">
+  <div class="split-section split-top-right">
+    <div class="split-val-large" id="split-wind-speed">--</div>
+    <div class="split-val-unit">MPH <span id="split-wind-dir">--</span></div>
+    <div class="split-label-text" style="color:var(--amber);">Wind</div>
+  </div>
+  
+  <div class="split-section split-bottom-left">
+    <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
+    <div class="split-label-text">Rain Chance</div>
+  </div>
+</div>
   </section>
 
   <section class="advice-box">
