@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Irvine Morning Commute Weather Brief &amp; Road Hazards</title>
 <meta name="description" content="Live morning commute weather for Irvine, CA. Real-time conditions, fog alerts, rain probability, and visibility for the 5, 405, 133, and 241 toll roads. Orange County driving updates.">
-<link rel="canonical" href="irvine.html">
+<link rel="canonical" href="../irvine.html">
 <link rel="stylesheet" href="../styles.css">
 <style>
   :root{
@@ -174,11 +174,13 @@
     font-weight:700;
   }
 
-  /* Split Card */
+  /* Split Card (Diagonal Slash) */
   .split-card {
     display:block;
     padding:0;
-    background: linear-gradient(to top right, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
+    position: relative;
+    min-height: 120px;
+    background: linear-gradient(135deg, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
   }
   .split-section {
     position: absolute;
@@ -187,21 +189,21 @@
     justify-content:center;
   }
   .split-top-right {
-    top: 12px;
+    top: 14px;
     right: 14px;
     align-items: flex-end;
     text-align: right;
-    max-width: 50%;
+    max-width: 45%;
   }
   .split-bottom-left {
-    bottom: 12px;
+    bottom: 14px;
     left: 14px;
     align-items: flex-start;
     text-align: left;
-    max-width: 50%;
+    max-width: 45%;
   }
   .split-val-large {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
     line-height: 1;
     color: var(--amber);
@@ -285,8 +287,6 @@
     letter-spacing:0.08em;
     padding:0 12px;
     height:100%;
-    display:flex;
-    align-items:center;
     border-right:1px solid rgba(255,255,255,0.08);
     z-index:2;
     font-family:'Courier New',monospace;
@@ -351,14 +351,41 @@
     color:var(--text);
   }
 
+  /* Background Image Container (Dynamic Wikimedia Parallax) */
+  .bg-parallax {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.25) opacity(0.3) contrast(1.1);
+    transition: background-image 1s ease-in-out;
+  }
+
+  /* Gradient Overlay to blend seamlessly */
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.95) 100%);
+    pointer-events: none;
+  }
+
   @media (max-width:560px){
     .gauge-row{grid-template-columns:1fr;}
     .gauge-card{flex-direction:row;align-items:center;gap:14px;padding:12px 16px; min-height: 120px;}
     .gauge-card svg{width:110px;flex-shrink:0;}
     header.brief-header{flex-direction:column;}
     .clock-block{text-align:left;}
-    .split-top-right { top: 20px; right: 24px; }
-    .split-bottom-left { bottom: 20px; left: 24px; }
+    .split-top-right { top: 16px; right: 16px; }
+    .split-bottom-left { bottom: 16px; left: 16px; }
   }
 
   a{color:var(--cyan);}
@@ -366,148 +393,149 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+  <div id="city-bg" class="bg-parallax"></div>
+  <div class="bg-overlay"></div>
 
-  <header class="brief-header">
-    <div class="brand">
-      <div class="eyebrow">Irvine Morning Brief</div>
-      <h1 id="city-name">Irvine</h1>
-      <div class="location-line"><span class="dot"></span><span id="region-name">California, USA</span></div>
-    </div>
-    <div class="clock-block">
-      <div class="clock-time" id="clock-time">--:--</div>
-      <div class="clock-date" id="clock-date">—</div>
-    </div>
-  </header>
+  <div class="wrap">
 
-  <!-- Localized Intro -->
-  <div class="intro-section">
-    <h1>Irvine Morning Weather Brief</h1>
-    <p>Irvine and Orange County enjoy a Mediterranean climate with mild mornings influenced by the nearby Pacific. The marine layer frequently blankets the area, providing cool starts before temperatures rise into the 60s and 70s. Commuters rely on the 5, 405, 133, and 241 toll roads, where morning fog can reduce visibility, especially near the coast and along the 405 corridor.</p>
-    <p>Humidity tends to be higher in the mornings, and light drizzle is possible during the winter rainy season. Inland Irvine benefits from slightly warmer conditions than coastal areas. This dedicated page provides hyper-local morning weather data, hazard alerts, and commute insights tailored for Irvine and South Orange County drivers.</p>
+    <header class="brief-header">
+      <div class="brand">
+        <div class="eyebrow">Irvine Morning Brief</div>
+        <h1 id="city-name">Irvine</h1>
+        <div class="location-line"><span class="dot"></span><span id="region-name">California, USA</span></div>
+      </div>
+      <div class="clock-block">
+        <div class="clock-time" id="clock-time">--:--</div>
+        <div class="clock-date" id="clock-date">—</div>
+      </div>
+    </header>
+
+    <div class="intro-section">
+      <h1>Irvine Morning Weather Brief</h1>
+      <p>Irvine and Orange County enjoy a Mediterranean climate with mild mornings influenced by the nearby Pacific. The marine layer frequently blankets the area, providing cool starts before temperatures rise into the 60s and 70s. Commuters rely on the 5, 405, 133, and 241 toll roads, where morning fog can reduce visibility, especially near the coast and along the 405 corridor.</p>
+      <p>Humidity tends to be higher in the mornings, and light drizzle is possible during the winter rainy season. Inland Irvine benefits from slightly warmer conditions than coastal areas. This dedicated page provides hyper-local morning weather data, hazard alerts, and commute insights tailored for Irvine and South Orange County drivers.</p>
+    </div>
+
+    <section class="gauge-row">
+      <div class="gauge-card">
+        <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
+          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <text x="100" y="85" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
+          <text x="100" y="103" text-anchor="middle" class="gauge-unit">°F</text>
+        </svg>
+        <div class="gauge-label">Temperature</div>
+      </div>
+
+      <div class="gauge-card">
+        <svg viewBox="0 0 200 130" aria-label="Humidity gauge">
+          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill humidity" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <text x="100" y="85" text-anchor="middle" class="gauge-value" id="gauge-humidity-val">--</text>
+          <text x="100" y="103" text-anchor="middle" class="gauge-unit">%</text>
+        </svg>
+        <div class="gauge-label">Humidity</div>
+      </div>
+
+      <div class="gauge-card split-card">
+        <div class="split-section split-top-right">
+          <div class="split-val-large" id="split-wind-speed">--</div>
+          <div class="split-val-unit">MPH <span id="split-wind-dir">--</span></div>
+          <div class="split-label-text" style="color:var(--amber);">Wind</div>
+        </div>
+        
+        <div class="split-section split-bottom-left">
+          <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
+          <div class="split-label-text">Rain Chance</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="advice-box">
+      <div class="advice-icon" id="advice-icon">🌤️</div>
+      <div class="advice-text-block">
+        <div class="advice-eyebrow">Morning Advice</div>
+        <div class="advice-text" id="advice-text">Loading conditions for Irvine...</div>
+      </div>
+    </section>
+
+    <section class="ticker" role="status" aria-live="polite">
+      <div class="live-tag"><span class="pulse"></span>HAZARDS</div>
+      <div class="ticker-viewport">
+        <div class="ticker-track" id="ticker-track">
+          <span>Loading Irvine commute conditions…</span>
+          <span>Loading Irvine commute conditions…</span>
+        </div>
+      </div>
+    </section>
+
+    <div style="margin-top:20px; padding:18px; border:1px dashed var(--panel-border); border-radius:var(--radius-md); text-align:center; background:rgba(15,23,42,0.4); color:var(--muted-dim); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
+       </div>
+
+    <section style="margin-top:24px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
+        <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Irvine Commuter Guides</h2>
+        <span style="font-size:11px; color:var(--muted-dim);">Editorial Series</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;">
+        <a href="guides/marine-layer.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+          <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
+            🌫️
+          </div>
+          <div>
+            <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); font-weight:700;">Coastal Weather</span>
+            <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Coastal Marine Layer & Fog</h3>
+            <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
+              "The marine layer is a shallow, cool, moist blanket of air that forms near the ocean surface..."
+            </p>
+          </div>
+        </a>
+
+        <a href="guides/morning-wind-driving.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+          <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
+            💨
+          </div>
+          <div>
+            <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); font-weight:700;">Commuter Safety</span>
+            <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Navigating Morning Winds</h3>
+            <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
+              "Wind speed alone doesn't tell the whole story of how dangerous a gusty morning will be..."
+            </p>
+          </div>
+        </a>
+
+        <a href="guides/dew-point-humidity.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+          <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
+            🌡️
+          </div>
+          <div>
+            <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--violet); font-weight:700;">Weather Literacy</span>
+            <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Dew Point vs. Humidity</h3>
+            <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
+              "Two numbers on every forecast claim to describe 'how muggy it feels' — only one of them actually does..."
+            </p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="foot-note" style="margin-top:28px; border-top:1px solid var(--panel-border); padding-top:16px;">
+      <div style="margin-bottom:10px; display:flex; justify-content:center; gap:16px; font-size:12px;">
+        <a href="index.html" style="color:var(--cyan); text-decoration:none;">← Global Dashboard</a>
+        <span style="color:var(--muted-dim);">&middot;</span>
+        <a href="about.html" style="color:var(--cyan); text-decoration:none;">About</a>
+        <span style="color:var(--muted-dim);">&middot;</span>
+        <a href="privacy.html" style="color:var(--cyan); text-decoration:none;">Privacy Policy</a>
+        <span style="color:var(--muted-dim);">&middot;</span>
+        <a href="terms.html" style="color:var(--cyan); text-decoration:none;">Terms of Service</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted-dim); text-align:center;">
+        Morning Weather Brief — Irvine Edition &middot; Refreshes every 15 minutes
+      </div>
+    </footer>
+
   </div>
-
-  <section class="gauge-row">
-    <div class="gauge-card">
-      <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
-        <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <text x="100" y="85" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
-        <text x="100" y="103" text-anchor="middle" class="gauge-unit">°F</text>
-      </svg>
-      <div class="gauge-label">Temperature</div>
-    </div>
-
-    <div class="gauge-card">
-      <svg viewBox="0 0 200 130" aria-label="Humidity gauge">
-        <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <path class="gauge-fill humidity" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <text x="100" y="85" text-anchor="middle" class="gauge-value" id="gauge-humidity-val">--</text>
-        <text x="100" y="103" text-anchor="middle" class="gauge-unit">%</text>
-      </svg>
-      <div class="gauge-label">Humidity</div>
-    </div>
-
-    <div class="gauge-card split-card">
-      <div class="split-section split-top-right">
-        <div class="split-val-large" id="split-wind-speed">--</div>
-        <div class="split-val-unit">MPH <span id="split-wind-dir">--</span></div>
-        <div class="split-label-text" style="color:var(--amber);">Wind</div>
-      </div>
-      
-      <div class="split-section split-bottom-left">
-        <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
-        <div class="split-label-text">Rain Chance</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="advice-box">
-    <div class="advice-icon" id="advice-icon">🌤️</div>
-    <div class="advice-text-block">
-      <div class="advice-eyebrow">Morning Advice</div>
-      <div class="advice-text" id="advice-text">Loading conditions for Irvine...</div>
-    </div>
-  </section>
-
-  <section class="ticker" role="status" aria-live="polite">
-    <div class="live-tag"><span class="pulse"></span>HAZARDS</div>
-    <div class="ticker-viewport">
-      <div class="ticker-track" id="ticker-track">
-        <span>Loading Irvine commute conditions…</span>
-        <span>Loading Irvine commute conditions…</span>
-      </div>
-    </div>
-  </section>
-
-  <div style="margin-top:20px; padding:18px; border:1px dashed var(--panel-border); border-radius:var(--radius-md); text-align:center; background:rgba(15,23,42,0.4); color:var(--muted-dim); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
-     <!-- Advertisement Space -->
-  </div>
-
-  <section style="margin-top:24px;">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
-      <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Irvine Commuter Guides</h2>
-      <span style="font-size:11px; color:var(--muted-dim);">Editorial Series</span>
-    </div>
-
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;">
-      <a href="guides/marine-layer.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          🌫️
-        </div>
-        <div>
-          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); font-weight:700;">Coastal Weather</span>
-          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Coastal Marine Layer & Fog</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "The marine layer is a shallow, cool, moist blanket of air that forms near the ocean surface..."
-          </p>
-        </div>
-      </a>
-
-      <a href="guides/morning-wind-driving.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          💨
-        </div>
-        <div>
-          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); font-weight:700;">Commuter Safety</span>
-          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Navigating Morning Winds</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "Wind speed alone doesn't tell the whole story of how dangerous a gusty morning will be..."
-          </p>
-        </div>
-      </a>
-
-      <a href="guides/dew-point-humidity.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          🌡️
-        </div>
-        <div>
-          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--violet); font-weight:700;">Weather Literacy</span>
-          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Dew Point vs. Humidity</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "Two numbers on every forecast claim to describe 'how muggy it feels' — only one of them actually does..."
-          </p>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <footer class="foot-note" style="margin-top:28px; border-top:1px solid var(--panel-border); padding-top:16px;">
-    <div style="margin-bottom:10px; display:flex; justify-content:center; gap:16px; font-size:12px;">
-      <a href="index.html" style="color:var(--cyan); text-decoration:none;">← Global Dashboard</a>
-      <span style="color:var(--muted-dim);">&middot;</span>
-      <a href="about.html" style="color:var(--cyan); text-decoration:none;">About</a>
-      <span style="color:var(--muted-dim);">&middot;</span>
-      <a href="privacy.html" style="color:var(--cyan); text-decoration:none;">Privacy Policy</a>
-      <span style="color:var(--muted-dim);">&middot;</span>
-      <a href="terms.html" style="color:var(--cyan); text-decoration:none;">Terms of Service</a>
-    </div>
-    <div style="font-size:11px; color:var(--muted-dim);">
-      Morning Weather Brief — Irvine Edition &middot; Refreshes every 15 minutes
-    </div>
-  </footer>
-
-</div>
 
 <script>
 (function(){
@@ -625,6 +653,44 @@
     els.ticker.innerHTML = html + html;
   }
 
+  // ---------------- Wikimedia Random Background Fetcher ----------------
+  async function loadRandomCityBackground(cityName) {
+    try {
+      var listUrl = "https://en.wikipedia.org/w/api.php?action=query&titles=" + encodeURIComponent(cityName) + "&prop=images&format=json&origin=*";
+      var listRes = await fetch(listUrl);
+      var listData = await listRes.json();
+
+      var pages = listData.query.pages;
+      var pageId = Object.keys(pages)[0];
+      var images = pages[pageId].images || [];
+
+      var validPhotos = images.filter(function(img) {
+        var title = img.title.toLowerCase();
+        return (
+          (title.endsWith('.jpg') || title.endsWith('.jpeg') || title.endsWith('.png')) &&
+          !title.includes('logo') && !title.includes('flag') && !title.includes('seal') &&
+          !title.includes('map') && !title.includes('icon')
+        );
+      });
+
+      if (validPhotos.length === 0) return;
+
+      var randomImageTitle = validPhotos[Math.floor(Math.random() * validPhotos.length)].title;
+
+      var imgInfoUrl = "https://en.wikipedia.org/w/api.php?action=query&titles=" + encodeURIComponent(randomImageTitle) + "&prop=imageinfo&iiprop=url&iiurlwidth=1600&format=json&origin=*";
+      var imgRes = await fetch(imgInfoUrl);
+      var imgData = await imgRes.json();
+
+      var imgPages = imgData.query.pages;
+      var imgPageId = Object.keys(imgPages)[0];
+      var finalUrl = imgPages[imgPageId].imageinfo[0].thumburl || imgPages[imgPageId].imageinfo[0].url;
+
+      document.getElementById('city-bg').style.backgroundImage = "url('" + finalUrl + "')";
+    } catch (err) {
+      console.log('Background loading fallback:', err);
+    }
+  }
+
   // ---------------- Cache helpers ----------------
   function readCache(lat, lon){
     try{
@@ -731,6 +797,7 @@
 
   function init(){
     loadWeather();
+    loadRandomCityBackground('Irvine, California');
   }
 
   init();
