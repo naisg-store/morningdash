@@ -153,6 +153,22 @@
   .gauge-fill.temp{stroke:var(--cyan);filter:drop-shadow(0 0 6px rgba(56,189,248,0.55));}
   .gauge-fill.humidity{stroke:var(--teal);filter:drop-shadow(0 0 6px rgba(45,212,191,0.55));}
 
+  /* Dotted Forecast High Marker Arc */
+  .gauge-fill.high-marker {
+    stroke: var(--amber);
+    stroke-dasharray: 4 6;
+    stroke-width: 14;
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.4));
+    opacity: 0.85;
+    transition: stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1);
+  }
+  .gauge-subtext {
+    font-size: 10px;
+    font-weight: 700;
+    fill: var(--amber);
+    letter-spacing: 0.04em;
+  }
+
   .gauge-value{
     font-size:26px;
     font-weight:800;
@@ -180,7 +196,7 @@
   display: block;
   padding: 0;
   position: relative;
-  /* 45deg creates the forward slash tilt: / */
+  min-height: 120px;
   background: linear-gradient(45deg, rgba(30,41,59,0.55) 48%, var(--amber) 48.5%, var(--amber) 51.5%, rgba(30,41,59,0.55) 52%);
 }
 
@@ -189,25 +205,23 @@
   display: flex;
   flex-direction: column;
 }
-/* Top-Right: Wind (Shifted to top right half of the slash) */
 .split-top-right {
-  top: 12px;
+  top: 14px;
   right: 14px;
   align-items: flex-end;
   text-align: right;
-  max-width: 50%;
+  max-width: 45%;
 }
 
-/* Bottom-Left: Rain (Shifted to bottom left half of the slash) */
 .split-bottom-left {
-  bottom: 12px;
+  bottom: 14px;
   left: 14px;
   align-items: flex-start;
   text-align: left;
-  max-width: 50%;
+  max-width: 45%;
 }
 .split-val-large {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   line-height: 1;
   color: var(--amber);
@@ -239,58 +253,7 @@
   font-weight: 700;
   margin-top: 3px;
 }
-/* ---------- Split Card (Wind & Rain) ---------- */
-  .split-card {
-    display:block;
-    padding:0;
-    background: linear-gradient(to top right, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
-  }
-  .split-section {
-    position: absolute;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
-  .split-top-left {
-    top: 10px;
-    left: 14px;
-    align-items: flex-start;
-  }
-  .split-bottom-right {
-    bottom: 10px;
-    right: 14px;
-    align-items: flex-end;
-    text-align: right;
-  }
-  .split-val-large {
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--amber-bright);
-    letter-spacing:-0.03em;
-  }
-  .split-val-unit {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--amber-bright);
-    display:flex;
-    align-items:center;
-    gap:4px;
-  }
-  .split-val-small {
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--text);
-  }
-  .split-label-text {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 700;
-    margin-top:2px;
-  }
+
   /* ---------- Advice box ---------- */
   .advice-box{
     background:var(--panel);
@@ -396,8 +359,8 @@
     .gauge-card svg{width:110px;flex-shrink:0;}
     header.brief-header{flex-direction:column;}
     .clock-block{text-align:left;}
-    .split-top-left { top: 20px; left: 24px; }
-    .split-bottom-right { bottom: 20px; right: 24px; }
+    .split-top-right { top: 16px; right: 16px; }
+    .split-bottom-left { bottom: 16px; left: 16px; }
   }
 
   a{color:var(--cyan);}
@@ -420,12 +383,15 @@
   </header>
 
   <section class="gauge-row">
+    <!-- Temperature Gauge (With Forecasted High Marker) -->
     <div class="gauge-card">
       <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
         <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+        <path class="gauge-fill high-marker" id="gauge-temp-high-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
         <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <text x="100" y="85" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
-        <text x="100" y="103" text-anchor="middle" class="gauge-unit">°F</text>
+        <text x="100" y="78" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
+        <text x="100" y="94" text-anchor="middle" class="gauge-unit">°F</text>
+        <text x="100" y="112" text-anchor="middle" class="gauge-subtext" id="gauge-temp-high-val">High --°</text>
       </svg>
       <div class="gauge-label">Temperature</div>
     </div>
@@ -440,18 +406,18 @@
       <div class="gauge-label">Humidity</div>
     </div>
 
-<div class="gauge-card split-card">
-  <div class="split-section split-top-right">
-    <div class="split-val-large" id="split-wind-speed">--</div>
-    <div class="split-val-unit">MPH <span id="split-wind-dir">--</span></div>
-    <div class="split-label-text" style="color:var(--amber);">Wind</div>
-  </div>
-  
-  <div class="split-section split-bottom-left">
-    <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
-    <div class="split-label-text">Rain Chance</div>
-  </div>
-</div>
+    <div class="gauge-card split-card">
+      <div class="split-section split-top-right">
+        <div class="split-val-large" id="split-wind-speed">--</div>
+        <div class="split-val-unit">MPH <span id="split-wind-dir">--</span></div>
+        <div class="split-label-text" style="color:var(--amber);">Wind</div>
+      </div>
+      
+      <div class="split-section split-bottom-left">
+        <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
+        <div class="split-label-text">Rain Chance</div>
+      </div>
+    </div>
   </section>
 
   <section class="advice-box">
@@ -526,32 +492,32 @@
     </div>
   </section>
 
-    <section style="margin-top:24px;">
-  <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
-    <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Featured Local Commute Briefs</h2>
-    <span style="font-size:11px; color:var(--muted-dim);">Dedicated Regional Dashboards</span>
-  </div>
+  <section style="margin-top:24px;">
+    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
+      <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Featured Local Commute Briefs</h2>
+      <span style="font-size:11px; color:var(--muted-dim);">Dedicated Regional Dashboards</span>
+    </div>
 
-  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
-    <!-- Link to Los Angeles -->
-    <a href="guides/los-angeles.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-      <span style="font-size:22px;">🌴</span>
-      <div>
-        <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Los Angeles</h3>
-        <span style="font-size:11px; color:var(--muted);">I-10, 405, 101 & 5 Corridors</span>
-      </div>
-    </a>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+      <!-- Link to Los Angeles -->
+      <a href="guides/los-angeles.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+        <span style="font-size:22px;">🌴</span>
+        <div>
+          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Los Angeles</h3>
+          <span style="font-size:11px; color:var(--muted);">I-10, 405, 101 & 5 Corridors</span>
+        </div>
+      </a>
 
-    <!-- Link to Irvine -->
-    <a href="guides/irvine.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-      <span style="font-size:22px;">🏙️</span>
-      <div>
-        <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Irvine</h3>
-        <span style="font-size:11px; color:var(--muted);">5, 405, 133 & 241 Toll Roads</span>
-      </div>
-    </a>
-  </div>
-</section>
+      <!-- Link to Irvine -->
+      <a href="guides/irvine.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+        <span style="font-size:22px;">🏙️</span>
+        <div>
+          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Irvine</h3>
+          <span style="font-size:11px; color:var(--muted);">5, 405, 133 & 241 Toll Roads</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
   <footer class="foot-note" style="margin-top:28px; border-top:1px solid var(--panel-border); padding-top:16px;">
     <div style="margin-bottom:10px; display:flex; justify-content:center; gap:16px; font-size:12px;">
@@ -561,8 +527,8 @@
       <span style="color:var(--muted-dim);">&middot;</span>
       <a href="terms.html" style="color:var(--cyan); text-decoration:none;">Terms of Service</a>
     </div>
-    <div style="font-size:11px; color:var(--muted-dim);">
-      Morning Weather Brief &middot; | &middot; Refreshes every 15 minutes
+    <div style="font-size:11px; color:var(--muted-dim); text-align:center;">
+      Morning Weather Brief &middot; Refreshes every 15 minutes
     </div>
   </footer>
 
@@ -583,9 +549,13 @@
     adviceIcon: document.getElementById("advice-icon"),
     adviceText: document.getElementById("advice-text"),
     ticker: document.getElementById("ticker-track"),
-gauges: {
+    gauges: {
       temp:     { arc: document.getElementById("gauge-temp-arc"),     val: document.getElementById("gauge-temp-val"),     min:0, max:120 },
       humidity: { arc: document.getElementById("gauge-humidity-arc"), val: document.getElementById("gauge-humidity-val"), min:0, max:100 }
+    },
+    tempHigh: {
+      arc: document.getElementById("gauge-temp-high-arc"),
+      val: document.getElementById("gauge-temp-high-val")
     },
     split: {
       windSpeed: document.getElementById("split-wind-speed"),
@@ -602,6 +572,11 @@ gauges: {
     g.arc.style.strokeDasharray = ARC_LENGTH;
     g.arc.style.strokeDashoffset = ARC_LENGTH;
   });
+
+  if (els.tempHigh.arc) {
+    els.tempHigh.arc.style.strokeDasharray = ARC_LENGTH;
+    els.tempHigh.arc.style.strokeDashoffset = ARC_LENGTH;
+  }
 
   // ---------------- Clock ----------------
   function tickClock(){
@@ -628,11 +603,19 @@ gauges: {
     });
   }
 
-  function degToCompass(num) {
-    if (num === null || num === undefined) return "";
-    var val = Math.floor((num / 22.5) + 0.5);
-    var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-    return arr[(val % 16)];
+  function setTempHighGauge(tempMax){
+    if (!els.tempHigh.arc || !els.tempHigh.val) return;
+    var minTemp = 0, maxTemp = 120;
+    var clampedHigh = clamp(tempMax, minTemp, maxTemp);
+    var frac = (clampedHigh - minTemp) / (maxTemp - minTemp);
+    var offset = ARC_LENGTH * (1 - frac);
+    
+    els.tempHigh.val.textContent = "High " + Math.round(tempMax) + "°";
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        els.tempHigh.arc.style.strokeDashoffset = offset;
+      });
+    });
   }
 
   function degToCompass(num) {
@@ -641,7 +624,7 @@ gauges: {
     var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
     return arr[(val % 16)];
   }
-  
+
   // ---------------- Advice rules engine ----------------
   function getAdvice(c){
     var t = c.temp, h = c.humidity, wind = c.wind, precipProb = c.precipProb, code = c.code;
@@ -697,7 +680,6 @@ gauges: {
   }
 
   function renderTicker(hazards){
-    var sep = "   //   ";
     var html = hazards.map(function(hz){
       return '<span class="' + hz.type + '">' + hz.text + '</span>';
     }).join("");
@@ -725,7 +707,7 @@ gauges: {
         weather: weatherData,
         place: place
       }));
-    }catch(e){ /* storage unavailable */ }
+    }catch(e){ }
   }
 
   // ---------------- Rendering pipeline ----------------
@@ -743,6 +725,7 @@ gauges: {
   function renderWeather(weatherData){
     var current = weatherData.current;
     var hourly = weatherData.hourly;
+    var daily = weatherData.daily;
 
     var now = new Date();
     var pad = function(n){ return String(n).padStart(2,"0"); };
@@ -750,6 +733,7 @@ gauges: {
     var hIdx = findCurrentHourIndex(hourly, currentIsoHour);
 
     var temp = current.temperature_2m;
+    var tempMax = (daily && daily.temperature_2m_max) ? daily.temperature_2m_max[0] : temp;
     var humidity = current.relative_humidity_2m;
     var precip = current.precipitation;
     var wind = current.wind_speed_10m;
@@ -761,11 +745,9 @@ gauges: {
     var visibilityMiles = (visibilityMeters !== null && visibilityMeters !== undefined) ? (visibilityMeters / 1609.34) : null;
 
     setGauge("temp", temp, Math.round(temp));
+    setTempHighGauge(tempMax);
     setGauge("humidity", humidity, Math.round(humidity));
 
-var windDirDegrees = current.wind_direction_10m; // Add this with your other vars
-
-    // Update the UI
     els.split.windSpeed.textContent = Math.round(wind);
     els.split.windDir.textContent = degToCompass(windDirDegrees);
     els.split.rainVal.innerHTML = Math.round(precipProb) + ' <span style="font-size:12px; color:var(--muted);">%</span>';
@@ -780,10 +762,10 @@ var windDirDegrees = current.wind_direction_10m; // Add this with your other var
 
   // ---------------- Data fetching ----------------
   function fetchWeather(lat, lon){
-    // Added wind_direction_10m to the current fetch list
-var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon +
+    var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon +
       "&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m" +
       "&hourly=temperature_2m,precipitation_probability,visibility" +
+      "&daily=temperature_2m_max" +
       "&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto";
     return fetch(url).then(function(r){
       if (!r.ok) throw new Error("Open-Meteo request failed");
