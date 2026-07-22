@@ -155,6 +155,22 @@
   .gauge-fill.temp{stroke:var(--cyan);filter:drop-shadow(0 0 6px rgba(56,189,248,0.55));}
   .gauge-fill.humidity{stroke:var(--teal);filter:drop-shadow(0 0 6px rgba(45,212,191,0.55));}
 
+  /* Dotted Forecast High Marker Arc */
+  .gauge-fill.high-marker {
+    stroke: var(--amber);
+    stroke-dasharray: 4 6;
+    stroke-width: 14;
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.4));
+    opacity: 0.85;
+    transition: stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1);
+  }
+  .gauge-subtext {
+    font-size: 10px;
+    font-weight: 700;
+    fill: var(--amber);
+    letter-spacing: 0.04em;
+  }
+
   .gauge-value{
     font-size:26px;
     font-weight:800;
@@ -178,6 +194,8 @@
   .split-card {
     display:block;
     padding:0;
+    position: relative;
+    min-height: 120px;
     background: linear-gradient(135deg, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
   }
   .split-section {
@@ -186,21 +204,19 @@
     flex-direction:column;
     justify-content:center;
   }
-  /* Top-Left section for reversed slant */
   .split-top-left {
     top: 12px;
     left: 14px;
     align-items: flex-start;
     text-align: left;
-    max-width: 50%;
+    max-width: 45%;
   }
-  /* Bottom-Right section for reversed slant */
   .split-bottom-right {
     bottom: 12px;
     right: 14px;
     align-items: flex-end;
     text-align: right;
-    max-width: 50%;
+    max-width: 45%;
   }
   .split-val-large {
     font-size: 28px;
@@ -353,14 +369,40 @@
     color:var(--text);
   }
 
+  /* Background Parallax Styling */
+  .bg-parallax {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.25) opacity(0.3) contrast(1.1);
+    transition: background-image 1s ease-in-out;
+  }
+
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.95) 100%);
+    pointer-events: none;
+  }
+
   @media (max-width:560px){
     .gauge-row{grid-template-columns:1fr;}
     .gauge-card{flex-direction:row;align-items:center;gap:14px;padding:12px 16px; min-height: 120px;}
     .gauge-card svg{width:110px;flex-shrink:0;}
     header.brief-header{flex-direction:column;}
     .clock-block{text-align:left;}
-    .split-top-left { top: 20px; left: 24px; }
-    .split-bottom-right { bottom: 20px; right: 24px; }
+    .split-top-left { top: 16px; left: 16px; }
+    .split-bottom-right { bottom: 16px; right: 16px; }
   }
 
   a{color:var(--cyan);}
@@ -368,6 +410,10 @@
 </style>
 </head>
 <body>
+<!-- Parallax Background Containers -->
+<div id="city-bg" class="bg-parallax"></div>
+<div class="bg-overlay"></div>
+
 <div class="wrap">
 
   <header class="brief-header">
@@ -390,12 +436,15 @@
   </div>
 
   <section class="gauge-row">
+    <!-- Temperature Gauge (With Forecasted High Marker) -->
     <div class="gauge-card">
       <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
         <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+        <path class="gauge-fill high-marker" id="gauge-temp-high-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
         <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <text x="100" y="85" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
-        <text x="100" y="103" text-anchor="middle" class="gauge-unit">°F</text>
+        <text x="100" y="78" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
+        <text x="100" y="94" text-anchor="middle" class="gauge-unit">°F</text>
+        <text x="100" y="112" text-anchor="middle" class="gauge-subtext" id="gauge-temp-high-val">High --°</text>
       </svg>
       <div class="gauge-label">Temperature</div>
     </div>
@@ -505,7 +554,7 @@
       <span style="color:var(--muted-dim);">&middot;</span>
       <a href="terms.html" style="color:var(--cyan); text-decoration:none;">Terms of Service</a>
     </div>
-    <div style="font-size:11px; color:var(--muted-dim);">
+    <div style="font-size:11px; color:var(--muted-dim); text-align:center;">
       Morning Weather Brief — Irvine Edition &middot; Refreshes every 15 minutes
     </div>
   </footer>
