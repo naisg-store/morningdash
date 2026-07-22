@@ -192,13 +192,14 @@
   }
 
   /* Split Card (Diagonal Slash) */
-  .split-card {
-    display:block;
-    padding:0;
-    position: relative;
-    min-height: 120px;
-    background: linear-gradient(135deg, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
-  }
+.split-card {
+  display: block;
+  padding: 0;
+  position: relative;
+  min-height: 120px;
+  /* Changed angle to 45deg so slash leans from bottom-right to top-left */
+  background: linear-gradient(45deg, var(--panel) 48.5%, var(--amber-bright) 49.5%, var(--amber-bright) 50.5%, var(--panel) 51.5%);
+}
   .split-section {
     position: absolute;
     display:flex;
