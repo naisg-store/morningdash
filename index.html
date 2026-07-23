@@ -236,13 +236,14 @@
   }
 
   /* Daylight Footer Spacing */
+  ./* Daylight Footer Spacing */
   .daylight-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 98%;
+    width: 96%;
     position: absolute;
-    bottom: -4px;
+    bottom: 6px; /* Lifted up to fix the text overlap */
   }
   .daylight-footer span {
     flex: 1;
@@ -251,7 +252,7 @@
     color: var(--muted);
   }
   .daylight-footer span:nth-child(1) { text-align: left; }
-  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom:-2px; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 11px; margin-bottom: 0px; }
   .daylight-footer span:nth-child(3) { text-align: right; }
 
   /* Utility Colors */
@@ -486,14 +487,19 @@
 
   @media (max-width:520px){
     .gauge-row{grid-template-columns:1fr;}
-    .gauge-card{flex-direction:row;align-items:center;gap:16px;padding:12px 18px; min-height: 120px;}
-    .gauge-svg-wrap{width:130px;flex-shrink:0;}
+    .gauge-card{flex-direction:row;align-items:center;gap:18px;padding:16px 20px; min-height: 120px;}
+    .gauge-svg-wrap{width:145px;flex-shrink:0;} /* Widened slightly to give text more room */
     .gauge-label{display:none;} /* Hidden on mobile horizontal tiles */
     
     header.brief-header{flex-direction:row;align-items:center;padding:18px 20px;}
-    .hero-gauge-container{width:145px; margin:-10px -18px -15px 0;}
-    .hero-val{font-size:42px;}
-    .hero-subtext{font-size:10px;gap:6px;}
+    .hero-gauge-container{width:150px; margin:-10px -18px -15px 0;}
+    
+    /* Bumped up mobile text sizes */
+    .hero-val{font-size:46px;}
+    .hero-subtext{font-size:11px;gap:6px;}
+    .standard-val{font-size:34px;}
+    .standard-unit{font-size:14px;}
+    .standard-subtext{font-size:12px;}
     
     .split-top-left { top: 18px; left: 18px; }
     .split-bottom-right { bottom: 18px; right: 18px; }
@@ -567,7 +573,7 @@
           </div>
         </div>
       </div>
-      <div class="gauge-label">Atmosphere & Solar</div>
+      <div class="gauge-label">Humidity & Sunrise</div>
     </div>
 
     <!-- 2. Split Card (Wind & Rain) -->
