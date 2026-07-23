@@ -55,18 +55,24 @@
     min-height:100vh;
   }
 
-  /* ---------- Header ---------- */
+  /* ---------- Header & Hero Gauge ---------- */
   header.brief-header{
     display:flex;
     justify-content:space-between;
-    align-items:flex-start;
+    align-items:center;
     gap:12px;
-    padding:18px 22px;
+    padding:20px 24px;
     background:var(--panel);
     border:1px solid var(--panel-border);
     border-radius:var(--radius-lg);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
+    overflow:hidden;
+  }
+  .header-info{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
   }
   .brand{
     display:flex;
@@ -101,8 +107,7 @@
     flex-shrink:0;
   }
   .clock-block{
-    text-align:right;
-    flex-shrink:0;
+    text-align:left;
   }
   .clock-time{
     font-size:26px;
@@ -115,10 +120,115 @@
     margin-top:2px;
   }
 
-  /* ---------- Gauges Row ---------- */
+  .hero-gauge-container{
+    position:relative;
+    width:180px;
+    flex-shrink:0;
+    margin:-10px -15px -20px 0; /* Negative margin creates the edgeless bleed */
+  }
+
+  /* ---------- Base Gauge Mechanics ---------- */
+  .gauge-svg-wrap{
+    position:relative;
+    width:100%;
+    line-height:0;
+  }
+  .gauge-svg-wrap svg{
+    width:100%;
+    height:auto;
+    display:block;
+    overflow:visible;
+  }
+  .gauge-data{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    padding-bottom:12%; /* Aligns text cleanly above the track line */
+    pointer-events:none; /* Clicks pass through to background */
+  }
+
+  .gauge-track{
+    fill:none;
+    stroke:var(--track);
+    stroke-width:14;
+    stroke-linecap:round;
+  }
+  .gauge-fill{
+    fill:none;
+    stroke-linecap:round;
+    transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1);
+  }
+  
+  /* Arc Styles */
+  .gauge-fill.temp { stroke:var(--cyan); stroke-width:14; filter:drop-shadow(0 0 4px rgba(56,189,248,0.5)); }
+  .gauge-fill.humidity { stroke:var(--teal); stroke-width:14; filter:drop-shadow(0 0 4px rgba(45,212,191,0.5)); }
+  .gauge-fill.feels-glow { stroke:var(--violet); stroke-width:14; opacity:0.8; filter:drop-shadow(0 0 10px var(--violet)); }
+  .gauge-fill.high-marker { stroke: var(--amber); stroke-dasharray: 4 6; stroke-width: 14; opacity: 0.85; }
+
+  /* ---------- Typography Overlays ---------- */
+  /* Hero Temp Text */
+  .hero-val-wrap{
+    display:flex;
+    align-items:flex-start;
+    line-height:1;
+  }
+  .hero-val{
+    font-size:46px;
+    font-weight:800;
+    color:var(--text);
+    letter-spacing:-0.03em;
+  }
+  .hero-unit{
+    font-size:16px;
+    font-weight:700;
+    color:var(--muted);
+    margin:4px 0 0 2px;
+  }
+  .hero-subtext{
+    display:flex;
+    gap:8px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    margin-top:6px;
+  }
+  
+  /* Standard Gauge Text */
+  .standard-val-wrap{
+    display:flex;
+    align-items:baseline;
+    line-height:1;
+  }
+  .standard-val{
+    font-size:28px;
+    font-weight:800;
+    color:var(--text);
+  }
+  .standard-unit{
+    font-size:13px;
+    font-weight:700;
+    color:var(--muted);
+    margin-left:2px;
+  }
+  .standard-subtext{
+    font-size:11px;
+    font-weight:700;
+    margin-top:6px;
+    letter-spacing:0.03em;
+  }
+
+  /* Utility Colors */
+  .purple { color: var(--violet); }
+  .amber { color: var(--amber); }
+  .teal { color: var(--teal); }
+
+  /* ---------- Gauges Row (3-Column Grid) ---------- */
   .gauge-row{
     display:grid;
-    grid-template-columns:repeat(4, 1fr);
+    grid-template-columns:repeat(3, 1fr);
     gap:12px;
   }
   .gauge-card{
@@ -134,65 +244,8 @@
     position:relative;
     overflow:hidden;
   }
-  .gauge-card svg{
-    width:100%;
-    height:auto;
-    display:block;
-    overflow:visible;
-  }
-  .gauge-track{
-    fill:none;
-    stroke:var(--track);
-    stroke-width:14;
-    stroke-linecap:round;
-  }
-  .gauge-fill{
-    fill:none;
-    stroke-linecap:round;
-    transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1);
-  }
-  
-  /* Primary Arcs */
-  .gauge-fill.temp { stroke:var(--cyan); stroke-width:14; filter:drop-shadow(0 0 4px rgba(56,189,248,0.5)); }
-  .gauge-fill.humidity { stroke:var(--teal); stroke-width:14; filter:drop-shadow(0 0 4px rgba(45,212,191,0.5)); }
-  
-  /* Feels Like Halo (Violet Glow) */
-  .gauge-fill.feels-glow {
-    stroke:var(--violet);
-    stroke-width:14;
-    opacity:0.8;
-    filter:drop-shadow(0 0 10px var(--violet));
-  }
-
-  /* Dotted Forecast High Marker Arc */
-  .gauge-fill.high-marker {
-    stroke: var(--amber);
-    stroke-dasharray: 4 6;
-    stroke-width: 14;
-    opacity: 0.85;
-  }
-  
-  .gauge-subtext {
-    font-size: 10px;
-    font-weight: 700;
-    fill: var(--amber);
-    letter-spacing: 0.04em;
-  }
-  .gauge-subtext.purple { fill: var(--violet); }
-  .gauge-subtext.teal { fill: var(--teal); }
-
-  .gauge-value{
-    font-size:24px;
-    font-weight:800;
-    fill:var(--text);
-  }
-  .gauge-unit{
-    font-size:11px;
-    font-weight:600;
-    fill:var(--muted);
-  }
   .gauge-label{
-    margin-top:-2px;
+    margin-top:4px;
     font-size:10.5px;
     letter-spacing:0.10em;
     text-transform:uppercase;
@@ -206,9 +259,26 @@
     filter: drop-shadow(0 0 8px var(--amber-bright));
     transition: cx 1s ease-out, cy 1s ease-out;
   }
+  .daylight-overlay {
+    padding-bottom: 2%; /* Sits slightly lower */
+  }
+  .daylight-status {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .daylight-times {
+    display: flex;
+    justify-content: space-between;
+    width: 88%;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+  }
 
   /* ==========================================================================
-     Enhanced Split Card (Weather Theme + No Bleed)
+     Enhanced Split Card
      ========================================================================== */
   .split-card {
     display:block;
@@ -216,7 +286,6 @@
     position:relative;
     isolation:isolate;
   }
-  /* Crisp SVG/Gradient Divider via Pseudo-element clipping */
   .split-card::before {
     content: '';
     position: absolute;
@@ -411,9 +480,14 @@
   @media (max-width:480px){
     .gauge-row{grid-template-columns:1fr;}
     .gauge-card{flex-direction:row;align-items:center;gap:14px;padding:12px 16px; min-height: 120px;}
-    .gauge-card svg{width:110px;flex-shrink:0;}
-    header.brief-header{flex-direction:column;}
-    .clock-block{text-align:left;}
+    .gauge-svg-wrap{width:110px;flex-shrink:0;}
+    .gauge-label{flex:1;text-align:left;padding-left:8px;font-size:13px;margin-top:0;}
+    
+    header.brief-header{flex-direction:row;align-items:center;padding:16px;}
+    .hero-gauge-container{width:130px; margin:-5px -10px -15px 0;}
+    .hero-val{font-size:36px;}
+    .hero-subtext{font-size:10px;gap:6px;}
+    
     .split-top-left { top: 16px; left: 16px; }
     .split-bottom-right { bottom: 16px; right: 16px; }
   }
@@ -426,71 +500,82 @@
 <div class="wrap">
 
   <header class="brief-header">
-    <div class="brand">
-      <div class="eyebrow">Morning Weather Brief</div>
-      <h1 id="city-name">Locating you…</h1>
-      <div class="location-line"><span class="dot"></span><span id="region-name">—</span></div>
+    <div class="header-info">
+      <div class="brand">
+        <div class="eyebrow">Morning Weather Brief</div>
+        <h1 id="city-name">Locating you…</h1>
+        <div class="location-line"><span class="dot"></span><span id="region-name">—</span></div>
+      </div>
+      <div class="clock-block">
+        <div class="clock-time" id="clock-time">--:--</div>
+        <div class="clock-date" id="clock-date">—</div>
+      </div>
     </div>
-    <div class="clock-block">
-      <div class="clock-time" id="clock-time">--:--</div>
-      <div class="clock-date" id="clock-date">—</div>
+    
+    <!-- Hero Temperature Arc -->
+    <div class="hero-gauge-container">
+      <div class="gauge-svg-wrap">
+        <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
+          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill high-marker" id="gauge-temp-high-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill feels-glow" id="gauge-temp-feels-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+        </svg>
+        <div class="gauge-data">
+          <div class="hero-val-wrap">
+            <span class="hero-val" id="gauge-temp-val">--</span><span class="hero-unit">°F</span>
+          </div>
+          <div class="hero-subtext">
+            <span class="purple" id="gauge-temp-feels-val">Feels --°</span>
+            <span class="amber" id="gauge-temp-high-val">High --°</span>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <section class="gauge-row">
-    <!-- 1. Temperature Gauge (High Marker + Violet Halo) -->
+    <!-- 1. Humidity Gauge -->
     <div class="gauge-card">
-      <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
-        <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <path class="gauge-fill high-marker" id="gauge-temp-high-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        
-        <!-- Glowing Halo Arc -->
-        <path class="gauge-fill feels-glow" id="gauge-temp-feels-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        
-        <!-- Primary Temp Arc (Draws Over Halo) -->
-        <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        
-        <text x="100" y="72" text-anchor="middle" class="gauge-value" id="gauge-temp-val">--</text>
-        <text x="100" y="88" text-anchor="middle" class="gauge-unit">°F</text>
-        <text x="100" y="104" text-anchor="middle" class="gauge-subtext purple" id="gauge-temp-feels-val">Feels --°</text>
-        <text x="100" y="117" text-anchor="middle" class="gauge-subtext" id="gauge-temp-high-val">High --°</text>
-      </svg>
-      <div class="gauge-label">Temperature</div>
-    </div>
-
-    <!-- 2. Humidity Gauge (With Dew Point Subtext) -->
-    <div class="gauge-card">
-      <svg viewBox="0 0 200 130" aria-label="Humidity gauge">
-        <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <path class="gauge-fill humidity" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        
-        <text x="100" y="78" text-anchor="middle" class="gauge-value" id="gauge-humidity-val">--</text>
-        <text x="100" y="94" text-anchor="middle" class="gauge-unit">%</text>
-        <text x="100" y="112" text-anchor="middle" class="gauge-subtext teal" id="gauge-dew-val">Dew Pt --°</text>
-      </svg>
+      <div class="gauge-svg-wrap">
+        <svg viewBox="0 0 200 130" aria-label="Humidity gauge">
+          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill humidity" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+        </svg>
+        <div class="gauge-data">
+          <div class="standard-val-wrap">
+            <span class="standard-val" id="gauge-humidity-val">--</span><span class="standard-unit">%</span>
+          </div>
+          <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
+        </div>
+      </div>
       <div class="gauge-label">Humidity</div>
     </div>
 
-    <!-- 3. Solar Arc (Sunrise / Sunset) -->
+    <!-- 2. Solar Arc (Sunrise / Sunset) -->
     <div class="gauge-card">
-      <svg viewBox="0 0 200 130" aria-label="Daylight progression gauge">
-        <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-        <!-- Sun Position Dot -->
-        <circle id="sun-dot" class="sun-dot" cx="20" cy="100" r="7" />
-        
-        <text x="24" y="118" text-anchor="middle" class="gauge-subtext" style="fill:var(--muted);" id="sun-rise-time">--:--</text>
-        <text x="176" y="118" text-anchor="middle" class="gauge-subtext" style="fill:var(--muted);" id="sun-set-time">--:--</text>
-        <text x="100" y="85" text-anchor="middle" class="gauge-value" style="font-size:14px; fill:var(--amber);" id="sun-status-text">--</text>
-      </svg>
+      <div class="gauge-svg-wrap">
+        <svg viewBox="0 0 200 130" aria-label="Daylight progression gauge">
+          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <circle id="sun-dot" class="sun-dot" cx="20" cy="100" r="7" />
+        </svg>
+        <div class="gauge-data daylight-overlay">
+          <div class="daylight-status" id="sun-status-text">--</div>
+          <div class="daylight-times">
+            <span id="sun-rise-time">--:--</span>
+            <span id="sun-set-time">--:--</span>
+          </div>
+        </div>
+      </div>
       <div class="gauge-label">Daylight</div>
     </div>
 
-    <!-- 4. Split Card (Wind & Rain) -->
+    <!-- 3. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="split-section split-top-left">
         <div class="split-val-large" id="split-wind-speed">--</div>
         <div class="split-val-unit">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
           MPH <span id="split-wind-dir">--</span>
         </div>
         <div class="split-label-text" style="color:var(--amber);">Wind</div>
@@ -499,7 +584,7 @@
       <div class="split-section split-bottom-right">
         <div class="split-val-small" id="split-rain-val">-- <span style="font-size:12px; color:var(--muted);">%</span></div>
         <div class="split-label-text" style="color:var(--teal); justify-content:flex-end;">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5c-3.03 0-5.5-2.47-5.5-5.5 0-2.38 1.5-5.4 3.97-8.87L12 4.67l1.53 2.46c2.47 3.47 3.97 6.49 3.97 8.87 0 3.03-2.47 5.5-5.5 5.5z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 21.5c-3.03 0-5.5-2.47-5.5-5.5 0-2.38 1.5-5.4 3.97-8.87L12 4.67l1.53 2.46c2.47 3.47 3.97 6.49 3.97 8.87 0 3.03-2.47 5.5-5.5 5.5z"/></svg>
           Rain Chance
         </div>
       </div>
@@ -636,7 +721,6 @@
 (function(){
   "use strict";
 
-  /* --- CACHE FIX: Bumped to .v2 to clear out old data models --- */
   var CACHE_KEY = "morningWeatherBrief.v2.cache";
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
@@ -707,7 +791,6 @@
     var g = els.gauges[key];
     if(!g.arc) return;
     
-    /* --- NULL CHECK: Ensure value isn't undefined before drawing --- */
     if (rawValue === null || rawValue === undefined) rawValue = 0;
 
     var v = clamp(rawValue, g.min, g.max);
@@ -890,7 +973,6 @@
     var currentIsoHour = now.getFullYear() + "-" + pad(now.getMonth()+1) + "-" + pad(now.getDate()) + "T" + pad(now.getHours()) + ":00";
     var hIdx = findCurrentHourIndex(hourly, currentIsoHour);
 
-    /* --- SAFE VARIABLE EXTRACTION: Null-checks prevent JS crashes --- */
     var temp = current.temperature_2m !== undefined ? current.temperature_2m : 0;
     var feels = current.apparent_temperature !== undefined ? current.apparent_temperature : temp;
     var tempMax = (daily && daily.temperature_2m_max) ? daily.temperature_2m_max[0] : temp;
