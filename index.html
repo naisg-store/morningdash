@@ -532,14 +532,58 @@
     text-align: right;
   }
 
+/* ==========================================================================
+     MOBILE RESPONSIVE OVERHAUL (SINGLE-COLUMN EDGE-TO-EDGE)
+     ========================================================================== */
   @media (max-width:520px){
-    .gauge-row{grid-template-columns:1fr;}
-    .gauge-card{flex-direction:row;align-items:center;gap:14px;padding:12px 16px; min-height: 120px;}
-    .gauge-svg-wrap{width:110px;flex-shrink:0;}
-    header.brief-header{flex-direction:column;}
-    .clock-block{text-align:left;}
+    /* 1. Stack cards vertically so they span the entire screen width */
+    .gauge-row{grid-template-columns:1fr; gap:12px;}
+    .gauge-card{flex-direction:column; padding:16px 20px;}
     
-    .hero-ghost-number { right: 20px; font-size: 90px; }
+    /* 2. Make Atmosphere/Solar gauge stretch edge-to-edge & balance padding */
+    .gauge-svg-wrap{width:100%; max-width:none;}
+    .gauge-label{display:block;}
+    .humidity-data-stack { padding-bottom: 14%; } /* Lowered padding to utilize taller arc space */
+    
+    /* 3. Header layout: Align info left, float gauge & ghost number right */
+    header.brief-header{
+      flex-direction:column; 
+      align-items:flex-start; 
+      padding:24px 20px;
+      min-height: 175px; /* Ensures container is tall enough for the floating gauge */
+    }
+    .clock-block{text-align:left; margin-top:8px;}
+    
+    .hero-ghost-number { 
+      right: 15px; 
+      top: 55%; 
+      font-size: 150px; /* Scaled up to wrap behind the full gauge */
+      opacity: 0.07;
+    }
+    .hero-gauge-container{
+      position:absolute;
+      right: 5px;
+      bottom: -15px; /* Pulls the arc down to remove empty SVG bottom space */
+      width: 175px; 
+      margin: 0;
+    }
+    
+    /* 4. Typographic scaling for edge-to-edge mobile proportions */
+    .hero-val{font-size:46px;}
+    .hero-subtext{font-size:11px; gap:6px;}
+    
+    .standard-val{font-size:44px;} /* Supersized to match the wide arc */
+    .standard-unit{font-size:16px;}
+    .standard-subtext{font-size:14px;}
+    
+    /* Give Daylight footer text room to breathe */
+    .daylight-footer span { font-size: 12px; padding: 0 4px; }
+    .daylight-footer span:nth-child(2) { font-size: 14px; }
+    
+    .split-card{min-height:130px;}
+    .split-top-left { top: 18px; left: 20px; }
+    .split-bottom-right { bottom: 18px; right: 20px; }
+    .split-val-large, .split-val-small { font-size: 32px; }
   }
 
   a{color:var(--cyan);}
