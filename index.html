@@ -73,6 +73,7 @@
     display:flex;
     flex-direction:column;
     gap:16px;
+    z-index:2;
   }
   .brand{
     display:flex;
@@ -122,9 +123,9 @@
 
   .hero-gauge-container{
     position:relative;
-    width:180px;
+    width:190px;
     flex-shrink:0;
-    margin:-10px -15px -20px 0; /* Negative margin creates the edgeless bleed */
+    margin:-10px -15px -20px 0; /* Edgeless bleed */
   }
 
   /* ---------- Base Gauge Mechanics ---------- */
@@ -146,8 +147,8 @@
     flex-direction:column;
     align-items:center;
     justify-content:flex-end;
-    padding-bottom:12%; /* Aligns text cleanly above the track line */
-    pointer-events:none; /* Clicks pass through to background */
+    padding-bottom:12%;
+    pointer-events:none;
   }
 
   .gauge-track{
@@ -156,36 +157,51 @@
     stroke-width:14;
     stroke-linecap:round;
   }
-  .gauge-fill{
-    fill:none;
-    stroke-linecap:round;
-    transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1);
-  }
   
-  /* Arc Styles */
-  .gauge-fill.temp { stroke:var(--cyan); stroke-width:14; filter:drop-shadow(0 0 4px rgba(56,189,248,0.5)); }
-  .gauge-fill.humidity { stroke:var(--teal); stroke-width:14; filter:drop-shadow(0 0 4px rgba(45,212,191,0.5)); }
-  .gauge-fill.feels-glow { stroke:var(--violet); stroke-width:14; opacity:0.8; filter:drop-shadow(0 0 10px var(--violet)); }
-  .gauge-fill.high-marker { stroke: var(--amber); stroke-dasharray: 4 6; stroke-width: 14; opacity: 0.85; }
+  /* Dimmed Hero Tracks */
+  .hero-gauge-container .gauge-track { stroke:rgba(148,163,184,0.06); }
+  .hero-gauge-container .gauge-fill.temp { opacity: 0.35; stroke:var(--cyan); stroke-width:14; filter:drop-shadow(0 0 2px rgba(56,189,248,0.2)); }
+  .hero-gauge-container .gauge-fill.high-marker { opacity: 0.4; stroke: var(--amber); stroke-dasharray: 4 6; stroke-width: 14; }
+  
+  /* Dynamic Glow Classes */
+  .gauge-fill { fill:none; stroke-linecap:round; transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1); }
+  .gauge-fill.feels-glow { stroke-width:14; opacity:0.85; transition: stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1), stroke 0.5s ease; }
+  .glow-neutral { stroke:var(--violet); filter:drop-shadow(0 0 10px var(--violet)); }
+  .glow-hot { stroke:var(--red); filter:drop-shadow(0 0 10px var(--red)); }
+  .glow-cool { stroke:var(--teal); filter:drop-shadow(0 0 10px var(--teal)); }
+
+  /* Combined Humidity/Daylight Styles */
+  .gauge-fill.humidity-glow {
+    stroke:var(--teal);
+    stroke-width:14;
+    opacity:0.35;
+    filter:drop-shadow(0 0 8px var(--teal));
+  }
+  .sun-dot-punched {
+    fill: var(--amber-bright);
+    stroke: var(--bg-deep); /* Punches hole through humidity arc */
+    stroke-width: 3.5;
+    filter: drop-shadow(0 0 6px var(--amber-bright));
+    transition: cx 1s ease-out, cy 1s ease-out;
+  }
 
   /* ---------- Typography Overlays ---------- */
-  /* Hero Temp Text */
   .hero-val-wrap{
     display:flex;
     align-items:flex-start;
     line-height:1;
   }
   .hero-val{
-    font-size:46px;
+    font-size:52px; /* Massive hero size */
     font-weight:800;
     color:var(--text);
-    letter-spacing:-0.03em;
+    letter-spacing:-0.04em;
   }
   .hero-unit{
-    font-size:16px;
+    font-size:18px;
     font-weight:700;
     color:var(--muted);
-    margin:4px 0 0 2px;
+    margin:6px 0 0 2px;
   }
   .hero-subtext{
     display:flex;
@@ -196,19 +212,18 @@
     margin-top:6px;
   }
   
-  /* Standard Gauge Text */
   .standard-val-wrap{
     display:flex;
     align-items:baseline;
     line-height:1;
   }
   .standard-val{
-    font-size:28px;
+    font-size:32px;
     font-weight:800;
     color:var(--text);
   }
   .standard-unit{
-    font-size:13px;
+    font-size:14px;
     font-weight:700;
     color:var(--muted);
     margin-left:2px;
@@ -220,15 +235,35 @@
     letter-spacing:0.03em;
   }
 
-  /* Utility Colors */
-  .purple { color: var(--violet); }
-  .amber { color: var(--amber); }
-  .teal { color: var(--teal); }
+  /* Daylight Footer Spacing */
+  .daylight-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 98%;
+    position: absolute;
+    bottom: -4px;
+  }
+  .daylight-footer span {
+    flex: 1;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .daylight-footer span:nth-child(1) { text-align: left; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom:-2px; }
+  .daylight-footer span:nth-child(3) { text-align: right; }
 
-  /* ---------- Gauges Row (3-Column Grid) ---------- */
+  /* Utility Colors */
+  .purple { color: var(--violet); transition: color 0.3s; }
+  .amber { color: var(--amber); transition: color 0.3s; }
+  .teal { color: var(--teal); transition: color 0.3s; }
+  .red { color: var(--red); transition: color 0.3s; }
+
+  /* ---------- Gauges Row (2-Column Grid) ---------- */
   .gauge-row{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(2, 1fr);
     gap:12px;
   }
   .gauge-card{
@@ -237,7 +272,7 @@
     border-radius:var(--radius-lg);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
-    padding:14px 10px 10px;
+    padding:16px 14px 12px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -245,36 +280,12 @@
     overflow:hidden;
   }
   .gauge-label{
-    margin-top:4px;
+    margin-top:8px;
     font-size:10.5px;
     letter-spacing:0.10em;
     text-transform:uppercase;
     color:var(--muted);
     font-weight:700;
-  }
-
-  /* Sunrise Arc Specifics */
-  .sun-dot {
-    fill: var(--amber-bright);
-    filter: drop-shadow(0 0 8px var(--amber-bright));
-    transition: cx 1s ease-out, cy 1s ease-out;
-  }
-  .daylight-overlay {
-    padding-bottom: 2%; /* Sits slightly lower */
-  }
-  .daylight-status {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--amber);
-    margin-bottom: 6px;
-  }
-  .daylight-times {
-    display: flex;
-    justify-content: space-between;
-    width: 88%;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--muted);
   }
 
   /* ==========================================================================
@@ -294,7 +305,6 @@
     z-index: -1;
     border-radius: var(--radius-lg);
   }
-  
   .split-section {
     position: absolute;
     display:flex;
@@ -303,28 +313,28 @@
     z-index: 2;
   }
   .split-top-left {
-    top: 12px; left: 14px;
+    top: 14px; left: 16px;
     align-items: flex-start; text-align: left;
   }
   .split-bottom-right {
-    bottom: 12px; right: 14px;
+    bottom: 14px; right: 16px;
     align-items: flex-end; text-align: right;
   }
   .split-val-large {
-    font-size: 24px; font-weight: 800; line-height: 1;
+    font-size: 26px; font-weight: 800; line-height: 1;
     color: var(--amber); letter-spacing: -0.02em;
   }
   .split-val-unit {
-    font-size: 10px; font-weight: 700; color: var(--amber);
+    font-size: 11px; font-weight: 700; color: var(--amber);
     margin-top: 2px; display: flex; align-items: center; gap: 4px;
   }
   .split-val-small {
-    font-size: 22px; font-weight: 800; line-height: 1;
+    font-size: 24px; font-weight: 800; line-height: 1;
     color: var(--text);
   }
   .split-label-text {
-    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); font-weight: 700; margin-top: 3px;
+    font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 700; margin-top: 4px;
     display:flex; align-items:center; gap:4px;
   }
 
@@ -474,22 +484,19 @@
     text-align: right;
   }
 
-  @media (max-width:768px){
-    .gauge-row{grid-template-columns:repeat(2, 1fr);}
-  }
-  @media (max-width:480px){
+  @media (max-width:520px){
     .gauge-row{grid-template-columns:1fr;}
-    .gauge-card{flex-direction:row;align-items:center;gap:14px;padding:12px 16px; min-height: 120px;}
-    .gauge-svg-wrap{width:110px;flex-shrink:0;}
-    .gauge-label{flex:1;text-align:left;padding-left:8px;font-size:13px;margin-top:0;}
+    .gauge-card{flex-direction:row;align-items:center;gap:16px;padding:12px 18px; min-height: 120px;}
+    .gauge-svg-wrap{width:130px;flex-shrink:0;}
+    .gauge-label{display:none;} /* Hidden on mobile horizontal tiles */
     
-    header.brief-header{flex-direction:row;align-items:center;padding:16px;}
-    .hero-gauge-container{width:130px; margin:-5px -10px -15px 0;}
-    .hero-val{font-size:36px;}
+    header.brief-header{flex-direction:row;align-items:center;padding:18px 20px;}
+    .hero-gauge-container{width:145px; margin:-10px -18px -15px 0;}
+    .hero-val{font-size:42px;}
     .hero-subtext{font-size:10px;gap:6px;}
     
-    .split-top-left { top: 16px; left: 16px; }
-    .split-bottom-right { bottom: 16px; right: 16px; }
+    .split-top-left { top: 18px; left: 18px; }
+    .split-bottom-right { bottom: 18px; right: 18px; }
   }
 
   a{color:var(--cyan);}
@@ -518,7 +525,8 @@
         <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
           <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
           <path class="gauge-fill high-marker" id="gauge-temp-high-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <path class="gauge-fill feels-glow" id="gauge-temp-feels-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <!-- Dynamic Glow class injected here via JS -->
+          <path class="gauge-fill feels-glow glow-neutral" id="gauge-temp-feels-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
           <path class="gauge-fill temp" id="gauge-temp-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
         </svg>
         <div class="gauge-data">
@@ -535,42 +543,34 @@
   </header>
 
   <section class="gauge-row">
-    <!-- 1. Humidity Gauge -->
+    <!-- 1. Combined Atmosphere & Solar Gauge -->
     <div class="gauge-card">
       <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 200 130" aria-label="Humidity gauge">
+        <svg viewBox="0 0 200 130" aria-label="Humidity and Daylight gauge">
           <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <path class="gauge-fill humidity" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <!-- Transparent Teal Glow Arc -->
+          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <!-- Punched out sun dot rides on top -->
+          <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
         </svg>
         <div class="gauge-data">
           <div class="standard-val-wrap">
             <span class="standard-val" id="gauge-humidity-val">--</span><span class="standard-unit">%</span>
           </div>
           <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
-        </div>
-      </div>
-      <div class="gauge-label">Humidity</div>
-    </div>
-
-    <!-- 2. Solar Arc (Sunrise / Sunset) -->
-    <div class="gauge-card">
-      <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 200 130" aria-label="Daylight progression gauge">
-          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <circle id="sun-dot" class="sun-dot" cx="20" cy="100" r="7" />
-        </svg>
-        <div class="gauge-data daylight-overlay">
-          <div class="daylight-status" id="sun-status-text">--</div>
-          <div class="daylight-times">
+          
+          <!-- Spread out footer for daylight -->
+          <div class="daylight-footer">
             <span id="sun-rise-time">--:--</span>
+            <span class="daylight-status" id="sun-status-text">--</span>
             <span id="sun-set-time">--:--</span>
           </div>
         </div>
       </div>
-      <div class="gauge-label">Daylight</div>
+      <div class="gauge-label">Atmosphere & Solar</div>
     </div>
 
-    <!-- 3. Split Card (Wind & Rain) -->
+    <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="split-section split-top-left">
         <div class="split-val-large" id="split-wind-speed">--</div>
@@ -721,7 +721,8 @@
 (function(){
   "use strict";
 
-  var CACHE_KEY = "morningWeatherBrief.v2.cache";
+  /* --- CACHE FIX: Bumped to .v4 --- */
+  var CACHE_KEY = "morningWeatherBrief.v4.cache";
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
@@ -761,7 +762,6 @@
     }
   };
 
-  // Setup SVG Arc baselines
   Object.keys(els.gauges).forEach(function(key){
     var g = els.gauges[key];
     if(g.arc){
@@ -790,7 +790,6 @@
   function setGauge(key, rawValue, displayValue){
     var g = els.gauges[key];
     if(!g.arc) return;
-    
     if (rawValue === null || rawValue === undefined) rawValue = 0;
 
     var v = clamp(rawValue, g.min, g.max);
@@ -876,7 +875,6 @@
 
   function getAdvice(c){
     var t = c.temp, feels = c.feels, h = c.humidity, wind = c.wind, precipProb = c.precipProb, code = c.code;
-
     var rules = [
       { test: feels >= 95, icon:"🔥", msg:"Oppressive heat index today — stay hydrated and keep the air conditioning cranked." },
       { test: feels - t >= 7, icon:"😓", msg:"High humidity is pushing the feels-like temp significantly higher than the actual reading." },
@@ -890,10 +888,7 @@
       { test: t >= 60 && t <= 80 && (code === 0 || code === 1), icon:"☀️", msg:"Clear skies and comfortable temps — about as good as mornings get." },
       { test: t < 55 && (code === 0 || code === 1 || code === 2), icon:"🧥", msg:"Crisp and clear — light jacket weather, nothing dramatic." }
     ];
-
-    for (var i = 0; i < rules.length; i++){
-      if (rules[i].test) return rules[i];
-    }
+    for (var i = 0; i < rules.length; i++){ if (rules[i].test) return rules[i]; }
     return { icon:"🌤️", msg:"Standard-issue morning out there — nothing wild, just get out the door." };
   }
 
@@ -939,15 +934,9 @@
       return null;
     }catch(e){ return null; }
   }
-
   function writeCache(lat, lon, weatherData, place){
     try{
-      localStorage.setItem(CACHE_KEY, JSON.stringify({
-        timestamp: Date.now(),
-        lat: lat, lon: lon,
-        weather: weatherData,
-        place: place
-      }));
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), lat: lat, lon: lon, weather: weatherData, place: place }));
     }catch(e){ }
   }
 
@@ -961,6 +950,29 @@
     if (!hourly || !hourly.time) return 0;
     var idx = hourly.time.indexOf(currentIsoHour);
     return idx >= 0 ? idx : 0;
+  }
+
+  function applyFeelsLikeLogic(temp, feels){
+    var glowArc = els.gauges.feelsGlow.arc;
+    var feelsLabel = document.getElementById("gauge-temp-feels-val");
+    if(!glowArc || !feelsLabel) return;
+    
+    glowArc.classList.remove("glow-neutral", "glow-hot", "glow-cool");
+    feelsLabel.classList.remove("purple", "red", "teal");
+
+    var t = Math.round(temp);
+    var f = Math.round(feels);
+
+    if (f > t) {
+      glowArc.classList.add("glow-hot");
+      feelsLabel.classList.add("red");
+    } else if (f < t) {
+      glowArc.classList.add("glow-cool");
+      feelsLabel.classList.add("teal");
+    } else {
+      glowArc.classList.add("glow-neutral");
+      feelsLabel.classList.add("purple");
+    }
   }
 
   function renderWeather(weatherData){
@@ -990,6 +1002,9 @@
     var precipProb = (hourly && hourly.precipitation_probability) ? hourly.precipitation_probability[hIdx] : 0;
     var visibilityMeters = (hourly && hourly.visibility) ? hourly.visibility[hIdx] : null;
     var visibilityMiles = (visibilityMeters !== null && visibilityMeters !== undefined) ? (visibilityMeters / 1609.34) : null;
+
+    // Trigger Dynamic Color Logic
+    applyFeelsLikeLogic(temp, feels);
 
     setGauge("temp", temp, Math.round(temp));
     setGauge("feelsGlow", feels, Math.round(feels));
