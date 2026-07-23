@@ -170,7 +170,7 @@
   }
 
   .humidity-data-stack {
-    padding-bottom: 24%;
+    padding-bottom: 18%;
   }
 
   .gauge-track{
@@ -190,6 +190,7 @@
   .glow-hot { stroke:var(--red); filter:drop-shadow(0 0 10px var(--red)); }
   .glow-cool { stroke:var(--teal); filter:drop-shadow(0 0 10px var(--teal)); }
 
+  /* Combined Wide Humidity/Daylight Styles */
   .gauge-fill.humidity-glow {
     stroke:var(--teal);
     stroke-width:14;
@@ -255,23 +256,24 @@
     letter-spacing:0.03em;
   }
 
+  /* Wide Daylight Footer Spacing */
   .daylight-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 96%;
+    width: 98%;
     position: absolute;
     bottom: 2%;
   }
   .daylight-footer span {
-    flex: 1;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     color: var(--muted);
+    white-space: nowrap;
   }
-  .daylight-footer span:nth-child(1) { text-align: left; padding-left: 2px; }
-  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 11px; margin-bottom: -1px; }
-  .daylight-footer span:nth-child(3) { text-align: right; padding-right: 2px; }
+  .daylight-footer span:nth-child(1) { text-align: left; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom: -1px; }
+  .daylight-footer span:nth-child(3) { text-align: right; }
 
   .purple { color: var(--violet); transition: color 0.3s; }
   .amber { color: var(--amber); transition: color 0.3s; }
@@ -328,7 +330,6 @@
     border-radius: var(--radius-lg);
   }
 
-  /* Ambient Broadcast Watermark Icons */
   .split-card::after {
     content: '💨';
     position: absolute;
@@ -532,53 +533,46 @@
     text-align: right;
   }
 
-/* ==========================================================================
-     MOBILE RESPONSIVE OVERHAUL (SINGLE-COLUMN EDGE-TO-EDGE)
-     ========================================================================== */
   @media (max-width:520px){
-    /* 1. Stack cards vertically so they span the entire screen width */
     .gauge-row{grid-template-columns:1fr; gap:12px;}
     .gauge-card{flex-direction:column; padding:16px 20px;}
     
-    /* 2. Make Atmosphere/Solar gauge stretch edge-to-edge & balance padding */
     .gauge-svg-wrap{width:100%; max-width:none;}
     .gauge-label{display:block;}
-    .humidity-data-stack { padding-bottom: 14%; } /* Lowered padding to utilize taller arc space */
+    .humidity-data-stack { padding-bottom: 12px; }
     
-    /* 3. Header layout: Align info left, float gauge & ghost number right */
     header.brief-header{
       flex-direction:column; 
       align-items:flex-start; 
       padding:24px 20px;
-      min-height: 175px; /* Ensures container is tall enough for the floating gauge */
+      min-height: 185px;
     }
     .clock-block{text-align:left; margin-top:8px;}
     
     .hero-ghost-number { 
       right: 15px; 
-      top: 55%; 
-      font-size: 150px; /* Scaled up to wrap behind the full gauge */
+      top: 50%; 
+      font-size: 140px; 
       opacity: 0.07;
     }
     .hero-gauge-container{
       position:absolute;
-      right: 5px;
-      bottom: -15px; /* Pulls the arc down to remove empty SVG bottom space */
-      width: 175px; 
+      right: 15px;
+      bottom: 10px;
+      width: 170px; 
       margin: 0;
     }
     
-    /* 4. Typographic scaling for edge-to-edge mobile proportions */
-    .hero-val{font-size:46px;}
+    .hero-val{font-size:44px;}
     .hero-subtext{font-size:11px; gap:6px;}
     
-    .standard-val{font-size:44px;} /* Supersized to match the wide arc */
-    .standard-unit{font-size:16px;}
-    .standard-subtext{font-size:14px;}
+    .standard-val{font-size:42px;}
+    .standard-unit{font-size:15px;}
+    .standard-subtext{font-size:13px;}
     
-    /* Give Daylight footer text room to breathe */
-    .daylight-footer span { font-size: 12px; padding: 0 4px; }
-    .daylight-footer span:nth-child(2) { font-size: 14px; }
+    .daylight-footer { width: 98%; bottom: 6px; }
+    .daylight-footer span { font-size: 11px; }
+    .daylight-footer span:nth-child(2) { font-size: 13px; }
     
     .split-card{min-height:130px;}
     .split-top-left { top: 18px; left: 20px; }
@@ -629,13 +623,14 @@
     </div>
   </header>
 
-  <section class="gauge-row">
-    <!-- 1. Combined Humidity & Sunrise Gauge -->
+  <section class="gauge-row" style="grid-template-columns: 1fr;">
+    <!-- 1. Wide Combined Humidity & Sunrise Gauge -->
     <div class="gauge-card">
       <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 200 130" aria-label="Humidity and Daylight gauge">
-          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+        <svg viewBox="0 0 280 130" aria-label="Wide Humidity and Daylight gauge">
+          <!-- Scaled wide path from x=20 to x=260 (Radius 120) -->
+          <path class="gauge-track" d="M 20 100 A 120 120 0 0 1 260 100"/>
+          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 120 120 0 0 1 260 100"/>
           <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
         </svg>
         
@@ -645,7 +640,7 @@
           </div>
           <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
           
-          <div class="daylight-footer">
+          <div class="daylight-footer" style="width: 96%; left: 2%;">
             <span id="sun-rise-time">--:--</span>
             <span class="daylight-status amber" id="sun-status-text">--</span>
             <span id="sun-set-time">--:--</span>
@@ -655,7 +650,7 @@
       <div class="gauge-label">Humidity & Sunrise</div>
     </div>
 
-    <!-- 2. Split Card (Wind & Rain) with Broadcast Watermarks -->
+    <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="rain-watermark">🌧️</div>
       <div class="split-section split-top-left">
@@ -807,10 +802,14 @@
 (function(){
   "use strict";
 
-  var CACHE_KEY = "morningWeatherBrief.v7.cache";
+  var CACHE_KEY = "morningWeatherBrief.v8.cache";
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
+
+  /* --- WIDE ARC METRICS FOR COMBINED GAUGE --- */
+  var WIDE_RADIUS = 120;
+  var WIDE_ARC_LENGTH = Math.PI * WIDE_RADIUS;
 
   var els = {
     city: document.getElementById("city-name"),
@@ -822,9 +821,9 @@
     ticker: document.getElementById("ticker-track"),
     ghostVal: document.getElementById("hero-ghost-val"),
     gauges: {
-      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120 },
-      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120 },
-      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100 }
+      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120, radius: GAUGE_RADIUS, len: ARC_LENGTH },
+      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120, radius: GAUGE_RADIUS, len: ARC_LENGTH },
+      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100, radius: WIDE_RADIUS, len: WIDE_ARC_LENGTH }
     },
     tempHigh: {
       arc: document.getElementById("gauge-temp-high-arc"),
@@ -848,11 +847,12 @@
     }
   };
 
+  // Setup Standard Arcs
   Object.keys(els.gauges).forEach(function(key){
     var g = els.gauges[key];
     if(g.arc){
-      g.arc.style.strokeDasharray = ARC_LENGTH;
-      g.arc.style.strokeDashoffset = ARC_LENGTH;
+      g.arc.style.strokeDasharray = g.len;
+      g.arc.style.strokeDashoffset = g.len;
     }
   });
 
@@ -880,7 +880,7 @@
 
     var v = clamp(rawValue, g.min, g.max);
     var frac = (v - g.min) / (g.max - g.min);
-    var offset = ARC_LENGTH * (1 - frac);
+    var offset = g.len * (1 - frac);
     
     if(key === 'feelsGlow'){
       g.val.textContent = "Feels " + (displayValue !== undefined ? displayValue : Math.round(rawValue)) + "°";
@@ -933,9 +933,10 @@
     }
 
     var clampedProgress = Math.max(0, Math.min(1, progress));
+    // Wide arc math mapping (Radius 120, Center 140, 100)
     var angle = Math.PI - (clampedProgress * Math.PI);
-    var cx = 100 + GAUGE_RADIUS * Math.cos(angle);
-    var cy = 100 - GAUGE_RADIUS * Math.sin(angle);
+    var cx = 140 + WIDE_RADIUS * Math.cos(angle);
+    var cy = 100 - WIDE_RADIUS * Math.sin(angle);
     
     requestAnimationFrame(function(){
       els.solar.dot.setAttribute("cx", cx);
