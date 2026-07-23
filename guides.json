@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "los-angeles.html",
+    "name": "Los Angeles",
+    "emoji": "🌴",
+    "desc": "I-10, 405, 101 & 5 Corridors"
+  },
+  {
+    "slug": "irvine.html",
+    "name": "Irvine",
+    "emoji": "🏙️",
+    "desc": "5, 405, 133 & 241 Toll Roads"
+  },
+  {
+    "slug": "huntington-beach.html",
+    "name": "Huntington Beach",
+    "emoji": "🏄",
+    "desc": "PCH, Beach Blvd & 405 Corridors"
+  }
+]
