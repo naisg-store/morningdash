@@ -293,14 +293,17 @@
     font-weight:700;
   }
 
-  /* ==========================================================================
-     Enhanced Split Card
+/* ==========================================================================
+     Fully Responsive Split Card (Wind & Rain)
      ========================================================================== */
   .split-card {
-    display:block;
-    padding:0;
-    position:relative;
-    isolation:isolate;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    position: relative;
+    isolation: isolate;
+    min-height: 120px;
   }
   .split-card::before {
     content: '';
@@ -311,19 +314,17 @@
     border-radius: var(--radius-lg);
   }
   .split-section {
-    position: absolute;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+    display: flex;
+    flex-direction: column;
     z-index: 2;
   }
   .split-top-left {
-    top: 14px; left: 16px;
-    align-items: flex-start; text-align: left;
+    align-items: flex-start;
+    text-align: left;
   }
   .split-bottom-right {
-    bottom: 14px; right: 16px;
-    align-items: flex-end; text-align: right;
+    align-items: flex-end;
+    text-align: right;
   }
   .split-val-large {
     font-size: 26px; font-weight: 800; line-height: 1;
@@ -340,7 +341,7 @@
   .split-label-text {
     font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--muted); font-weight: 700; margin-top: 4px;
-    display:flex; align-items:center; gap:4px;
+    display: flex; align-items: center; gap: 4px;
   }
 
   /* ---------- Advice box ---------- */
@@ -590,7 +591,7 @@
       <div class="gauge-label">Humidity & Sunrise</div>
     </div>
 
-    <!-- 2. Split Card (Wind & Rain) - Spans 2 columns on mobile -->
+   <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="split-section split-top-left">
         <div class="split-val-large" id="split-wind-speed">--</div>
@@ -608,6 +609,7 @@
           Rain Chance
         </div>
       </div>
+    </div>
     </div>
   </section>
 
