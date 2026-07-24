@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Morning Commute Weather Brief & Road Hazards</title>
-<meta name="description" content="Live morning commute weather, real-time conditions, marine layer fog alerts, rain probability, and local highway visibility.">
+<title>Los Angeles Morning Commute Weather Brief & Road Hazards</title>
+<meta name="description" content="Live morning commute weather for Los Angeles. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for I-10, 405, 101 & 5 Corridors.">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <style>
   :root{
@@ -329,7 +329,7 @@
   }
 
   .split-card::after {
-    content: '💨';
+    content: 'ðŸ’¨';
     position: absolute;
     left: 10px;
     bottom: 5px;
@@ -590,6 +590,8 @@
   a{color:var(--cyan);}
   :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
 </style>
+
+<link rel="canonical" href="https://morningst.art/guides/los-angeles.html">
 </head>
 <body>
 <div class="wrap">
@@ -604,7 +606,7 @@
       </div>
       <div class="clock-block">
         <div class="clock-time" id="clock-time">--:--</div>
-        <div class="clock-date" id="clock-date">—</div>
+        <div class="clock-date" id="clock-date">â€”</div>
       </div>
     </div>
     
@@ -619,11 +621,11 @@
         </svg>
         <div class="gauge-data">
           <div class="hero-val-wrap">
-            <span class="hero-val" id="gauge-temp-val">--</span><span class="hero-unit">°F</span>
+            <span class="hero-val" id="gauge-temp-val">--</span><span class="hero-unit">Â°F</span>
           </div>
           <div class="hero-subtext">
-            <span class="purple" id="gauge-temp-feels-val">Feels --°</span>
-            <span class="amber" id="gauge-temp-high-val">High --°</span>
+            <span class="purple" id="gauge-temp-feels-val">Feels --Â°</span>
+            <span class="amber" id="gauge-temp-high-val">High --Â°</span>
           </div>
         </div>
       </div>
@@ -645,7 +647,7 @@
           <div class="standard-val-wrap">
             <span class="standard-val" id="gauge-humidity-val">--</span><span class="standard-unit">%</span>
           </div>
-          <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
+          <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --Â°</div>
           
           <div class="daylight-footer" style="width: 96%; left: 2%;">
             <span id="sun-rise-time">--:--</span>
@@ -659,7 +661,7 @@
 
     <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
-      <div class="rain-watermark">🌧️</div>
+      <div class="rain-watermark">ðŸŒ§ï¸</div>
       <div class="split-section split-top-left">
         <div class="split-val-large" id="split-wind-speed">--</div>
         <div class="split-val-unit">
@@ -680,10 +682,10 @@
   </section>
 
   <section class="advice-box">
-    <div class="advice-icon" id="advice-icon">🌤️</div>
+    <div class="advice-icon" id="advice-icon">ðŸŒ¤ï¸</div>
     <div class="advice-text-block">
       <div class="advice-eyebrow">Morning Advice</div>
-      <div class="advice-text" id="advice-text">Reading today's conditions…</div>
+      <div class="advice-text" id="advice-text">Reading today's conditionsâ€¦</div>
     </div>
   </section>
 
@@ -693,8 +695,8 @@
       <div class="live-tag"><span class="pulse"></span>HAZARDS</div>
       <div class="ticker-viewport">
         <div class="ticker-track" id="ticker-track">
-          <span>Loading commute conditions…</span>
-          <span>Loading commute conditions…</span>
+          <span>Loading commute conditionsâ€¦</span>
+          <span>Loading commute conditionsâ€¦</span>
         </div>
       </div>
     </div>
@@ -731,7 +733,7 @@
 
   <footer class="foot-note" style="margin-top:28px; border-top:1px solid var(--panel-border); padding-top:16px;">
     <div style="margin-bottom:10px; display:flex; justify-content:center; gap:16px; font-size:12px;">
-      <a href="../index.html" style="color:var(--cyan); text-decoration:none;">← Global Dashboard</a>
+      <a href="../index.html" style="color:var(--cyan); text-decoration:none;">â† Global Dashboard</a>
       <span style="color:var(--muted-dim);">&middot;</span>
       <a href="../about.html" style="color:var(--cyan); text-decoration:none;">About</a>
       <span style="color:var(--muted-dim);">&middot;</span>
@@ -834,7 +836,7 @@
     var offset = g.len * (1 - frac);
     
     if(key === 'feelsGlow'){
-      g.val.textContent = "Feels " + (displayValue !== undefined ? displayValue : Math.round(rawValue)) + "°";
+      g.val.textContent = "Feels " + (displayValue !== undefined ? displayValue : Math.round(rawValue)) + "Â°";
     } else {
       g.val.textContent = (displayValue !== undefined ? displayValue : Math.round(rawValue));
       if(key === 'temp' && els.ghostVal) {
@@ -856,7 +858,7 @@
     var frac = (clampedHigh - minTemp) / (maxTemp - minTemp);
     var offset = ARC_LENGTH * (1 - frac);
     
-    els.tempHigh.val.textContent = "High " + Math.round(tempMax) + "°";
+    els.tempHigh.val.textContent = "High " + Math.round(tempMax) + "Â°";
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){
         els.tempHigh.arc.style.strokeDashoffset = offset;
@@ -917,20 +919,20 @@
   function getAdvice(c){
     var t = c.temp, feels = c.feels, h = c.humidity, wind = c.wind, precipProb = c.precipProb, code = c.code;
     var rules = [
-      { test: feels >= 95, icon:"🔥", msg:"Oppressive heat index today — stay hydrated and keep the air conditioning cranked." },
-      { test: feels - t >= 7, icon:"😓", msg:"High humidity is pushing the feels-like temp significantly higher than the actual reading." },
-      { test: t <= 32, icon:"🧊", msg:"Below freezing this morning — scrape the windshield and take corners slow." },
-      { test: t < 40 && wind > 15, icon:"🥶", msg:"Bitter wind chill on top of the cold — that light jacket won't cut it today." },
-      { test: h > 70 && t > 65 && precipProb > 20, icon:"💧", msg:"Muggy with a side of drizzle — expect fogged-up windows for the first few miles." },
-      { test: wind > 20, icon:"💨", msg:"Hold onto your hat — gusty winds could nudge you around the lane." },
-      { test: precipProb > 50, icon:"☔", msg:"Rain's basically guaranteed — grab the umbrella and pad your commute by a few minutes." },
-      { test: code === 45 || code === 48, icon:"🌫️", msg:"Fog's rolling in — ease off the gas and give yourself extra following distance." },
-      { test: h > 80 && precipProb <= 20, icon:"😓", msg:"Sticky air with no rain in sight — just an uncomfortable kind of humid." },
-      { test: t >= 60 && t <= 80 && (code === 0 || code === 1), icon:"☀️", msg:"Clear skies and comfortable temps — about as good as mornings get." },
-      { test: t < 55 && (code === 0 || code === 1 || code === 2), icon:"🧥", msg:"Crisp and clear — light jacket weather, nothing dramatic." }
+      { test: feels >= 95, icon:"ðŸ”¥", msg:"Oppressive heat index today â€” stay hydrated and keep the air conditioning cranked." },
+      { test: feels - t >= 7, icon:"ðŸ˜“", msg:"High humidity is pushing the feels-like temp significantly higher than the actual reading." },
+      { test: t <= 32, icon:"ðŸ§Š", msg:"Below freezing this morning â€” scrape the windshield and take corners slow." },
+      { test: t < 40 && wind > 15, icon:"ðŸ¥¶", msg:"Bitter wind chill on top of the cold â€” that light jacket won't cut it today." },
+      { test: h > 70 && t > 65 && precipProb > 20, icon:"ðŸ’§", msg:"Muggy with a side of drizzle â€” expect fogged-up windows for the first few miles." },
+      { test: wind > 20, icon:"ðŸ’¨", msg:"Hold onto your hat â€” gusty winds could nudge you around the lane." },
+      { test: precipProb > 50, icon:"â˜”", msg:"Rain's basically guaranteed â€” grab the umbrella and pad your commute by a few minutes." },
+      { test: code === 45 || code === 48, icon:"ðŸŒ«ï¸", msg:"Fog's rolling in â€” ease off the gas and give yourself extra following distance." },
+      { test: h > 80 && precipProb <= 20, icon:"ðŸ˜“", msg:"Sticky air with no rain in sight â€” just an uncomfortable kind of humid." },
+      { test: t >= 60 && t <= 80 && (code === 0 || code === 1), icon:"â˜€ï¸", msg:"Clear skies and comfortable temps â€” about as good as mornings get." },
+      { test: t < 55 && (code === 0 || code === 1 || code === 2), icon:"ðŸ§¥", msg:"Crisp and clear â€” light jacket weather, nothing dramatic." }
     ];
     for (var i = 0; i < rules.length; i++){ if (rules[i].test) return rules[i]; }
-    return { icon:"🌤️", msg:"Standard-issue morning out there — nothing wild, just get out the door." };
+    return { icon:"ðŸŒ¤ï¸", msg:"Standard-issue morning out there â€” nothing wild, just get out the door." };
   }
 
   function buildHazards(c){
@@ -1044,7 +1046,7 @@
     setTempHighGauge(tempMax);
     setGauge("humidity", humidity, Math.round(humidity));
     
-    els.dewPointVal.textContent = "Dew Pt " + Math.round(dewPoint) + "°";
+    els.dewPointVal.textContent = "Dew Pt " + Math.round(dewPoint) + "Â°";
 
     renderSolarArc(sunriseIso, sunsetIso);
     renderUV(uv);
@@ -1100,7 +1102,7 @@
             renderWeather(weatherData);
             writeCache(weatherData);
           }).catch(function(){
-            els.adviceText.textContent = "Live weather data is unavailable right now — check back shortly.";
+            els.adviceText.textContent = "Live weather data is unavailable right now â€” check back shortly.";
             renderTicker([{ text:"DATA UNAVAILABLE: Unable to reach the weather service.", type:"hazard" }]);
           });
         }
