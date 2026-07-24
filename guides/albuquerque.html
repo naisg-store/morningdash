@@ -89,7 +89,7 @@
   }
 
   .gauge-svg-wrap{ position:relative; width:100%; line-height:0; }
-  .gauge-svg-wrap svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .gauge-svg-wrap svg{ width:100%; height:auto; display:block; overflow:hidden; }
   .gauge-data{
     position:absolute;
     inset:0;
@@ -131,12 +131,13 @@
   .hero-unit{ font-size:18px; font-weight:700; color:var(--muted); margin:6px 0 0 2px; }
   .hero-subtext{ display:flex; gap:8px; font-size:11px; font-weight:700; letter-spacing:0.02em; margin-top:6px; }
   
+  /* Large Center Typography for Feature Gauge */
   .standard-val-wrap{ display:flex; align-items:baseline; line-height:1; }
-  .standard-val{ font-size:42px; font-weight:900; color:var(--text); letter-spacing:-0.03em; }
-  .standard-unit{ font-size:18px; font-weight:700; color:var(--muted); margin-left:2px; }
-  .standard-subtext{ font-size:13px; font-weight:700; margin-top:4px; letter-spacing:0.03em; }
+  .standard-val{ font-size:60px; font-weight:900; color:var(--text); letter-spacing:-0.04em; }
+  .standard-unit{ font-size:24px; font-weight:700; color:var(--muted); margin-left:3px; }
+  .standard-subtext{ font-size:16px; font-weight:800; margin-top:6px; letter-spacing:0.03em; }
 
-  /* Full-Width Feature Gauge Styling */
+  /* Full-Width Feature Gauge Card */
   .wide-gauge-card {
     background: var(--panel);
     border: 1px solid var(--panel-border);
@@ -148,20 +149,21 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    overflow: hidden;
   }
-  .wide-data-stack { padding-bottom: 16%; }
+  .wide-data-stack { padding-bottom: 12%; }
 
   .daylight-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 98%;
+    width: 92%;
     position: absolute;
-    bottom: 3%;
+    bottom: 4%;
   }
-  .daylight-footer span { font-size: 11px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+  .daylight-footer span { font-size: 12px; font-weight: 700; color: var(--muted); white-space: nowrap; }
   .daylight-footer span:nth-child(1) { text-align: left; }
-  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom: -1px; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 13px; font-weight: 800; margin-bottom: -1px; }
   .daylight-footer span:nth-child(3) { text-align: right; }
 
   .purple { color: var(--violet); transition: color 0.3s; }
@@ -205,10 +207,10 @@
   .split-top-left { top: 18px; left: 20px; align-items: flex-start; text-align: left; }
   .split-bottom-right { bottom: 18px; right: 20px; align-items: flex-end; text-align: right; }
   
-  .split-val-large { font-size: 32px; font-weight: 900; line-height: 1; color: var(--amber); letter-spacing: -0.03em; }
-  .split-val-unit { font-size: 11.5px; font-weight: 700; color: var(--amber); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
-  .split-val-small { font-size: 32px; font-weight: 900; line-height: 1; color: var(--text); letter-spacing: -0.03em; }
-  .split-label-text { font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+  .split-val-large { font-size: 34px; font-weight: 900; line-height: 1; color: var(--amber); letter-spacing: -0.03em; }
+  .split-val-unit { font-size: 12px; font-weight: 700; color: var(--amber); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+  .split-val-small { font-size: 34px; font-weight: 900; line-height: 1; color: var(--text); letter-spacing: -0.03em; }
+  .split-label-text { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
 
   /* Advice Box */
   .advice-box{
@@ -284,8 +286,8 @@
     .hero-ghost-number { right: 15px; top: 50%; font-size: 140px; opacity: 0.07; }
     .hero-gauge-container{ position:absolute; right: 15px; bottom: 8px; width: 170px; margin: 0; }
     .hero-val{font-size:42px;}
-    .standard-val{font-size:36px;}
-    .daylight-footer { width: 94%; bottom: 4%; }
+    .standard-val{font-size:46px;}
+    .daylight-footer { width: 90%; bottom: 5%; }
   }
 
   a{color:var(--cyan);}
@@ -334,13 +336,13 @@
     </div>
   </header>
 
-  <!-- Wide Feature Gauge (Humidity & Sunrise) -->
+  <!-- Wide Feature Gauge (Humidity & Sunrise) with Correct Geometry (y=125, r=105) -->
   <div class="wide-gauge-card">
-    <div class="gauge-svg-wrap" style="max-width: 520px; width:100%;">
-      <svg viewBox="0 0 280 130" aria-label="Humidity and Daylight gauge">
-        <path class="gauge-track" d="M 20 100 A 120 120 0 0 1 260 100"/>
-        <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 120 120 0 0 1 260 100"/>
-        <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
+    <div class="gauge-svg-wrap" style="max-width: 560px; width:100%;">
+      <svg viewBox="0 0 280 140" aria-label="Humidity and Daylight gauge">
+        <path class="gauge-track" d="M 35 125 A 105 105 0 0 1 245 125"/>
+        <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 35 125 A 105 105 0 0 1 245 125"/>
+        <circle id="sun-dot" class="sun-dot-punched" cx="35" cy="125" r="8" />
       </svg>
       
       <div class="gauge-data wide-data-stack">
@@ -356,7 +358,7 @@
         </div>
       </div>
     </div>
-    <div class="gauge-label" style="margin-top:10px;">Humidity & Sunrise</div>
+    <div class="gauge-label" style="margin-top:12px; font-size:11px; letter-spacing:0.12em;">Humidity & Sunrise</div>
   </div>
 
   <!-- Split Card (Wind & Rain) -->
@@ -445,7 +447,7 @@
 
 </div>
 
-<!-- Required Router Script (Injects 100 Cities & Guides) -->
+<!-- Navigation Router Script -->
 <script src="../nav.js"></script>
 
 <script>
@@ -454,9 +456,12 @@
 
   var CACHE_KEY = "morningWeatherBrief.cache"; 
   var CACHE_TTL_MS = 15 * 60 * 1000;
+  
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
-  var WIDE_RADIUS = 120;
+  
+  /* Adjusted Radius & Path Metrics for Wide Feature Gauge */
+  var WIDE_RADIUS = 105;
   var WIDE_ARC_LENGTH = Math.PI * WIDE_RADIUS;
 
   var els = {
@@ -509,7 +514,6 @@
     els.tempHigh.arc.style.strokeDashoffset = ARC_LENGTH;
   }
 
-  // ---------------- Clock ----------------
   function tickClock(){
     var now = new Date();
     els.time.textContent = now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
@@ -518,7 +522,6 @@
   tickClock();
   setInterval(tickClock, 1000);
 
-  // ---------------- Render Functions ----------------
   function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
 
   function setGauge(key, rawValue, displayValue){
@@ -583,7 +586,7 @@
     var clampedProgress = Math.max(0, Math.min(1, progress));
     var angle = Math.PI - (clampedProgress * Math.PI);
     var cx = 140 + WIDE_RADIUS * Math.cos(angle);
-    var cy = 100 - WIDE_RADIUS * Math.sin(angle);
+    var cy = 125 - WIDE_RADIUS * Math.sin(angle);
     
     requestAnimationFrame(function(){
       els.solar.dot.setAttribute("cx", cx);
