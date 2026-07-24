@@ -6,7 +6,6 @@
 <title>Huntington Beach Morning Commute Weather Brief & Road Hazards</title>
 <meta name="description" content="Live morning commute weather for Huntington Beach, CA. Real-time conditions, marine layer fog alerts, rain probability, and visibility for Pacific Coast Highway, 405, and local routes. Orange County driving updates.">
 <link rel="canonical" href="huntington-beach.html">
-<link rel="stylesheet" href="../styles.css">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <style>
   :root{
@@ -193,7 +192,7 @@
   }
 
   .humidity-data-stack {
-    padding-bottom: 24%;
+    padding-bottom: 18%;
   }
 
   .gauge-track{
@@ -213,6 +212,7 @@
   .glow-hot { stroke:var(--red); filter:drop-shadow(0 0 10px var(--red)); }
   .glow-cool { stroke:var(--teal); filter:drop-shadow(0 0 10px var(--teal)); }
 
+  /* Combined Wide Humidity/Daylight Styles */
   .gauge-fill.humidity-glow {
     stroke:var(--teal);
     stroke-width:14;
@@ -278,23 +278,24 @@
     letter-spacing:0.03em;
   }
 
+  /* Wide Daylight Footer Spacing */
   .daylight-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 96%;
+    width: 98%;
     position: absolute;
     bottom: 2%;
   }
   .daylight-footer span {
-    flex: 1;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     color: var(--muted);
+    white-space: nowrap;
   }
-  .daylight-footer span:nth-child(1) { text-align: left; padding-left: 2px; }
-  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 11px; margin-bottom: -1px; }
-  .daylight-footer span:nth-child(3) { text-align: right; padding-right: 2px; }
+  .daylight-footer span:nth-child(1) { text-align: left; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom: -1px; }
+  .daylight-footer span:nth-child(3) { text-align: right; }
 
   .purple { color: var(--violet); transition: color 0.3s; }
   .amber { color: var(--amber); transition: color 0.3s; }
@@ -330,13 +331,11 @@
   }
 
   /* ==========================================================================
-     Broadcast Split Card (Wind & Rain) with Ambient Watermarks
+     Broadcast Split Card (Wind & Rain) - Strict Absolute Pinning
      ========================================================================== */
   .split-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 22px;
+    display: block;
+    padding: 0;
     position: relative;
     isolation: isolate;
     min-height: 125px;
@@ -351,7 +350,6 @@
     border-radius: var(--radius-lg);
   }
 
-  /* Ambient Broadcast Watermark Icons */
   .split-card::after {
     content: '💨';
     position: absolute;
@@ -373,15 +371,20 @@
   }
 
   .split-section {
+    position: absolute;
     display: flex;
     flex-direction: column;
     z-index: 2;
   }
   .split-top-left {
+    top: 18px;
+    left: 20px;
     align-items: flex-start;
     text-align: left;
   }
   .split-bottom-right {
+    bottom: 18px;
+    right: 20px;
     align-items: flex-end;
     text-align: right;
   }
@@ -555,24 +558,54 @@
     text-align: right;
   }
 
+  /* ==========================================================================
+     MOBILE RESPONSIVE OVERHAUL (SINGLE-COLUMN EDGE-TO-EDGE)
+     ========================================================================== */
   @media (max-width:520px){
-    .gauge-row{grid-template-columns:repeat(2, 1fr); gap:10px;}
-    .gauge-card{flex-direction:column; padding:14px 10px 10px;}
+    .gauge-row{grid-template-columns:1fr; gap:12px;}
+    .gauge-card{flex-direction:column; padding:14px 16px 12px;}
     
-    .gauge-svg-wrap{width:100%; max-width:180px;}
+    .gauge-svg-wrap{width:100%; max-width:none;}
     .gauge-label{display:block;}
+    .humidity-data-stack { padding-bottom: 12px; }
     
-    .split-card{grid-column: span 2; min-height:120px;}
+    header.brief-header{
+      flex-direction:column; 
+      align-items:flex-start; 
+      padding:24px 20px;
+      min-height: 185px;
+    }
+    .clock-block{text-align:left; margin-top:8px;}
     
-    header.brief-header{flex-direction:row; align-items:center; padding:16px 18px;}
-    .hero-gauge-container{width:145px; margin:-10px -18px -15px 0;}
-    .hero-val{font-size:42px;}
-    .hero-subtext{font-size:10px; gap:6px;}
-    .hero-ghost-number { right: 20px; font-size: 90px; }
+    .hero-ghost-number { 
+      right: 15px; 
+      top: 50%; 
+      font-size: 140px; 
+      opacity: 0.07;
+    }
+    .hero-gauge-container{
+      position:absolute;
+      right: 15px;
+      bottom: 10px;
+      width: 170px; 
+      margin: 0;
+    }
     
-    .standard-val{font-size:32px;}
-    .standard-unit{font-size:13px;}
-    .split-val-large, .split-val-small { font-size: 28px; }
+    .hero-val{font-size:44px;}
+    .hero-subtext{font-size:11px; gap:6px;}
+    
+    .standard-val{font-size:42px;}
+    .standard-unit{font-size:15px;}
+    .standard-subtext{font-size:13px;}
+    
+    .daylight-footer { width: 98%; bottom: 6px; }
+    .daylight-footer span { font-size: 11px; }
+    .daylight-footer span:nth-child(2) { font-size: 13px; }
+    
+    .split-card{min-height:130px; padding:0;}
+    .split-top-left { top: 18px; left: 20px; }
+    .split-bottom-right { bottom: 18px; right: 20px; }
+    .split-val-large, .split-val-small { font-size: 32px; }
   }
 
   a{color:var(--cyan);}
@@ -625,13 +658,13 @@
     <p>Coastal winds, higher humidity, and occasional light marine drizzle define the commute. Inland areas warm faster, but beach-adjacent routes like the 405, Beach Blvd, and Bolsa Ave see the strongest effects. This dedicated page delivers hyper-local morning weather, hazard alerts, and commute insights for Huntington Beach drivers.</p>
   </div>
 
-  <section class="gauge-row">
-    <!-- 1. Combined Humidity & Sunrise Gauge -->
+  <section class="gauge-row" style="grid-template-columns: 1fr;">
+    <!-- 1. Wide Combined Humidity & Sunrise Gauge -->
     <div class="gauge-card">
       <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 200 130" aria-label="Humidity and Daylight gauge">
-          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
+        <svg viewBox="0 0 280 130" aria-label="Wide Humidity and Daylight gauge">
+          <path class="gauge-track" d="M 20 100 A 120 120 0 0 1 260 100"/>
+          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 120 120 0 0 1 260 100"/>
           <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
         </svg>
         
@@ -641,7 +674,7 @@
           </div>
           <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
           
-          <div class="daylight-footer">
+          <div class="daylight-footer" style="width: 96%; left: 2%;">
             <span id="sun-rise-time">--:--</span>
             <span class="daylight-status amber" id="sun-status-text">--</span>
             <span id="sun-set-time">--:--</span>
@@ -651,7 +684,7 @@
       <div class="gauge-label">Humidity & Sunrise</div>
     </div>
 
-    <!-- 2. Split Card (Wind & Rain) with Broadcast Watermarks -->
+    <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="rain-watermark">🌧️</div>
       <div class="split-section split-top-left">
@@ -701,13 +734,9 @@
     </div>
   </section>
 
-  <div style="margin-top:20px; padding:18px; border:1px dashed var(--panel-border); border-radius:var(--radius-md); text-align:center; background:rgba(15,23,42,0.4); color:var(--muted-dim); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
-     <!-- Advertisement Space -->
-  </div>
-
   <section style="margin-top:24px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
-      <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Huntington Beach Commuter Guides</h2>
+      <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Commuter Guides</h2>
       <span style="font-size:11px; color:var(--muted-dim);">Editorial Series</span>
     </div>
 
@@ -809,10 +838,14 @@
 (function(){
   "use strict";
 
-  var CACHE_KEY = "morningWeatherBriefHuntingtonBeach.v7.cache";
+  var CACHE_KEY = "morningWeatherBriefHB.v9.cache";
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
+
+  /* --- WIDE ARC METRICS FOR COMBINED GAUGE --- */
+  var WIDE_RADIUS = 120;
+  var WIDE_ARC_LENGTH = Math.PI * WIDE_RADIUS;
 
   var els = {
     city: document.getElementById("city-name"),
@@ -824,9 +857,9 @@
     ticker: document.getElementById("ticker-track"),
     ghostVal: document.getElementById("hero-ghost-val"),
     gauges: {
-      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120 },
-      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120 },
-      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100 }
+      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120, radius: GAUGE_RADIUS, len: ARC_LENGTH },
+      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120, radius: GAUGE_RADIUS, len: ARC_LENGTH },
+      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100, radius: WIDE_RADIUS, len: WIDE_ARC_LENGTH }
     },
     tempHigh: {
       arc: document.getElementById("gauge-temp-high-arc"),
@@ -850,11 +883,12 @@
     }
   };
 
+  // Setup Standard Arcs
   Object.keys(els.gauges).forEach(function(key){
     var g = els.gauges[key];
     if(g.arc){
-      g.arc.style.strokeDasharray = ARC_LENGTH;
-      g.arc.style.strokeDashoffset = ARC_LENGTH;
+      g.arc.style.strokeDasharray = g.len;
+      g.arc.style.strokeDashoffset = g.len;
     }
   });
 
@@ -882,7 +916,7 @@
 
     var v = clamp(rawValue, g.min, g.max);
     var frac = (v - g.min) / (g.max - g.min);
-    var offset = ARC_LENGTH * (1 - frac);
+    var offset = g.len * (1 - frac);
     
     if(key === 'feelsGlow'){
       g.val.textContent = "Feels " + (displayValue !== undefined ? displayValue : Math.round(rawValue)) + "°";
@@ -935,9 +969,10 @@
     }
 
     var clampedProgress = Math.max(0, Math.min(1, progress));
+    // Wide arc math mapping (Radius 120, Center 140, 100)
     var angle = Math.PI - (clampedProgress * Math.PI);
-    var cx = 100 + GAUGE_RADIUS * Math.cos(angle);
-    var cy = 100 - GAUGE_RADIUS * Math.sin(angle);
+    var cx = 140 + WIDE_RADIUS * Math.cos(angle);
+    var cy = 100 - WIDE_RADIUS * Math.sin(angle);
     
     requestAnimationFrame(function(){
       els.solar.dot.setAttribute("cx", cx);
@@ -947,10 +982,10 @@
 
   function renderUV(uvIndex){
     var uv = (uvIndex !== null && uvIndex !== undefined) ? uvIndex : 0;
-    if(els.uv.valText) {
+    if (els.uv.valText) {
       els.uv.valText.textContent = Math.round(uv);
     }
-    if(els.uv.dot) {
+    if (els.uv.dot) {
       var uvPct = Math.min(100, Math.max(0, (uv / 11) * 100));
       requestAnimationFrame(function(){
         els.uv.dot.style.left = uvPct + "%";
@@ -1025,7 +1060,6 @@
       return null;
     }catch(e){ return null; }
   }
-
   function writeCache(lat, lon, weatherData, place){
     try{
       localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), lat: lat, lon: lon, weather: weatherData, place: place }));
