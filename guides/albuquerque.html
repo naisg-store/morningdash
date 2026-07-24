@@ -6,55 +6,8 @@
 <title>Albuquerque, NM Morning Commute Weather Brief & Road Hazards</title>
 <meta name="description" content="Live morning commute weather for Albuquerque, NM. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for I-25 & I-40 Big I.">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" href="../styles.css">
 <style>
-  :root{
-    --bg:#0F172A;
-    --bg-deep:#0A1120;
-    --panel:rgba(30,41,59,0.55);
-    --panel-border:rgba(148,163,184,0.14);
-    --text:#E7ECF5;
-    --muted:#8CA0B8;
-    --muted-dim:#5C6B82;
-    --cyan:#38BDF8;
-    --teal:#2DD4BF;
-    --violet:#A78BFA;
-    --amber:#FBBF24;
-    --amber-bright:#FFD700;
-    --red:#F87171;
-    --track:rgba(148,163,184,0.16);
-    --radius-lg:20px;
-    --radius-md:14px;
-    --radius-sm:8px;
-  }
-
-  *{box-sizing:border-box;}
-  html,body{
-    margin:0;padding:0;height:100%;
-    background:
-      radial-gradient(circle at 15% 0%, rgba(56,189,248,0.10), transparent 45%),
-      radial-gradient(circle at 85% 100%, rgba(167,139,250,0.09), transparent 45%),
-      var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-variant-numeric:tabular-nums;
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
-  }
-
-  .wrap{
-    max-width:860px;
-    margin:0 auto;
-    padding:28px 18px 40px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    min-height:100vh;
-  }
-
   /* ---------- Header & Hero Gauge ---------- */
   header.brief-header{
     display:flex;
@@ -123,19 +76,9 @@
     box-shadow:0 0 8px var(--teal);
     flex-shrink:0;
   }
-  .clock-block{
-    text-align:left;
-  }
-  .clock-time{
-    font-size:26px;
-    font-weight:700;
-    letter-spacing:-0.02em;
-  }
-  .clock-date{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:2px;
-  }
+  .clock-block{ text-align:left; }
+  .clock-time{ font-size:26px; font-weight:700; letter-spacing:-0.02em; }
+  .clock-date{ font-size:12px; color:var(--muted); margin-top:2px; }
 
   .hero-gauge-container{
     position:relative;
@@ -145,18 +88,8 @@
     z-index: 2;
   }
 
-  /* ---------- Base Gauge Mechanics ---------- */
-  .gauge-svg-wrap{
-    position:relative;
-    width:100%;
-    line-height:0;
-  }
-  .gauge-svg-wrap svg{
-    width:100%;
-    height:auto;
-    display:block;
-    overflow:visible;
-  }
+  .gauge-svg-wrap{ position:relative; width:100%; line-height:0; }
+  .gauge-svg-wrap svg{ width:100%; height:auto; display:block; overflow:visible; }
   .gauge-data{
     position:absolute;
     inset:0;
@@ -168,17 +101,7 @@
     pointer-events:none;
   }
 
-  .humidity-data-stack {
-    padding-bottom: 24%;
-  }
-
-  .gauge-track{
-    fill:none;
-    stroke:var(--track);
-    stroke-width:14;
-    stroke-linecap:round;
-  }
-  
+  .gauge-track{ fill:none; stroke:var(--track); stroke-width:14; stroke-linecap:round; }
   .hero-gauge-container .gauge-track { stroke:rgba(148,163,184,0.06); }
   .hero-gauge-container .gauge-fill.temp { opacity: 0.35; stroke:var(--cyan); stroke-width:14; filter:drop-shadow(0 0 2px rgba(56,189,248,0.2)); }
   .hero-gauge-container .gauge-fill.high-marker { opacity: 0.4; stroke: var(--amber); stroke-dasharray: 4 6; stroke-width: 14; }
@@ -203,117 +126,61 @@
     transition: cx 1s ease-out, cy 1s ease-out;
   }
 
-  /* ---------- Typography Overlays ---------- */
-  .hero-val-wrap{
-    display:flex;
-    align-items:flex-start;
-    line-height:1;
-  }
-  .hero-val{
-    font-size:52px;
-    font-weight:800;
-    color:var(--text);
-    letter-spacing:-0.04em;
-  }
-  .hero-unit{
-    font-size:18px;
-    font-weight:700;
-    color:var(--muted);
-    margin:6px 0 0 2px;
-  }
-  .hero-subtext{
-    display:flex;
-    gap:8px;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:0.02em;
-    margin-top:6px;
-  }
+  .hero-val-wrap{ display:flex; align-items:flex-start; line-height:1; }
+  .hero-val{ font-size:52px; font-weight:800; color:var(--text); letter-spacing:-0.04em; }
+  .hero-unit{ font-size:18px; font-weight:700; color:var(--muted); margin:6px 0 0 2px; }
+  .hero-subtext{ display:flex; gap:8px; font-size:11px; font-weight:700; letter-spacing:0.02em; margin-top:6px; }
   
-  .standard-val-wrap{
-    display:flex;
-    align-items:baseline;
-    line-height:1;
+  .standard-val-wrap{ display:flex; align-items:baseline; line-height:1; }
+  .standard-val{ font-size:42px; font-weight:900; color:var(--text); letter-spacing:-0.03em; }
+  .standard-unit{ font-size:18px; font-weight:700; color:var(--muted); margin-left:2px; }
+  .standard-subtext{ font-size:13px; font-weight:700; margin-top:4px; letter-spacing:0.03em; }
+
+  /* Full-Width Feature Gauge Styling */
+  .wide-gauge-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 24px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
-  .standard-val{
-    font-size:36px;
-    font-weight:900;
-    color:var(--text);
-    letter-spacing:-0.03em;
-  }
-  .standard-unit{
-    font-size:15px;
-    font-weight:700;
-    color:var(--muted);
-    margin-left:2px;
-  }
-  .standard-subtext{
-    font-size:12px;
-    font-weight:700;
-    margin-top:4px;
-    letter-spacing:0.03em;
-  }
+  .wide-data-stack { padding-bottom: 16%; }
 
   .daylight-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 96%;
+    width: 98%;
     position: absolute;
-    bottom: 2%;
+    bottom: 3%;
   }
-  .daylight-footer span {
-    flex: 1;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--muted);
-  }
-  .daylight-footer span:nth-child(1) { text-align: left; padding-left: 2px; }
-  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 11px; margin-bottom: -1px; }
-  .daylight-footer span:nth-child(3) { text-align: right; padding-right: 2px; }
+  .daylight-footer span { font-size: 11px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+  .daylight-footer span:nth-child(1) { text-align: left; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom: -1px; }
+  .daylight-footer span:nth-child(3) { text-align: right; }
 
   .purple { color: var(--violet); transition: color 0.3s; }
   .amber { color: var(--amber); transition: color 0.3s; }
   .teal { color: var(--teal); transition: color 0.3s; }
   .red { color: var(--red); transition: color 0.3s; }
 
-  /* ---------- Gauges Row ---------- */
-  .gauge-row{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:12px;
-  }
-  .gauge-card{
-    background:var(--panel);
-    border:1px solid var(--panel-border);
-    border-radius:var(--radius-lg);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    padding:16px 14px 12px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .gauge-label{
-    margin-top:8px;
-    font-size:10.5px;
-    letter-spacing:0.10em;
-    text-transform:uppercase;
-    color:var(--muted);
-    font-weight:700;
-  }
-
-  /* ==========================================================================
-     Broadcast Split Card (Wind & Rain) - Strict Absolute Pinning
-     ========================================================================== */
+  /* Split Card (Wind & Rain) */
   .split-card {
     display: block;
     padding: 0;
     position: relative;
     isolation: isolate;
     min-height: 125px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     overflow: hidden;
   }
   .split-card::before {
@@ -322,19 +189,8 @@
     inset: 0;
     background: linear-gradient(135deg, transparent 48.5%, var(--amber) 49%, var(--amber) 50%, rgba(45,212,191,0.12) 50.5%);
     z-index: -1;
-    border-radius: var(--radius-lg);
   }
 
-  .split-card::after {
-    content: '💨';
-    position: absolute;
-    left: 10px;
-    bottom: 5px;
-    font-size: 64px;
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 1;
-  }
   .rain-watermark {
     position: absolute;
     right: 15px;
@@ -345,50 +201,16 @@
     z-index: 1;
   }
 
-  .split-section {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-  }
-  .split-top-left {
-    top: 18px;
-    left: 20px;
-    align-items: flex-start;
-    text-align: left;
-  }
-  .split-bottom-right {
-    bottom: 18px;
-    right: 20px;
-    align-items: flex-end;
-    text-align: right;
-  }
+  .split-section { position: absolute; display: flex; flex-direction: column; z-index: 2; }
+  .split-top-left { top: 18px; left: 20px; align-items: flex-start; text-align: left; }
+  .split-bottom-right { bottom: 18px; right: 20px; align-items: flex-end; text-align: right; }
   
-  .split-val-large {
-    font-size: 32px;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--amber);
-    letter-spacing: -0.03em;
-  }
-  .split-val-unit {
-    font-size: 11.5px; font-weight: 700; color: var(--amber);
-    margin-top: 3px; display: flex; align-items: center; gap: 4px;
-  }
-  .split-val-small {
-    font-size: 32px;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--text);
-    letter-spacing: -0.03em;
-  }
-  .split-label-text {
-    font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); font-weight: 700; margin-top: 4px;
-    display: flex; align-items: center; gap: 4px;
-  }
+  .split-val-large { font-size: 32px; font-weight: 900; line-height: 1; color: var(--amber); letter-spacing: -0.03em; }
+  .split-val-unit { font-size: 11.5px; font-weight: 700; color: var(--amber); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+  .split-val-small { font-size: 32px; font-weight: 900; line-height: 1; color: var(--text); letter-spacing: -0.03em; }
+  .split-label-text { font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
 
-  /* ---------- Advice box ---------- */
+  /* Advice Box */
   .advice-box{
     background:var(--panel);
     border:1px solid var(--panel-border);
@@ -400,26 +222,11 @@
     align-items:center;
     gap:14px;
   }
-  .advice-icon{
-    font-size:28px;
-    flex-shrink:0;
-    line-height:1;
-  }
-  .advice-text-block .advice-eyebrow{
-    font-size:11px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--amber);
-    font-weight:700;
-    margin-bottom:3px;
-  }
-  .advice-text{
-    font-size:15px;
-    line-height:1.45;
-    color:var(--text);
-  }
+  .advice-icon{ font-size:28px; flex-shrink:0; line-height:1; }
+  .advice-text-block .advice-eyebrow{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); font-weight:700; margin-bottom:3px; }
+  .advice-text{ font-size:15px; line-height:1.45; color:var(--text); }
 
-  /* ---------- Alerts & UV Container ---------- */
+  /* Alerts & UV Stack */
   .status-stack {
     display:flex;
     flex-direction:column;
@@ -457,131 +264,28 @@
     background:var(--red);
     animation:pulse 1.4s infinite;
   }
-  @keyframes pulse{
-    0%,100%{opacity:1;transform:scale(1);}
-    50%{opacity:0.35;transform:scale(0.75);}
-  }
-  .ticker-viewport{
-    flex:1;
-    overflow:hidden;
-    height:100%;
-    position:relative;
-  }
-  .ticker-track{
-    position:absolute;
-    white-space:nowrap;
-    display:flex;
-    align-items:center;
-    height:100%;
-    animation:marquee 28s linear infinite;
-    will-change:transform;
-  }
-  .ticker-track span{
-    font-family:'Courier New',monospace;
-    font-size:12.5px;
-    font-weight:700;
-    letter-spacing:0.02em;
-    color:#F1F5F9;
-    padding-right:48px;
-  }
+  @keyframes pulse{ 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.75);} }
+  .ticker-viewport{ flex:1; overflow:hidden; height:100%; position:relative; }
+  .ticker-track{ position:absolute; white-space:nowrap; display:flex; align-items:center; height:100%; animation:marquee 28s linear infinite; will-change:transform; }
+  .ticker-track span{ font-family:'Courier New',monospace; font-size:12.5px; font-weight:700; letter-spacing:0.02em; color:#F1F5F9; padding-right:48px; }
   .ticker-track span.hazard{color:var(--amber);}
   .ticker-track span.clear{color:var(--teal);}
-  @keyframes marquee{
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-50%);}
-  }
+  @keyframes marquee{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
 
-  /* Micro UV Bar */
-  .uv-micro-bar {
-    height: 22px;
-    display:flex;
-    align-items:center;
-    padding: 0 12px;
-    gap: 12px;
-    background: #0A1120;
-  }
-  .uv-label {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    font-weight: 700;
-    flex-shrink:0;
-  }
-  .uv-track {
-    flex: 1;
-    height: 4px;
-    background: linear-gradient(to right, var(--teal) 20%, var(--amber) 60%, var(--red) 90%);
-    border-radius: 2px;
-    position: relative;
-  }
-  .uv-indicator {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background: #FFF;
-    border-radius: 50%;
-    box-shadow: 0 0 4px rgba(0,0,0,0.8);
-    transition: left 1s ease-out;
-    left: 0%;
-  }
-  .uv-value {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text);
-    width: 24px;
-    text-align: right;
-  }
+  .uv-micro-bar { height: 22px; display:flex; align-items:center; padding: 0 12px; gap: 12px; background: #0A1120; }
+  .uv-label { font-size: 9px; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; flex-shrink:0; }
+  .uv-track { flex: 1; height: 4px; background: linear-gradient(to right, var(--teal) 20%, var(--amber) 60%, var(--red) 90%); border-radius: 2px; position: relative; }
+  .uv-indicator { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; background: #FFF; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.8); transition: left 1s ease-out; left: 0%; }
+  .uv-value { font-size: 10px; font-weight: 700; color: var(--text); width: 24px; text-align: right; }
 
-  /* ==========================================================================
-     MOBILE RESPONSIVE OVERHAUL (SINGLE-COLUMN EDGE-TO-EDGE)
-     ========================================================================== */
   @media (max-width:520px){
-    .gauge-row{grid-template-columns:1fr; gap:12px;}
-    .gauge-card{flex-direction:column; padding:14px 16px 12px;}
-    
-    .gauge-svg-wrap{width:100%; max-width:none;}
-    .gauge-label{display:block;}
-    .humidity-data-stack { padding-bottom: 12%; }
-    
-    header.brief-header{
-      flex-direction:column; 
-      align-items:flex-start; 
-      padding:22px 20px;
-      min-height: 180px;
-    }
+    header.brief-header{ flex-direction:column; align-items:flex-start; padding:22px 20px; min-height: 180px; }
     .clock-block{text-align:left; margin-top:6px;}
-    
-    .hero-ghost-number { 
-      right: 15px; 
-      top: 50%; 
-      font-size: 140px; 
-      opacity: 0.07;
-    }
-    .hero-gauge-container{
-      position:absolute;
-      right: 15px;
-      bottom: 8px;
-      width: 170px; 
-      margin: 0;
-    }
-    
+    .hero-ghost-number { right: 15px; top: 50%; font-size: 140px; opacity: 0.07; }
+    .hero-gauge-container{ position:absolute; right: 15px; bottom: 8px; width: 170px; margin: 0; }
     .hero-val{font-size:42px;}
-    .hero-subtext{font-size:11px; gap:6px;}
-    
-    .standard-val{font-size:40px;}
-    .standard-unit{font-size:14px;}
-    .standard-subtext{font-size:12px;}
-    
+    .standard-val{font-size:36px;}
     .daylight-footer { width: 94%; bottom: 4%; }
-    .daylight-footer span { font-size: 10.5px; }
-    .daylight-footer span:nth-child(2) { font-size: 12px; }
-    
-    .split-card{min-height:130px; padding:0;}
-    .split-top-left { top: 18px; left: 20px; }
-    .split-bottom-right { bottom: 18px; right: 20px; }
-    .split-val-large, .split-val-small { font-size: 34px; }
   }
 
   a{color:var(--cyan);}
@@ -593,6 +297,7 @@
 <body>
 <div class="wrap">
 
+  <!-- Header Section -->
   <header class="brief-header">
     <div class="hero-ghost-number" id="hero-ghost-val">--</div>
     <div class="header-info">
@@ -629,54 +334,53 @@
     </div>
   </header>
 
-  <section class="gauge-row">
-    <!-- Combined Humidity & Sunrise Gauge -->
-    <div class="gauge-card">
-      <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 200 130" aria-label="Humidity and Daylight gauge">
-          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
-          <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
-        </svg>
-        
-        <div class="gauge-data humidity-data-stack">
-          <div class="standard-val-wrap">
-            <span class="standard-val" id="gauge-humidity-val">--</span><span class="standard-unit">%</span>
-          </div>
-          <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
-          
-          <div class="daylight-footer">
-            <span id="sun-rise-time">--:--</span>
-            <span class="daylight-status amber" id="sun-status-text">--</span>
-            <span id="sun-set-time">--:--</span>
-          </div>
-        </div>
-      </div>
-      <div class="gauge-label">Humidity & Sunrise</div>
-    </div>
-
-    <!-- Split Card (Wind & Rain) - Strict Absolute Positioning -->
-    <div class="gauge-card split-card">
-      <div class="rain-watermark">🌧️</div>
-      <div class="split-section split-top-left">
-        <div class="split-val-large" id="split-wind-speed">--</div>
-        <div class="split-val-unit">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
-          MPH <span id="split-wind-dir">--</span>
-        </div>
-        <div class="split-label-text" style="color:var(--amber);">Wind</div>
-      </div>
+  <!-- Wide Feature Gauge (Humidity & Sunrise) -->
+  <div class="wide-gauge-card">
+    <div class="gauge-svg-wrap" style="max-width: 520px; width:100%;">
+      <svg viewBox="0 0 280 130" aria-label="Humidity and Daylight gauge">
+        <path class="gauge-track" d="M 20 100 A 120 120 0 0 1 260 100"/>
+        <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 120 120 0 0 1 260 100"/>
+        <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
+      </svg>
       
-      <div class="split-section split-bottom-right">
-        <div class="split-val-small" id="split-rain-val">-- <span style="font-size:13px; color:var(--muted);">%</span></div>
-        <div class="split-label-text" style="color:var(--teal); justify-content:flex-end;">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 21.5c-3.03 0-5.5-2.47-5.5-5.5 0-2.38 1.5-5.4 3.97-8.87L12 4.67l1.53 2.46c2.47 3.47 3.97 6.49 3.97 8.87 0 3.03-2.47 5.5-5.5 5.5z"/></svg>
-          Rain Chance
+      <div class="gauge-data wide-data-stack">
+        <div class="standard-val-wrap">
+          <span class="standard-val" id="gauge-humidity-val">--</span><span class="standard-unit">%</span>
+        </div>
+        <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
+        
+        <div class="daylight-footer">
+          <span id="sun-rise-time">--:--</span>
+          <span class="daylight-status amber" id="sun-status-text">--</span>
+          <span id="sun-set-time">--:--</span>
         </div>
       </div>
     </div>
-  </section>
+    <div class="gauge-label" style="margin-top:10px;">Humidity & Sunrise</div>
+  </div>
 
+  <!-- Split Card (Wind & Rain) -->
+  <div class="split-card">
+    <div class="rain-watermark">🌧️</div>
+    <div class="split-section split-top-left">
+      <div class="split-val-large" id="split-wind-speed">--</div>
+      <div class="split-val-unit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+        MPH <span id="split-wind-dir">--</span>
+      </div>
+      <div class="split-label-text" style="color:var(--amber);">Wind</div>
+    </div>
+    
+    <div class="split-section split-bottom-right">
+      <div class="split-val-small" id="split-rain-val">-- <span style="font-size:13px; color:var(--muted);">%</span></div>
+      <div class="split-label-text" style="color:var(--teal); justify-content:flex-end;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 21.5c-3.03 0-5.5-2.47-5.5-5.5 0-2.38 1.5-5.4 3.97-8.87L12 4.67l1.53 2.46c2.47 3.47 3.97 6.49 3.97 8.87 0 3.03-2.47 5.5-5.5 5.5z"/></svg>
+        Rain Chance
+      </div>
+    </div>
+  </div>
+
+  <!-- Morning Advice Box -->
   <section class="advice-box">
     <div class="advice-icon" id="advice-icon">🌤️</div>
     <div class="advice-text-block">
@@ -685,7 +389,7 @@
     </div>
   </section>
 
-  <!-- Stacked Ticker + UV Bar -->
+  <!-- Stacked Hazard Ticker & UV Index Bar -->
   <section class="status-stack" role="status" aria-live="polite">
     <div class="ticker">
       <div class="live-tag"><span class="pulse"></span>HAZARDS</div>
@@ -705,53 +409,14 @@
     </div>
   </section>
 
+  <!-- Dynamic Router Containers -->
   <section style="margin-top:24px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
       <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Commuter Guides</h2>
       <span style="font-size:11px; color:var(--muted-dim);">Editorial Series</span>
     </div>
-
-    <!-- Verified Sibling Paths within /guides/ subfolder -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;">
-      <a href="marine-layer.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          🌫️
-        </div>
-        <div>
-          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); font-weight:700;">Coastal Weather</span>
-          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Coastal Marine Layer & Fog</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "The marine layer is a shallow, cool, moist blanket of air that forms near the ocean surface..."
-          </p>
-        </div>
-      </a>
-
-      <a href="morning-wind-driving.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          💨
-        </div>
-        <div>
-          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); font-weight:700;">Commuter Safety</span>
-          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Navigating Morning Winds</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "Wind speed alone doesn't tell the whole story of how dangerous a gusty morning will be..."
-          </p>
-        </div>
-      </a>
-
-      <a href="dew-point-humidity.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          🌡️
-        </div>
-        <div>
-          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--violet); font-weight:700;">Weather Literacy</span>
-          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Dew Point vs. Humidity</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "Two numbers on every forecast claim to describe 'how muggy it feels' — only one of them actually does..."
-          </p>
-        </div>
-      </a>
-    </div>
+    <!-- NAV.JS INJECTS GUIDES HERE -->
+    <div id="guide-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;"></div>
   </section>
 
   <section style="margin-top:24px;">
@@ -759,36 +424,10 @@
       <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Featured Local Commute Briefs</h2>
       <span style="font-size:11px; color:var(--muted-dim);">Dedicated Regional Dashboards</span>
     </div>
-
-    <!-- Verified Sibling Paths within /guides/ subfolder -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
-      <a href="los-angeles.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <span style="font-size:22px;">🌴</span>
-        <div>
-          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Los Angeles</h3>
-          <span style="font-size:11px; color:var(--muted);">I-10, 405, 101 & 5 Corridors</span>
-        </div>
-      </a>
-
-      <a href="irvine.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <span style="font-size:22px;">🏙️</span>
-        <div>
-          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Irvine</h3>
-          <span style="font-size:11px; color:var(--muted);">5, 405, 133 & 241 Toll Roads</span>
-        </div>
-      </a>
-
-      <a href="huntington-beach.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <span style="font-size:22px;">🏄</span>
-        <div>
-          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Huntington Beach</h3>
-          <span style="font-size:11px; color:var(--muted);">PCH, Beach Blvd & 405 Corridors</span>
-        </div>
-      </a>
-    </div>
+    <!-- NAV.JS INJECTS CITIES HERE -->
+    <div id="city-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;"></div>
   </section>
 
-  <!-- Modified relative paths to escape back to global root structure -->
   <footer class="foot-note" style="margin-top:28px; border-top:1px solid var(--panel-border); padding-top:16px;">
     <div style="margin-bottom:10px; display:flex; justify-content:center; gap:16px; font-size:12px;">
       <a href="../index.html" style="color:var(--cyan); text-decoration:none;">← Global Dashboard</a>
@@ -806,15 +445,19 @@
 
 </div>
 
+<!-- Required Router Script (Injects 100 Cities & Guides) -->
+<script src="../nav.js"></script>
+
 <script>
 (function(){
   "use strict";
 
-  // Dynamic Cache Architecture implemented from earlier template attempts
   var CACHE_KEY = "morningWeatherBrief.cache"; 
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
+  var WIDE_RADIUS = 120;
+  var WIDE_ARC_LENGTH = Math.PI * WIDE_RADIUS;
 
   var els = {
     city: document.getElementById("city-name"),
@@ -827,9 +470,9 @@
     ticker: document.getElementById("ticker-track"),
     ghostVal: document.getElementById("hero-ghost-val"),
     gauges: {
-      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120 },
-      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120 },
-      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100 }
+      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120, len: ARC_LENGTH },
+      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120, len: ARC_LENGTH },
+      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100, len: WIDE_ARC_LENGTH }
     },
     tempHigh: {
       arc: document.getElementById("gauge-temp-high-arc"),
@@ -856,8 +499,8 @@
   Object.keys(els.gauges).forEach(function(key){
     var g = els.gauges[key];
     if(g.arc){
-      g.arc.style.strokeDasharray = ARC_LENGTH;
-      g.arc.style.strokeDashoffset = ARC_LENGTH;
+      g.arc.style.strokeDasharray = g.len;
+      g.arc.style.strokeDashoffset = g.len;
     }
   });
 
@@ -885,7 +528,7 @@
 
     var v = clamp(rawValue, g.min, g.max);
     var frac = (v - g.min) / (g.max - g.min);
-    var offset = ARC_LENGTH * (1 - frac);
+    var offset = g.len * (1 - frac);
     
     if(key === 'feelsGlow'){
       g.val.textContent = "Feels " + (displayValue !== undefined ? displayValue : Math.round(rawValue)) + "°";
@@ -939,8 +582,8 @@
 
     var clampedProgress = Math.max(0, Math.min(1, progress));
     var angle = Math.PI - (clampedProgress * Math.PI);
-    var cx = 100 + GAUGE_RADIUS * Math.cos(angle);
-    var cy = 100 - GAUGE_RADIUS * Math.sin(angle);
+    var cx = 140 + WIDE_RADIUS * Math.cos(angle);
+    var cy = 100 - WIDE_RADIUS * Math.sin(angle);
     
     requestAnimationFrame(function(){
       els.solar.dot.setAttribute("cx", cx);
@@ -1124,7 +767,6 @@
     });
   }
 
-  // Merging Routing Logic from the secondary template script
   function loadCityData(){
     var currentFilename = window.location.pathname.split('/').pop() || 'los-angeles.html';
     
@@ -1134,11 +776,12 @@
         var cityData = cities.find(function(c){ return c.slug === currentFilename; });
         if(!cityData) cityData = cities[0];
 
+        // Format Eyebrow with State Disambiguation
+        var stateLabel = cityData.state ? ", " + cityData.state : "";
         els.city.textContent = cityData.name;
-        els.eyebrow.textContent = cityData.name + " Morning Brief";
+        els.eyebrow.textContent = cityData.name + stateLabel + " Morning Brief";
         
-        // Handle nested state objects safely
-        var regionText = cityData.state || "USA";
+        var regionText = (cityData.state || "USA");
         if(cityData.desc) {
             regionText += " &middot; " + cityData.desc;
         }
@@ -1146,7 +789,6 @@
         
         CACHE_KEY = "morningWeatherBrief_" + cityData.slug.split('.')[0] + ".cache";
         
-        // Ensure lat/long exists (fallback variables mapped)
         var fetchLat = cityData.lat || 34.05;
         var fetchLon = cityData.lon || -118.24;
         
@@ -1166,11 +808,7 @@
       .catch(function(){ els.adviceText.textContent = "Unable to load city routing data."; });
   }
 
-  function init(){
-      loadCityData();
-  }
-
-  init();
+  loadCityData();
 })();
 </script>
 </body>
