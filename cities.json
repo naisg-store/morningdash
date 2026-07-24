@@ -3,18 +3,24 @@
     "slug": "los-angeles.html",
     "name": "Los Angeles",
     "emoji": "🌴",
-    "desc": "I-10, 405, 101 & 5 Corridors"
+    "desc": "I-10, 405, 101 & 5 Corridors",
+    "lat": 34.0522,
+    "lon": -118.2437
   },
   {
     "slug": "irvine.html",
     "name": "Irvine",
     "emoji": "🏙️",
-    "desc": "5, 405, 133 & 241 Toll Roads"
+    "desc": "5, 405, 133 & 241 Toll Roads",
+    "lat": 33.6846,
+    "lon": -117.8265
   },
   {
     "slug": "huntington-beach.html",
     "name": "Huntington Beach",
     "emoji": "🏄",
-    "desc": "PCH, Beach Blvd & 405 Corridors"
+    "desc": "PCH, Beach Blvd & 405 Corridors",
+    "lat": 33.6595,
+    "lon": -117.9988
   }
 ]
