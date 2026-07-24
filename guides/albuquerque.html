@@ -776,7 +776,6 @@
         var cityData = cities.find(function(c){ return c.slug === currentFilename; });
         if(!cityData) cityData = cities[0];
 
-        // Format Eyebrow with State Disambiguation
         var stateLabel = cityData.state ? ", " + cityData.state : "";
         els.city.textContent = cityData.name;
         els.eyebrow.textContent = cityData.name + stateLabel + " Morning Brief";
