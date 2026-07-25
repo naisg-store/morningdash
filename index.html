@@ -764,30 +764,14 @@
       <span style="font-size:11px; color:var(--muted-dim);">Dedicated Regional Dashboards</span>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
-      <a href="guides/los-angeles.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <span style="font-size:22px;">🌴</span>
-        <div>
-          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Los Angeles</h3>
-          <span style="font-size:11px; color:var(--muted);">I-10, 405, 101 & 5 Corridors</span>
-        </div>
-      </a>
-
-      <a href="guides/irvine.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <span style="font-size:22px;">🏙️</span>
-        <div>
-          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Irvine</h3>
-          <span style="font-size:11px; color:var(--muted);">5, 405, 133 & 241 Toll Roads</span>
-        </div>
-      </a>
-
-      <a href="guides/huntington-beach.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <span style="font-size:22px;">🏄</span>
-        <div>
-          <h3 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">Huntington Beach</h3>
-          <span style="font-size:11px; color:var(--muted);">PCH, Beach Blvd & 405 Corridors</span>
-        </div>
-      </a>
+    <div style="margin-bottom:18px;">
+      <input type="search" id="city-search" placeholder="Search cities..." 
+        style="width:100%; padding:12px 16px; background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); color:var(--text); font-size:14px; outline:none; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"
+        autocomplete="off" spellcheck="false">
+    </div>
+    
+    <div id="regional-cities-container">
+      <p style="color:var(--muted); font-size:13px; font-style:italic;">Loading regional hubs...</p>
     </div>
   </section>
 
@@ -1182,6 +1166,86 @@
     });
   }
 
+  function loadRegionalCities() {
+    fetch('cities.json')
+      .then(function(res) { return res.json(); })
+      .then(function(citiesArray) {
+        var container = document.getElementById("regional-cities-container");
+        if (!container) return;
+
+        var regionOrder = [
+          "SoCal", "NorCal", "Central Valley", "Desert",
+          "North Texas", "Houston Area", "Central Texas", "West / South Texas",
+          "Pacific Northwest", "Mountain West", "Southwest",
+          "Florida", "Southeast", "South Central",
+          "Midwest", "Mid-Atlantic", "Northeast",
+          "Alaska & Hawaii"
+        ];
+
+        var grouped = citiesArray.reduce(function(acc, city) {
+          var region = city.region || "Other";
+          if (!acc[region]) acc[region] = [];
+          acc[region].push(city);
+          return acc;
+        }, {});
+
+        var html = "";
+        regionOrder.forEach(function(regionName) {
+          if (grouped[regionName] && grouped[regionName].length) {
+            html += '<div style="margin-top:28px;"><h3 style="margin:0 0 12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:700;">' + regionName + '</h3><div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">';
+            grouped[regionName].forEach(function(c) {
+              html += '<a href="guides/' + c.slug + '" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;"><span style="font-size:22px;">' + (c.emoji || '🏙️') + '</span><div><h4 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">' + c.name + '</h4><span style="font-size:11px; color:var(--muted);">' + c.desc + '</span></div></a>';
+            });
+            html += '</div></div>';
+            delete grouped[regionName];
+          }
+        });
+        // leftover regions
+        for (var regionName in grouped) {
+          if (grouped.hasOwnProperty(regionName) && grouped[regionName].length) {
+            html += '<div style="margin-top:28px;"><h3 style="margin:0 0 12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:700;">' + regionName + '</h3><div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">';
+            grouped[regionName].forEach(function(c) {
+              html += '<a href="guides/' + c.slug + '" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;"><span style="font-size:22px;">' + (c.emoji || '🏙️') + '</span><div><h4 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">' + c.name + '</h4><span style="font-size:11px; color:var(--muted);">' + c.desc + '</span></div></a>';
+            });
+            html += '</div></div>';
+          }
+        }
+        container.innerHTML = html;
+
+        // Live search filter
+        var searchInput = document.getElementById("city-search");
+        if (searchInput) {
+          searchInput.addEventListener("input", function() {
+            var q = this.value.trim().toLowerCase();
+            var sections = container.querySelectorAll("div[style*='margin-top:28px']");
+
+            if (!q) {
+              sections.forEach(function(s){ s.style.display = ""; });
+              container.querySelectorAll("a").forEach(function(c){ c.style.display = ""; });
+              return;
+            }
+
+            sections.forEach(function(section) {
+              var sectionCards = section.querySelectorAll("a");
+              var anyVisible = false;
+              sectionCards.forEach(function(card) {
+                var name = (card.querySelector("h4") || {}).textContent || "";
+                var desc = (card.querySelector("span") || {}).textContent || "";
+                var match = name.toLowerCase().indexOf(q) !== -1 || desc.toLowerCase().indexOf(q) !== -1;
+                card.style.display = match ? "" : "none";
+                if (match) anyVisible = true;
+              });
+              section.style.display = anyVisible ? "" : "none";
+            });
+          });
+        }
+      })
+      .catch(function(err) {
+        var container = document.getElementById("regional-cities-container");
+        if (container) container.innerHTML = '<p style="color:var(--red); font-size:13px;">Error loading cities list.</p>';
+      });
+  }
+
   function init(){
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(
@@ -1192,6 +1256,7 @@
     } else {
       fallbackToIp();
     }
+    loadRegionalCities();
   }
 
   init();
