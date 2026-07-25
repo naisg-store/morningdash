@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Providence, RI Morning Commute Weather Brief &amp; Road Hazards</title>
-<meta name="description" content="Live morning commute weather for Providence, RI. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for I-95 & I-195 Corridors.">
-<link rel="canonical" href="https://morningst.art/guides/providence.html">
+<title>Pierre, SD Morning Commute Weather Brief &amp; Road Hazards</title>
+<meta name="description" content="Live morning commute weather for Pierre, SD. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for US-14 & US-83.">
+<link rel="canonical" href="https://morningst.art/guides/pierre.html">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <style>
   :root{
@@ -596,9 +596,9 @@
     <div class="hero-ghost-number" id="hero-ghost-val">--</div>
     <div class="header-info">
       <div class="brand">
-        <div class="eyebrow" id="city-eyebrow">Providence Morning Brief</div>
-        <h1 id="city-name">Providence</h1>
-        <div class="location-line"><span class="dot"></span><span id="region-name">RI, USA</span></div>
+        <div class="eyebrow" id="city-eyebrow">Pierre Morning Brief</div>
+        <h1 id="city-name">Pierre</h1>
+        <div class="location-line"><span class="dot"></span><span id="region-name">SD, USA</span></div>
       </div>
       <div class="clock-block">
         <div class="clock-time" id="clock-time">--:--</div>
@@ -628,8 +628,8 @@
   </header>
 
   <div class="intro-section" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-lg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); padding:22px 24px; margin-bottom:8px; font-size:15.5px; line-height:1.65; color:var(--text);">
-    <h1 style="margin:0 0 16px 0; font-size:28px; font-weight:800; letter-spacing:-0.02em; color:var(--text);">Providence Morning Weather Brief</h1>
-    <p style="margin:0;">Live morning weather intelligence, local hazard alerts, and real-time commute conditions for the <strong>Providence, RI</strong> area.</p>
+    <h1 style="margin:0 0 16px 0; font-size:28px; font-weight:800; letter-spacing:-0.02em; color:var(--text);">Pierre Morning Weather Brief</h1>
+    <p style="margin:0;">Live morning weather intelligence, local hazard alerts, and real-time commute conditions for the <strong>Pierre, SD</strong> area.</p>
   </div>
 
   <section class="gauge-row">
@@ -682,7 +682,7 @@
     <div class="advice-icon" id="advice-icon">🌤️</div>
     <div class="advice-text-block">
       <div class="advice-eyebrow">Morning Advice</div>
-      <div class="advice-text" id="advice-text">Loading conditions for Providence...</div>
+      <div class="advice-text" id="advice-text">Loading conditions for Pierre...</div>
     </div>
   </section>
 
@@ -769,7 +769,7 @@
       <a href="../terms.html" style="color:var(--cyan); text-decoration:none;">Terms of Service</a>
     </div>
     <div style="font-size:11px; color:var(--muted-dim); text-align:center;">
-      Morning Weather Brief &middot; Providence Edition &middot; Refreshes every 15 minutes
+      Morning Weather Brief &middot; Pierre Edition &middot; Refreshes every 15 minutes
     </div>
   </footer>
 
@@ -779,7 +779,7 @@
 (function(){
   "use strict";
 
-  var CACHE_KEY = "morningWeatherBrief_providence.html.cache";
+  var CACHE_KEY = "morningWeatherBrief_pierre.html.cache";
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
@@ -1033,9 +1033,9 @@
   }
 
   function loadWeather(){
-    var slug = "providence.html";
-    var lat = parseFloat("41.824");
-    var lon = parseFloat("-71.4128");
+    var slug = "pierre.html";
+    var lat = parseFloat("44.3683");
+    var lon = parseFloat("-100.351");
 
     if (isNaN(lat) || isNaN(lon)) {
       lat = 33.66;
@@ -1047,10 +1047,10 @@
     }
 
     var cached = readCache(slug);
-    if (cached){ renderWeather(cached.weather, "Providence"); return; }
+    if (cached){ renderWeather(cached.weather, "Pierre"); return; }
 
     fetchWeather(lat, lon).then(function(weatherData){
-      renderWeather(weatherData, "Providence");
+      renderWeather(weatherData, "Pierre");
       writeCache(slug, weatherData);
     }).catch(function(){
       els.adviceText.textContent = "Live weather data is unavailable right now — check back shortly.";
