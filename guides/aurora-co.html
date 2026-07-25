@@ -746,6 +746,12 @@
       <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Featured Local Commute Briefs</h2>
       <span style="font-size:11px; color:var(--muted-dim);">Dedicated Regional Dashboards</span>
     </div>
+
+    <div style="margin-bottom:18px;">
+      <input type="search" id="city-search" placeholder="Search cities..." 
+        style="width:100%; padding:12px 16px; background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); color:var(--text); font-size:14px; outline:none; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"
+        autocomplete="off" spellcheck="false">
+    </div>
     
     <div id="regional-cities-container">
       <p style="color:var(--muted); font-size:13px; font-style:italic;">Loading regional hubs...</p>
@@ -1059,25 +1065,39 @@
         var container = document.getElementById("regional-cities-container");
         if (!container) return;
 
-        var regionMap = {
-          'CA':'West Coast & Pacific', 'WA':'West Coast & Pacific', 'OR':'West Coast & Pacific', 'AK':'West Coast & Pacific', 'HI':'West Coast & Pacific', 'ID':'West Coast & Pacific', 'MT':'West Coast & Pacific', 'NV':'West Coast & Pacific', 'WY':'West Coast & Pacific',
-          'AZ':'Southwest & Sunbelt', 'NM':'Southwest & Sunbelt', 'UT':'Southwest & Sunbelt', 'CO':'Southwest & Sunbelt', 'TX':'Southwest & Sunbelt', 'OK':'Southwest & Sunbelt',
-          'IL':'Midwest & Great Lakes', 'IN':'Midwest & Great Lakes', 'IA':'Midwest & Great Lakes', 'KS':'Midwest & Great Lakes', 'MI':'Midwest & Great Lakes', 'MN':'Midwest & Great Lakes', 'MO':'Midwest & Great Lakes', 'NE':'Midwest & Great Lakes', 'ND':'Midwest & Great Lakes', 'OH':'Midwest & Great Lakes', 'SD':'Midwest & Great Lakes', 'WI':'Midwest & Great Lakes',
-          'CT':'Northeast & Mid-Atlantic', 'DE':'Northeast & Mid-Atlantic', 'ME':'Northeast & Mid-Atlantic', 'MD':'Northeast & Mid-Atlantic', 'MA':'Northeast & Mid-Atlantic', 'NH':'Northeast & Mid-Atlantic', 'NJ':'Northeast & Mid-Atlantic', 'NY':'Northeast & Mid-Atlantic', 'PA':'Northeast & Mid-Atlantic', 'RI':'Northeast & Mid-Atlantic', 'VT':'Northeast & Mid-Atlantic',
-          'AL':'Southeast & Gulf', 'AR':'Southeast & Gulf', 'FL':'Southeast & Gulf', 'GA':'Southeast & Gulf', 'KY':'Southeast & Gulf', 'LA':'Southeast & Gulf', 'MS':'Southeast & Gulf', 'NC':'Southeast & Gulf', 'SC':'Southeast & Gulf', 'TN':'Southeast & Gulf', 'VA':'Southeast & Gulf', 'WV':'Southeast & Gulf',
-          'DC':'Northeast & Mid-Atlantic'
-        };
+        // Preferred order for the finer regions
+        var regionOrder = [
+          "SoCal", "NorCal", "Central Valley", "Desert",
+          "North Texas", "Houston Area", "Central Texas", "West / South Texas",
+          "Pacific Northwest", "Mountain West", "Southwest",
+          "Florida", "Southeast", "South Central",
+          "Midwest", "Mid-Atlantic", "Northeast",
+          "Alaska & Hawaii"
+        ];
 
         var grouped = citiesArray.reduce(function(acc, city) {
-          var region = regionMap[city.state] || "Other Hubs";
+          // Use the new "region" field if present, otherwise fall back to old state map
+          var region = city.region || "Other";
           if (!acc[region]) acc[region] = [];
           acc[region].push(city);
           return acc;
         }, {});
 
         var html = "";
+        // Render in preferred order first
+        regionOrder.forEach(function(regionName) {
+          if (grouped[regionName] && grouped[regionName].length) {
+            html += '<div style="margin-top:28px;"><h3 style="margin:0 0 12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:700;">' + regionName + '</h3><div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">';
+            grouped[regionName].forEach(function(c) {
+              html += '<a href="' + c.slug + '" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;"><span style="font-size:22px;">' + (c.emoji || '🏙️') + '</span><div><h4 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">' + c.name + '</h4><span style="font-size:11px; color:var(--muted);">' + c.desc + '</span></div></a>';
+            });
+            html += '</div></div>';
+            delete grouped[regionName];
+          }
+        });
+        // Any leftover regions
         for (var regionName in grouped) {
-          if (grouped.hasOwnProperty(regionName)) {
+          if (grouped.hasOwnProperty(regionName) && grouped[regionName].length) {
             html += '<div style="margin-top:28px;"><h3 style="margin:0 0 12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:700;">' + regionName + '</h3><div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">';
             grouped[regionName].forEach(function(c) {
               html += '<a href="' + c.slug + '" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;"><span style="font-size:22px;">' + (c.emoji || '🏙️') + '</span><div><h4 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">' + c.name + '</h4><span style="font-size:11px; color:var(--muted);">' + c.desc + '</span></div></a>';
@@ -1086,6 +1106,37 @@
           }
         }
         container.innerHTML = html;
+
+        // Live search filter
+        var searchInput = document.getElementById("city-search");
+        if (searchInput) {
+          searchInput.addEventListener("input", function() {
+            var q = this.value.trim().toLowerCase();
+            var cards = container.querySelectorAll("a");
+            var headers = container.querySelectorAll("h3");
+            var sections = container.querySelectorAll("div[style*='margin-top:28px']");
+
+            if (!q) {
+              // Show everything
+              cards.forEach(function(c){ c.style.display = ""; });
+              sections.forEach(function(s){ s.style.display = ""; });
+              return;
+            }
+
+            sections.forEach(function(section) {
+              var sectionCards = section.querySelectorAll("a");
+              var anyVisible = false;
+              sectionCards.forEach(function(card) {
+                var name = (card.querySelector("h4") || {}).textContent || "";
+                var desc = (card.querySelector("span") || {}).textContent || "";
+                var match = name.toLowerCase().indexOf(q) !== -1 || desc.toLowerCase().indexOf(q) !== -1;
+                card.style.display = match ? "" : "none";
+                if (match) anyVisible = true;
+              });
+              section.style.display = anyVisible ? "" : "none";
+            });
+          });
+        }
       })
       .catch(function(err) {
         var container = document.getElementById("regional-cities-container");
