@@ -1,702 +1,103 @@
 [
-  {
-    "slug": "los-angeles.html",
-    "name": "Los Angeles, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "🌴",
-    "desc": "I-10, 405, 101 & 5 Corridors"
-  },
-  {
-    "slug": "irvine.html",
-    "name": "Irvine, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "🏙️",
-    "desc": "5, 405, 133 & 241 Toll Roads"
-  },
-  {
-    "slug": "huntington-beach.html",
-    "name": "Huntington Beach, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "🏄",
-    "desc": "PCH, Beach Blvd & 405 Corridors"
-  },
-  {
-    "slug": "san-francisco.html",
-    "name": "San Francisco, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "🌁",
-    "desc": "US-101, I-80 & Bay Bridge Routes"
-  },
-  {
-    "slug": "san-diego.html",
-    "name": "San Diego, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "☀️",
-    "desc": "I-5, I-15 & I-8 Corridors"
-  },
-  {
-    "slug": "san-jose.html",
-    "name": "San Jose, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "💻",
-    "desc": "US-101, I-280 & CA-85 Routes"
-  },
-  {
-    "slug": "sacramento.html",
-    "name": "Sacramento, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "🏛️",
-    "desc": "I-80, US-50 & I-5 Corridors"
-  },
-  {
-    "slug": "oakland.html",
-    "name": "Oakland, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "⚓",
-    "desc": "I-880, I-580 & CA-24 Routes"
-  },
-  {
-    "slug": "long-beach.html",
-    "name": "Long Beach, CA",
-    "region": "West Coast & Pacific",
-    "emoji": "🌊",
-    "desc": "I-710, I-405 & CA-1 Routes"
-  },
-  {
-    "slug": "seattle.html",
-    "name": "Seattle, WA",
-    "region": "West Coast & Pacific",
-    "emoji": "☕",
-    "desc": "I-5, I-90 & SR-520 Floating Bridge"
-  },
-  {
-    "slug": "tacoma.html",
-    "name": "Tacoma, WA",
-    "region": "West Coast & Pacific",
-    "emoji": "🌲",
-    "desc": "I-5, SR-16 & Tacoma Narrows"
-  },
-  {
-    "slug": "bellevue.html",
-    "name": "Bellevue, WA",
-    "region": "West Coast & Pacific",
-    "emoji": "🏙️",
-    "desc": "I-405, SR-520 & I-90 Eastside"
-  },
-  {
-    "slug": "portland.html",
-    "name": "Portland, OR",
-    "region": "West Coast & Pacific",
-    "emoji": "B",
-    "desc": "I-5, I-205 & US-26 Sunset Highway"
-  },
-  {
-    "slug": "anchorage.html",
-    "name": "Anchorage, AK",
-    "region": "West Coast & Pacific",
-    "emoji": "🏔️",
-    "desc": "Glenn & Seward Highway Corridors"
-  },
-  {
-    "slug": "honolulu.html",
-    "name": "Honolulu, HI",
-    "region": "West Coast & Pacific",
-    "emoji": "🌺",
-    "desc": "H-1, H-2 & Pali Highway Routes"
-  },
-  {
-    "slug": "phoenix.html",
-    "name": "Phoenix, AZ",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🌵",
-    "desc": "I-10, Loop 101 & Loop 202"
-  },
-  {
-    "slug": "scottsdale.html",
-    "name": "Scottsdale, AZ",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🏜️",
-    "desc": "Loop 101, Shea Blvd & Frank Lloyd Wright"
-  },
-  {
-    "slug": "tucson.html",
-    "name": "Tucson, AZ",
-    "region": "Southwest & Sunbelt",
-    "emoji": "☀️",
-    "desc": "I-10, I-19 & Oracle Rd Corridors"
-  },
-  {
-    "slug": "las-vegas.html",
-    "name": "Las Vegas, NV",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🎰",
-    "desc": "I-15, CC-215 Beltway & US-95"
-  },
-  {
-    "slug": "reno.html",
-    "name": "Reno, NV",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🏔️",
-    "desc": "I-80, US-395 & McCarran Blvd"
-  },
-  {
-    "slug": "albuquerque.html",
-    "name": "Albuquerque, NM",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🌶️",
-    "desc": "I-25, I-40 & Coors Blvd Corridors"
-  },
-  {
-    "slug": "salt-lake-city.html",
-    "name": "Salt Lake City, UT",
-    "region": "Southwest & Sunbelt",
-    "emoji": "⛷️",
-    "desc": "I-15, I-80 & Bangerter Highway"
-  },
-  {
-    "slug": "denver.html",
-    "name": "Denver, CO",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🏔️",
-    "desc": "I-25, I-70 & C-470 Corridors"
-  },
-  {
-    "slug": "colorado-springs.html",
-    "name": "Colorado Springs, CO",
-    "region": "Southwest & Sunbelt",
-    "emoji": "⛰️",
-    "desc": "I-25, Powers Blvd & US-24"
-  },
-  {
-    "slug": "austin.html",
-    "name": "Austin, TX",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🎸",
-    "desc": "I-35, Mopac (Loop 1) & US-183"
-  },
-  {
-    "slug": "dallas.html",
-    "name": "Dallas, TX",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🤠",
-    "desc": "US-75, I-635 Loop & I-35E"
-  },
-  {
-    "slug": "fort-worth.html",
-    "name": "Fort Worth, TX",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🐂",
-    "desc": "I-35W, I-30 & Loop 820"
-  },
-  {
-    "slug": "houston.html",
-    "name": "Houston, TX",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🚀",
-    "desc": "I-10, I-45, Loop 610 & Grand Pkwy"
-  },
-  {
-    "slug": "san-antonio.html",
-    "name": "San Antonio, TX",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🌮",
-    "desc": "Loop 410, Loop 1604 & I-35"
-  },
-  {
-    "slug": "el-paso.html",
-    "name": "El Paso, TX",
-    "region": "Southwest & Sunbelt",
-    "emoji": "☀️",
-    "desc": "I-10, Loop 375 & Patriot Freeway"
-  },
-  {
-    "slug": "chicago.html",
-    "name": "Chicago, IL",
-    "region": "Midwest & Great Lakes",
-    "emoji": "💨",
-    "desc": "I-90/94 Kennedy, Dan Ryan & Eisenhower"
-  },
-  {
-    "slug": "aurora.html",
-    "name": "Aurora, IL",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🏙️",
-    "desc": "I-88 Reagan Tollway & IL-59"
-  },
-  {
-    "slug": "detroit.html",
-    "name": "Detroit, MI",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🚗",
-    "desc": "I-75, I-94 & Lodge Freeway"
-  },
-  {
-    "slug": "grand-rapids.html",
-    "name": "Grand Rapids, MI",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🍺",
-    "desc": "US-131, I-196 & I-96 Corridors"
-  },
-  {
-    "slug": "minneapolis.html",
-    "name": "Minneapolis, MN",
-    "region": "Midwest & Great Lakes",
-    "emoji": "❄️",
-    "desc": "I-35W, I-94 & US-169 Corridors"
-  },
-  {
-    "slug": "st-paul.html",
-    "name": "St. Paul, MN",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🏛️",
-    "desc": "I-94, I-35E & MN-36 Routes"
-  },
-  {
-    "slug": "cleveland.html",
-    "name": "Cleveland, OH",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🎸",
-    "desc": "I-90, I-71 & I-480 Corridors"
-  },
-  {
-    "slug": "columbus.html",
-    "name": "Columbus, OH",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🌰",
-    "desc": "I-270 Outerbelt, I-71 & I-70"
-  },
-  {
-    "slug": "cincinnati.html",
-    "name": "Cincinnati, OH",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🌶️",
-    "desc": "I-75, I-71 & I-275 Loop"
-  },
-  {
-    "slug": "indianapolis.html",
-    "name": "Indianapolis, IN",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🏎️",
-    "desc": "I-465 Loop, I-65 & I-69"
-  },
-  {
-    "slug": "milwaukee.html",
-    "name": "Milwaukee, WI",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🍺",
-    "desc": "I-94, I-43 & Marquette Interchange"
-  },
-  {
-    "slug": "madison.html",
-    "name": "Madison, WI",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🦡",
-    "desc": "Beltline Highway (US-12/18) & I-39/90"
-  },
-  {
-    "slug": "st-louis.html",
-    "name": "St. Louis, MO",
-    "region": "Midwest & Great Lakes",
-    "emoji": "⛩️",
-    "desc": "I-64, I-70, I-44 & I-270"
-  },
-  {
-    "slug": "kansas-city.html",
-    "name": "Kansas City, MO",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🥩",
-    "desc": "I-435 Loop, I-35 & I-70"
-  },
-  {
-    "slug": "omaha.html",
-    "name": "Omaha, NE",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🌽",
-    "desc": "I-80, I-680 & Dodge St Corridor"
-  },
-  {
-    "slug": "des-moines.html",
-    "name": "Des Moines, IA",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🌾",
-    "desc": "I-235, I-35 & I-80 Bypass"
-  },
-  {
-    "slug": "wichita.html",
-    "name": "Wichita, KS",
-    "region": "Midwest & Great Lakes",
-    "emoji": "✈️",
-    "desc": "K-96, US-54 Kellogg & I-135"
-  },
-  {
-    "slug": "new-york.html",
-    "name": "New York, NY",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🗽",
-    "desc": "I-495 LIE, FDR Drive & Cross Bronx"
-  },
-  {
-    "slug": "brooklyn.html",
-    "name": "Brooklyn, NY",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🌉",
-    "desc": "BQE, Belt Pkwy & Flatbush Ave"
-  },
-  {
-    "slug": "queens.html",
-    "name": "Queens, NY",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "✈️",
-    "desc": "Grand Central Pkwy, Van Wyck & GCP"
-  },
-  {
-    "slug": "buffalo.html",
-    "name": "Buffalo, NY",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🦬",
-    "desc": "I-190, I-90 NYS Thruway & Route 33"
-  },
-  {
-    "slug": "rochester.html",
-    "name": "Rochester, NY",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "📸",
-    "desc": "I-490, I-390 & I-590 Outer Loop"
-  },
-  {
-    "slug": "boston.html",
-    "name": "Boston, MA",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🏛️",
-    "desc": "I-93 Southeast Expressway, I-90 & Route 128"
-  },
-  {
-    "slug": "worcester.html",
-    "name": "Worcester, MA",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "Heart",
-    "desc": "I-290, Mass Pike (I-90) & Route 146"
-  },
-  {
-    "slug": "providence.html",
-    "name": "Providence, RI",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "⚓",
-    "desc": "I-95, I-195 & Route 146 Corridors"
-  },
-  {
-    "slug": "hartford.html",
-    "name": "Hartford, CT",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🏢",
-    "desc": "I-91, I-84 & CT-2 Corridors"
-  },
-  {
-    "slug": "philadelphia.html",
-    "name": "Philadelphia, PA",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🔔",
-    "desc": "I-76 Schuylkill, I-95 & Roosevelt Blvd"
-  },
-  {
-    "slug": "pittsburgh.html",
-    "name": "Pittsburgh, PA",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🌉",
-    "desc": "I-376 Parkway East/West & I-279"
-  },
-  {
-    "slug": "newark.html",
-    "name": "Newark, NJ",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🧱",
-    "desc": "NJ Turnpike (I-95), I-280 & Route 22"
-  },
-  {
-    "slug": "jersey-city.html",
-    "name": "Jersey City, NJ",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🏙️",
-    "desc": "Holland Tunnel, US-1/9 & Route 440"
-  },
-  {
-    "slug": "washington-dc.html",
-    "name": "Washington, DC",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🏛️",
-    "desc": "I-495 Capital Beltway, I-66 & I-95"
-  },
-  {
-    "slug": "baltimore.html",
-    "name": "Baltimore, MD",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🦀",
-    "desc": "I-695 Beltway, I-95 & I-83 Jones Falls"
-  },
-  {
-    "slug": "atlanta.html",
-    "name": "Atlanta, GA",
-    "region": "Southeast & Gulf",
-    "emoji": "🍑",
-    "desc": "I-285 Perimeter, I-75/85 Connector & GA-400"
-  },
-  {
-    "slug": "savannah.html",
-    "name": "Savannah, GA",
-    "region": "Southeast & Gulf",
-    "emoji": "🌳",
-    "desc": "I-95, I-16 & Harry S Truman Pkwy"
-  },
-  {
-    "slug": "miami.html",
-    "name": "Miami, FL",
-    "region": "Southeast & Gulf",
-    "emoji": "🌴",
-    "desc": "I-95, Palmetto Expy (SR-826) & Dolphin Expy"
-  },
-  {
-    "slug": "orlando.html",
-    "name": "Orlando, FL",
-    "region": "Southeast & Gulf",
-    "emoji": "🏰",
-    "desc": "I-4, SR-408 East-West & SR-528"
-  },
-  {
-    "slug": "tampa.html",
-    "name": "Tampa, FL",
-    "region": "Southeast & Gulf",
-    "emoji": "⚡",
-    "desc": "I-275, I-4 & Howard Frankland Bridge"
-  },
-  {
-    "slug": "jacksonville.html",
-    "name": "Jacksonville, FL",
-    "region": "Southeast & Gulf",
-    "emoji": "🐆",
-    "desc": "I-295 Beltway, I-95 & JTB Blvd"
-  },
-  {
-    "slug": "fort-lauderdale.html",
-    "name": "Fort Lauderdale, FL",
-    "region": "Southeast & Gulf",
-    "emoji": "🛥️",
-    "desc": "I-95, I-595 & US-1 Corridors"
-  },
-  {
-    "slug": "charlotte.html",
-    "name": "Charlotte, NC",
-    "region": "Southeast & Gulf",
-    "emoji": "👑",
-    "desc": "I-485 Loop, I-77 & I-85 Corridors"
-  },
-  {
-    "slug": "raleigh.html",
-    "name": "Raleigh, NC",
-    "region": "Southeast & Gulf",
-    "emoji": "🌲",
-    "desc": "I-40, I-440 Beltline & US-1"
-  },
-  {
-    "slug": "durham.html",
-    "name": "Durham, NC",
-    "region": "Southeast & Gulf",
-    "emoji": "🔬",
-    "desc": "NC-147 Durham Freeway, I-85 & I-40"
-  },
-  {
-    "slug": "nashville.html",
-    "name": "Nashville, TN",
-    "region": "Southeast & Gulf",
-    "emoji": "🎸",
-    "desc": "I-40, I-65, I-24 & Briley Pkwy"
-  },
-  {
-    "slug": "memphis.html",
-    "name": "Memphis, TN",
-    "region": "Southeast & Gulf",
-    "emoji": "🎵",
-    "desc": "I-240 Loop, I-40 & Sam Cooper Blvd"
-  },
-  {
-    "slug": "knoxville.html",
-    "name": "Knoxville, TN",
-    "region": "Southeast & Gulf",
-    "emoji": "⛰️",
-    "desc": "I-40, I-75 & Pellissippi Pkwy"
-  },
-  {
-    "slug": "louisville.html",
-    "name": "Louisville, KY",
-    "region": "Southeast & Gulf",
-    "emoji": "🐎",
-    "desc": "I-264 Watterson, I-65 & I-71"
-  },
-  {
-    "slug": "lexington.html",
-    "name": "Lexington, KY",
-    "region": "Southeast & Gulf",
-    "emoji": "🐴",
-    "desc": "New Circle Rd (KY-4), I-75 & I-64"
-  },
-  {
-    "slug": "charleston.html",
-    "name": "Charleston, SC",
-    "region": "Southeast & Gulf",
-    "emoji": "⚓",
-    "desc": "I-26, US-17 & Mark Clark Expy (I-526)"
-  },
-  {
-    "slug": "columbia.html",
-    "name": "Columbia, SC",
-    "region": "Southeast & Gulf",
-    "emoji": "🏛️",
-    "desc": "I-26, I-20 & I-77 Malfunction Junction"
-  },
-  {
-    "slug": "richmond.html",
-    "name": "Richmond, VA",
-    "region": "Southeast & Gulf",
-    "emoji": "🏛️",
-    "desc": "I-95, I-64 & Powhite Pkwy"
-  },
-  {
-    "slug": "virginia-beach.html",
-    "name": "Virginia Beach, VA",
-    "region": "Southeast & Gulf",
-    "emoji": "🌊",
-    "desc": "I-264, US-13 & Norfolk-Virginia Beach Expy"
-  },
-  {
-    "slug": "norfolk.html",
-    "name": "Norfolk, VA",
-    "region": "Southeast & Gulf",
-    "emoji": "⚓",
-    "desc": "I-64 Hampton Roads Beltway & HRBT"
-  },
-  {
-    "slug": "new-orleans.html",
-    "name": "New Orleans, LA",
-    "region": "Southeast & Gulf",
-    "emoji": "🎷",
-    "desc": "I-10, Pontchartrain Expy & US-90E"
-  },
-  {
-    "slug": "baton-rouge.html",
-    "name": "Baton Rouge, LA",
-    "region": "Southeast & Gulf",
-    "emoji": "🐊",
-    "desc": "I-10 Mississippi River Bridge & I-12"
-  },
-  {
-    "slug": "birmingham.html",
-    "name": "Birmingham, AL",
-    "region": "Southeast & Gulf",
-    "emoji": "🔨",
-    "desc": "I-65, I-20/59 & Red Mountain Expy"
-  },
-  {
-    "slug": "huntsville.html",
-    "name": "Huntsville, AL",
-    "region": "Southeast & Gulf",
-    "emoji": "🚀",
-    "desc": "I-565, Memorial Pkwy (US-231) & Research Park"
-  },
-  {
-    "slug": "mobile.html",
-    "name": "Mobile, AL",
-    "region": "Southeast & Gulf",
-    "emoji": "⚓",
-    "desc": "I-10 George Wallace Tunnel & I-65"
-  },
-  {
-    "slug": "jackson.html",
-    "name": "Jackson, MS",
-    "region": "Southeast & Gulf",
-    "emoji": "🎷",
-    "desc": "I-55, I-20 & Woodrow Wilson Ave"
-  },
-  {
-    "slug": "little-rock.html",
-    "name": "Little Rock, AR",
-    "region": "Southeast & Gulf",
-    "emoji": "💎",
-    "desc": "I-630, I-30 & I-430 Corridors"
-  },
-  {
-    "slug": "oklahoma-city.html",
-    "name": "Oklahoma City, OK",
-    "region": "Southwest & Sunbelt",
-    "emoji": "⚡",
-    "desc": "I-35, I-40 & Kilpatrick Turnpike"
-  },
-  {
-    "slug": "tulsa.html",
-    "name": "Tulsa, OK",
-    "region": "Southwest & Sunbelt",
-    "emoji": "🛢️",
-    "desc": "I-44, Broken Arrow Expy & Creek Turnpike"
-  },
-  {
-    "slug": "boise.html",
-    "name": "Boise, ID",
-    "region": "West Coast & Pacific",
-    "emoji": "🥔",
-    "desc": "I-84 Connector, Chinden Blvd & State St"
-  },
-  {
-    "slug": "spokane.html",
-    "name": "Spokane, WA",
-    "region": "West Coast & Pacific",
-    "emoji": "🌲",
-    "desc": "I-90, US-2 & Division St Corridor"
-  },
-  {
-    "slug": "billings.html",
-    "name": "Billings, MT",
-    "region": "West Coast & Pacific",
-    "emoji": "🏔️",
-    "desc": "I-90, US-87 & Airport Rd"
-  },
-  {
-    "slug": "sioux-falls.html",
-    "name": "Sioux Falls, SD",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🌊",
-    "desc": "I-29, I-90 & Minnesota Ave"
-  },
-  {
-    "slug": "fargo.html",
-    "name": "Fargo, ND",
-    "region": "Midwest & Great Lakes",
-    "emoji": "🌾",
-    "desc": "I-29, I-94 & 45th St Corridor"
-  },
-  {
-    "slug": "burlington.html",
-    "name": "Burlington, VT",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🍁",
-    "desc": "I-89, US-7 & Williston Rd"
-  },
-  {
-    "slug": "portland-me.html",
-    "name": "Portland, ME",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🦞",
-    "desc": "I-95 Maine Turnpike, I-295 & Route 1"
-  },
-  {
-    "slug": "manchester.html",
-    "name": "Manchester, NH",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🏔️",
-    "desc": "I-93, Everett Turnpike & Route 101"
-  },
-  {
-    "slug": "wilmington.html",
-    "name": "Wilmington, DE",
-    "region": "Northeast & Mid-Atlantic",
-    "emoji": "🏛️",
-    "desc": "I-95, I-495 & Concord Pike (US-202)"
-  }
+  { "slug": "los-angeles.html", "name": "Los Angeles", "state": "CA", "emoji": "🌴", "desc": "I-10, 405, 101 & 5 Corridors", "lat": 34.0522, "lon": -118.2437 },
+  { "slug": "irvine.html", "name": "Irvine", "state": "CA", "emoji": "🏙️", "desc": "5, 405, 133 & 241 Toll Roads", "lat": 33.6846, "lon": -117.8265 },
+  { "slug": "huntington-beach.html", "name": "Huntington Beach", "state": "CA", "emoji": "🏄", "desc": "PCH, Beach Blvd & 405 Corridors", "lat": 33.6595, "lon": -117.9988 },
+  { "slug": "anaheim.html", "name": "Anaheim", "state": "CA", "emoji": "🏒", "desc": "I-5, 57 & 91 Interchange", "lat": 33.8366, "lon": -117.9143 },
+  { "slug": "san-francisco.html", "name": "San Francisco", "state": "CA", "emoji": "🌁", "desc": "Bay Bridge & US-101", "lat": 37.7749, "lon": -122.4194 },
+  { "slug": "san-diego.html", "name": "San Diego", "state": "CA", "emoji": "☀️", "desc": "I-5, I-15 & I-8 Corridors", "lat": 32.7157, "lon": -117.1611 },
+  { "slug": "san-jose.html", "name": "San Jose", "state": "CA", "emoji": "💻", "desc": "US-101, I-280 & CA-85", "lat": 37.3382, "lon": -121.8863 },
+  { "slug": "sacramento.html", "name": "Sacramento", "state": "CA", "emoji": "🏛️", "desc": "I-80, US-50 & I-5", "lat": 38.5816, "lon": -121.4944 },
+  { "slug": "oakland.html", "name": "Oakland", "state": "CA", "emoji": "⚓", "desc": "I-880, I-580 & CA-24", "lat": 37.8044, "lon": -122.2712 },
+  { "slug": "long-beach.html", "name": "Long Beach", "state": "CA", "emoji": "🌊", "desc": "I-710, I-405 & CA-1", "lat": 33.7701, "lon": -118.1937 },
+  { "slug": "seattle.html", "name": "Seattle", "state": "WA", "emoji": "☕", "desc": "I-5, I-90 & SR-520 Bridge", "lat": 47.6062, "lon": -122.3321 },
+  { "slug": "tacoma.html", "name": "Tacoma", "state": "WA", "emoji": "🌲", "desc": "I-5 & SR-16", "lat": 47.2529, "lon": -122.4443 },
+  { "slug": "bellevue.html", "name": "Bellevue", "state": "WA", "emoji": "🏙️", "desc": "I-405 & SR-520", "lat": 47.6101, "lon": -122.2015 },
+  { "slug": "portland.html", "name": "Portland", "state": "OR", "emoji": "🚲", "desc": "I-5, I-205 & US-26", "lat": 45.5152, "lon": -122.6784 },
+  { "slug": "anchorage.html", "name": "Anchorage", "state": "AK", "emoji": "🏔️", "desc": "Glenn & Seward Hwy", "lat": 61.2181, "lon": -149.9003 },
+  { "slug": "honolulu.html", "name": "Honolulu", "state": "HI", "emoji": "🌺", "desc": "H-1, H-2 & Pali Hwy", "lat": 21.3069, "lon": -157.8583 },
+  { "slug": "phoenix.html", "name": "Phoenix", "state": "AZ", "emoji": "🌵", "desc": "I-10, Loop 101 & Loop 202", "lat": 33.4484, "lon": -112.0740 },
+  { "slug": "scottsdale.html", "name": "Scottsdale", "state": "AZ", "emoji": "🏜️", "desc": "Loop 101 & Shea Blvd", "lat": 33.4942, "lon": -111.9261 },
+  { "slug": "tucson.html", "name": "Tucson", "state": "AZ", "emoji": "☀️", "desc": "I-10 & I-19", "lat": 32.2226, "lon": -110.9747 },
+  { "slug": "las-vegas.html", "name": "Las Vegas", "state": "NV", "emoji": "🎰", "desc": "I-15, CC-215 & US-95", "lat": 36.1699, "lon": -115.1398 },
+  { "slug": "reno.html", "name": "Reno", "state": "NV", "emoji": "🏔️", "desc": "I-80 & US-395", "lat": 39.5296, "lon": -119.8138 },
+  { "slug": "albuquerque.html", "name": "Albuquerque", "state": "NM", "emoji": "🌶️", "desc": "I-25 & I-40", "lat": 35.0844, "lon": -106.6504 },
+  { "slug": "salt-lake-city.html", "name": "Salt Lake City", "state": "UT", "emoji": "⛷️", "desc": "I-15, I-80 & Bangerter", "lat": 40.7608, "lon": -111.8910 },
+  { "slug": "denver.html", "name": "Denver", "state": "CO", "emoji": "🏔️", "desc": "I-25, I-70 & C-470", "lat": 39.7392, "lon": -104.9903 },
+  { "slug": "colorado-springs.html", "name": "Colorado Springs", "state": "CO", "emoji": "⛰️", "desc": "I-25 & US-24", "lat": 38.8339, "lon": -104.8214 },
+  { "slug": "austin.html", "name": "Austin", "state": "TX", "emoji": "🎸", "desc": "I-35, Mopac & US-183", "lat": 30.2672, "lon": -97.7431 },
+  { "slug": "dallas.html", "name": "Dallas", "state": "TX", "emoji": "🤠", "desc": "US-75, I-635 & I-35E", "lat": 32.7767, "lon": -96.7970 },
+  { "slug": "fort-worth.html", "name": "Fort Worth", "state": "TX", "emoji": "🐂", "desc": "I-35W, I-30 & Loop 820", "lat": 32.7555, "lon": -97.3308 },
+  { "slug": "houston.html", "name": "Houston", "state": "TX", "emoji": "🚀", "desc": "I-10, I-45 & Loop 610", "lat": 29.7604, "lon": -95.3698 },
+  { "slug": "san-antonio.html", "name": "San Antonio", "state": "TX", "emoji": "🌮", "desc": "Loop 410, Loop 1604 & I-35", "lat": 29.4241, "lon": -98.4936 },
+  { "slug": "el-paso.html", "name": "El Paso", "state": "TX", "emoji": "☀️", "desc": "I-10 & Loop 375", "lat": 31.7619, "lon": -106.4850 },
+  { "slug": "chicago.html", "name": "Chicago", "state": "IL", "emoji": "💨", "desc": "I-90/94 & Eisenhower", "lat": 41.8781, "lon": -87.6298 },
+  { "slug": "aurora.html", "name": "Aurora", "state": "IL", "emoji": "🏙️", "desc": "I-88 Tollway & IL-59", "lat": 41.7606, "lon": -88.3201 },
+  { "slug": "detroit.html", "name": "Detroit", "state": "MI", "emoji": "🚗", "desc": "I-75, I-94 & Lodge Fwy", "lat": 42.3314, "lon": -83.0458 },
+  { "slug": "grand-rapids.html", "name": "Grand Rapids", "state": "MI", "emoji": "🍺", "desc": "US-131, I-196 & I-96", "lat": 42.9634, "lon": -85.6681 },
+  { "slug": "minneapolis.html", "name": "Minneapolis", "state": "MN", "emoji": "❄️", "desc": "I-35W, I-94 & US-169", "lat": 44.9778, "lon": -93.2650 },
+  { "slug": "st-paul.html", "name": "St. Paul", "state": "MN", "emoji": "🏛️", "desc": "I-94 & I-35E", "lat": 44.9537, "lon": -93.0900 },
+  { "slug": "cleveland.html", "name": "Cleveland", "state": "OH", "emoji": "🎸", "desc": "I-90, I-71 & I-480", "lat": 41.4993, "lon": -81.6944 },
+  { "slug": "columbus.html", "name": "Columbus", "state": "OH", "emoji": "🌰", "desc": "I-270 Outerbelt & I-71", "lat": 39.9612, "lon": -82.9988 },
+  { "slug": "cincinnati.html", "name": "Cincinnati", "state": "OH", "emoji": "🌶️", "desc": "I-75, I-71 & I-275", "lat": 39.1031, "lon": -84.5120 },
+  { "slug": "indianapolis.html", "name": "Indianapolis", "state": "IN", "emoji": "🏎️", "desc": "I-465 Loop, I-65 & I-69", "lat": 39.7684, "lon": -86.1581 },
+  { "slug": "milwaukee.html", "name": "Milwaukee", "state": "WI", "emoji": "🍺", "desc": "I-94, I-43 & Marquette", "lat": 43.0389, "lon": -87.9065 },
+  { "slug": "madison.html", "name": "Madison", "state": "WI", "emoji": "🦡", "desc": "Beltline Hwy & I-39/90", "lat": 43.0731, "lon": -89.4012 },
+  { "slug": "st-louis.html", "name": "St. Louis", "state": "MO", "emoji": "⛩️", "desc": "I-64, I-70 & I-44", "lat": 38.6270, "lon": -90.1994 },
+  { "slug": "kansas-city.html", "name": "Kansas City", "state": "MO", "emoji": "🥩", "desc": "I-435 Loop, I-35 & I-70", "lat": 39.0997, "lon": -94.5786 },
+  { "slug": "omaha.html", "name": "Omaha", "state": "NE", "emoji": "🌽", "desc": "I-80 & I-680", "lat": 41.2565, "lon": -95.9345 },
+  { "slug": "des-moines.html", "name": "Des Moines", "state": "IA", "emoji": "🌾", "desc": "I-235, I-35 & I-80", "lat": 41.5868, "lon": -93.6250 },
+  { "slug": "wichita.html", "name": "Wichita", "state": "KS", "emoji": "✈️", "desc": "K-96, US-54 & I-135", "lat": 37.6872, "lon": -97.3301 },
+  { "slug": "new-york.html", "name": "New York", "state": "NY", "emoji": "🗽", "desc": "I-495 LIE & Cross Bronx", "lat": 40.7128, "lon": -74.0060 },
+  { "slug": "brooklyn.html", "name": "Brooklyn", "state": "NY", "emoji": "🌉", "desc": "BQE & Belt Pkwy", "lat": 40.6782, "lon": -73.9442 },
+  { "slug": "queens.html", "name": "Queens", "state": "NY", "emoji": "✈️", "desc": "Grand Central & Van Wyck", "lat": 40.7282, "lon": -73.7949 },
+  { "slug": "buffalo.html", "name": "Buffalo", "state": "NY", "emoji": "🦬", "desc": "I-190 & I-90 Thruway", "lat": 42.8864, "lon": -78.8784 },
+  { "slug": "rochester.html", "name": "Rochester", "state": "NY", "emoji": "📸", "desc": "I-490 & I-590 Outer Loop", "lat": 43.1566, "lon": -77.6088 },
+  { "slug": "boston.html", "name": "Boston", "state": "MA", "emoji": "🏛️", "desc": "I-93 Expy, I-90 & Route 128", "lat": 42.3601, "lon": -71.0589 },
+  { "slug": "worcester.html", "name": "Worcester", "state": "MA", "emoji": "🏭", "desc": "I-290 & Mass Pike", "lat": 42.2626, "lon": -71.8023 },
+  { "slug": "providence.html", "name": "Providence", "state": "RI", "emoji": "⚓", "desc": "I-95 & I-195 Corridors", "lat": 41.8240, "lon": -71.4128 },
+  { "slug": "hartford.html", "name": "Hartford", "state": "CT", "emoji": "🏢", "desc": "I-91, I-84 & CT-2", "lat": 41.7658, "lon": -72.6734 },
+  { "slug": "philadelphia.html", "name": "Philadelphia", "state": "PA", "emoji": "🔔", "desc": "I-76 Schuylkill & I-95", "lat": 39.9526, "lon": -75.1652 },
+  { "slug": "pittsburgh.html", "name": "Pittsburgh", "state": "PA", "emoji": "🌉", "desc": "I-376 Parkway & I-279", "lat": 40.4406, "lon": -79.9959 },
+  { "slug": "newark.html", "name": "Newark", "state": "NJ", "emoji": "🧱", "desc": "NJ Turnpike, I-280 & Rt 22", "lat": 40.7357, "lon": -74.1724 },
+  { "slug": "jersey-city.html", "name": "Jersey City", "state": "NJ", "emoji": "🏙️", "desc": "Holland Tunnel & US-1/9", "lat": 40.7178, "lon": -74.0431 },
+  { "slug": "washington-dc.html", "name": "Washington", "state": "DC", "emoji": "🏛️", "desc": "I-495 Beltway, I-66 & I-95", "lat": 38.9072, "lon": -77.0369 },
+  { "slug": "baltimore.html", "name": "Baltimore", "state": "MD", "emoji": "🦀", "desc": "I-695 Beltway & I-95", "lat": 39.2904, "lon": -76.6122 },
+  { "slug": "atlanta.html", "name": "Atlanta", "state": "GA", "emoji": "🍑", "desc": "I-285 Perimeter & I-75/85", "lat": 33.7490, "lon": -84.3880 },
+  { "slug": "savannah.html", "name": "Savannah", "state": "GA", "emoji": "🌳", "desc": "I-95, I-16 & Truman Pkwy", "lat": 32.0809, "lon": -81.0912 },
+  { "slug": "miami.html", "name": "Miami", "state": "FL", "emoji": "🌴", "desc": "I-95 & Palmetto Expy", "lat": 25.7617, "lon": -80.1918 },
+  { "slug": "orlando.html", "name": "Orlando", "state": "FL", "emoji": "🏰", "desc": "I-4, SR-408 & SR-528", "lat": 28.5383, "lon": -81.3792 },
+  { "slug": "tampa.html", "name": "Tampa", "state": "FL", "emoji": "⚡", "desc": "I-275, I-4 & Howard Frankland", "lat": 27.9506, "lon": -82.4572 },
+  { "slug": "jacksonville.html", "name": "Jacksonville", "state": "FL", "emoji": "🐆", "desc": "I-295 Beltway & I-95", "lat": 30.3322, "lon": -81.6557 },
+  { "slug": "fort-lauderdale.html", "name": "Fort Lauderdale", "state": "FL", "emoji": "🛥️", "desc": "I-95, I-595 & US-1", "lat": 26.1224, "lon": -80.1373 },
+  { "slug": "charlotte.html", "name": "Charlotte", "state": "NC", "emoji": "👑", "desc": "I-485 Loop, I-77 & I-85", "lat": 35.2271, "lon": -80.8431 },
+  { "slug": "raleigh.html", "name": "Raleigh", "state": "NC", "emoji": "🌲", "desc": "I-40, I-440 Beltline & US-1", "lat": 35.7796, "lon": -78.6382 },
+  { "slug": "durham.html", "name": "Durham", "state": "NC", "emoji": "🔬", "desc": "NC-147 Fwy, I-85 & I-40", "lat": 35.9940, "lon": -78.8986 },
+  { "slug": "nashville.html", "name": "Nashville", "state": "TN", "emoji": "🎸", "desc": "I-40, I-65 & Briley Pkwy", "lat": 36.1627, "lon": -86.7816 },
+  { "slug": "memphis.html", "name": "Memphis", "state": "TN", "emoji": "🎵", "desc": "I-240 Loop, I-40 & Sam Cooper", "lat": 35.1495, "lon": -90.0490 },
+  { "slug": "knoxville.html", "name": "Knoxville", "state": "TN", "emoji": "⛰️", "desc": "I-40, I-75 & Pellissippi", "lat": 35.9606, "lon": -83.9207 },
+  { "slug": "louisville.html", "name": "Louisville", "state": "KY", "emoji": "🐎", "desc": "I-264 Watterson, I-65 & I-71", "lat": 38.2527, "lon": -85.7585 },
+  { "slug": "lexington.html", "name": "Lexington", "state": "KY", "emoji": "🐴", "desc": "New Circle Rd & I-75", "lat": 38.0406, "lon": -84.5037 },
+  { "slug": "charleston.html", "name": "Charleston", "state": "SC", "emoji": "⚓", "desc": "I-26, US-17 & I-526", "lat": 32.7765, "lon": -79.9311 },
+  { "slug": "columbia.html", "name": "Columbia", "state": "SC", "emoji": "🏛️", "desc": "I-26, I-20 & I-77", "lat": 34.0007, "lon": -81.0348 },
+  { "slug": "richmond.html", "name": "Richmond", "state": "VA", "emoji": "🏛️", "desc": "I-95, I-64 & Powhite Pkwy", "lat": 37.5407, "lon": -77.4360 },
+  { "slug": "virginia-beach.html", "name": "Virginia Beach", "state": "VA", "emoji": "🌊", "desc": "I-264 & VB Expy", "lat": 36.8529, "lon": -75.9780 },
+  { "slug": "norfolk.html", "name": "Norfolk", "state": "VA", "emoji": "⚓", "desc": "I-64 Beltway & HRBT", "lat": 36.8508, "lon": -76.2859 },
+  { "slug": "new-orleans.html", "name": "New Orleans", "state": "LA", "emoji": "🎷", "desc": "I-10, Pontchartrain & US-90E", "lat": 29.9511, "lon": -90.0715 },
+  { "slug": "baton-rouge.html", "name": "Baton Rouge", "state": "LA", "emoji": "🐊", "desc": "I-10 Bridge & I-12", "lat": 30.4515, "lon": -91.1871 },
+  { "slug": "birmingham.html", "name": "Birmingham", "state": "AL", "emoji": "🔨", "desc": "I-65, I-20/59 & Red Mountain", "lat": 33.5186, "lon": -86.8104 },
+  { "slug": "huntsville.html", "name": "Huntsville", "state": "AL", "emoji": "🚀", "desc": "I-565 & Memorial Pkwy", "lat": 34.7304, "lon": -86.5861 },
+  { "slug": "mobile.html", "name": "Mobile", "state": "AL", "emoji": "⚓", "desc": "I-10 Tunnel & I-65", "lat": 30.6954, "lon": -88.0399 },
+  { "slug": "jackson.html", "name": "Jackson", "state": "MS", "emoji": "🎷", "desc": "I-55, I-20 & Woodrow Wilson", "lat": 32.2988, "lon": -90.1848 },
+  { "slug": "little-rock.html", "name": "Little Rock", "state": "AR", "emoji": "💎", "desc": "I-630, I-30 & I-430", "lat": 34.7465, "lon": -92.2896 },
+  { "slug": "oklahoma-city.html", "name": "Oklahoma City", "state": "OK", "emoji": "⚡", "desc": "I-35, I-40 & Kilpatrick", "lat": 35.4676, "lon": -97.5164 },
+  { "slug": "tulsa.html", "name": "Tulsa", "state": "OK", "emoji": "🛢️", "desc": "I-44, Broken Arrow & Creek", "lat": 36.1540, "lon": -95.9928 },
+  { "slug": "boise.html", "name": "Boise", "state": "ID", "emoji": "🥔", "desc": "I-84 Connector & State St", "lat": 43.6150, "lon": -116.2023 },
+  { "slug": "spokane.html", "name": "Spokane", "state": "WA", "emoji": "🌲", "desc": "I-90, US-2 & Division St", "lat": 47.6588, "lon": -117.4260 },
+  { "slug": "billings.html", "name": "Billings", "state": "MT", "emoji": "🏔️", "desc": "I-90 & Airport Rd", "lat": 45.7833, "lon": -108.5007 },
+  { "slug": "sioux-falls.html", "name": "Sioux Falls", "state": "SD", "emoji": "🌊", "desc": "I-29, I-90 & Minnesota Ave", "lat": 43.5460, "lon": -96.7313 },
+  { "slug": "fargo.html", "name": "Fargo", "state": "ND", "emoji": "🌾", "desc": "I-29, I-94 & 45th St", "lat": 46.8772, "lon": -96.7898 },
+  { "slug": "burlington.html", "name": "Burlington", "state": "VT", "emoji": "🍁", "desc": "I-89, US-7 & Williston Rd", "lat": 44.4759, "lon": -73.2121 },
+  { "slug": "portland-me.html", "name": "Portland", "state": "ME", "emoji": "🦞", "desc": "I-95 Maine Turnpike & I-295", "lat": 43.6591, "lon": -70.2568 },
+  { "slug": "manchester.html", "name": "Manchester", "state": "NH", "emoji": "🏔️", "desc": "I-93, Everett Tpke & Route 101", "lat": 42.9956, "lon": -71.4548 },
+  { "slug": "wilmington.html", "name": "Wilmington", "state": "DE", "emoji": "🏛️", "desc": "I-95, I-495 & Concord Pike", "lat": 39.7391, "lon": -75.5398 }
 ]
