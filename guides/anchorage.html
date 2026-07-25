@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Anchorage, AK Morning Commute Weather Brief &amp; Road Hazards</title>
 <meta name="description" content="Live morning commute weather for Anchorage, AK. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for Glenn & Seward Hwy.">
-<link rel="canonical" href="https://morningst.art/guides/anchorage.html.html">
+<link rel="canonical" href="https://morningst.art/guides/anchorage.html">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <style>
   :root{
@@ -1060,11 +1060,12 @@
         if (!container) return;
 
         var regionMap = {
-          'CA':'West Coast & Pacific', 'WA':'West Coast & Pacific', 'OR':'West Coast & Pacific', 'AK':'West Coast & Pacific', 'HI':'West Coast & Pacific', 'ID':'West Coast & Pacific', 'MT':'West Coast & Pacific', 'NV':'West Coast & Pacific',
+          'CA':'West Coast & Pacific', 'WA':'West Coast & Pacific', 'OR':'West Coast & Pacific', 'AK':'West Coast & Pacific', 'HI':'West Coast & Pacific', 'ID':'West Coast & Pacific', 'MT':'West Coast & Pacific', 'NV':'West Coast & Pacific', 'WY':'West Coast & Pacific',
           'AZ':'Southwest & Sunbelt', 'NM':'Southwest & Sunbelt', 'UT':'Southwest & Sunbelt', 'CO':'Southwest & Sunbelt', 'TX':'Southwest & Sunbelt', 'OK':'Southwest & Sunbelt',
           'IL':'Midwest & Great Lakes', 'IN':'Midwest & Great Lakes', 'IA':'Midwest & Great Lakes', 'KS':'Midwest & Great Lakes', 'MI':'Midwest & Great Lakes', 'MN':'Midwest & Great Lakes', 'MO':'Midwest & Great Lakes', 'NE':'Midwest & Great Lakes', 'ND':'Midwest & Great Lakes', 'OH':'Midwest & Great Lakes', 'SD':'Midwest & Great Lakes', 'WI':'Midwest & Great Lakes',
           'CT':'Northeast & Mid-Atlantic', 'DE':'Northeast & Mid-Atlantic', 'ME':'Northeast & Mid-Atlantic', 'MD':'Northeast & Mid-Atlantic', 'MA':'Northeast & Mid-Atlantic', 'NH':'Northeast & Mid-Atlantic', 'NJ':'Northeast & Mid-Atlantic', 'NY':'Northeast & Mid-Atlantic', 'PA':'Northeast & Mid-Atlantic', 'RI':'Northeast & Mid-Atlantic', 'VT':'Northeast & Mid-Atlantic',
-          'AL':'Southeast & Gulf', 'AR':'Southeast & Gulf', 'FL':'Southeast & Gulf', 'GA':'Southeast & Gulf', 'KY':'Southeast & Gulf', 'LA':'Southeast & Gulf', 'MS':'Southeast & Gulf', 'NC':'Southeast & Gulf', 'SC':'Southeast & Gulf', 'TN':'Southeast & Gulf', 'VA':'Southeast & Gulf', 'WV':'Southeast & Gulf'
+          'AL':'Southeast & Gulf', 'AR':'Southeast & Gulf', 'FL':'Southeast & Gulf', 'GA':'Southeast & Gulf', 'KY':'Southeast & Gulf', 'LA':'Southeast & Gulf', 'MS':'Southeast & Gulf', 'NC':'Southeast & Gulf', 'SC':'Southeast & Gulf', 'TN':'Southeast & Gulf', 'VA':'Southeast & Gulf', 'WV':'Southeast & Gulf',
+          'DC':'Northeast & Mid-Atlantic'
         };
 
         var grouped = citiesArray.reduce(function(acc, city) {
