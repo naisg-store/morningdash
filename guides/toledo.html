@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Toledo Morning Commute Weather Brief & Road Hazards</title>
-<meta name="description" content="Live morning commute weather for Toledo. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for I-75 & I-470 Anthony Wayne Trail.">
+<title>Toledo, OH Morning Commute Weather Brief &amp; Road Hazards</title>
+<meta name="description" content="Live morning commute weather for Toledo, OH. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for I-75, I-80/90 & I-475.">
+<link rel="canonical" href="https://morningst.art/guides/toledo.html">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <style>
   :root{
@@ -71,7 +72,6 @@
     position:relative;
   }
 
-  /* Broadcast Ghost Watermark Number */
   .hero-ghost-number {
     position: absolute;
     right: 140px;
@@ -170,7 +170,7 @@
   }
 
   .humidity-data-stack {
-    padding-bottom: 18%;
+    padding-bottom: 24%;
   }
 
   .gauge-track{
@@ -190,7 +190,6 @@
   .glow-hot { stroke:var(--red); filter:drop-shadow(0 0 10px var(--red)); }
   .glow-cool { stroke:var(--teal); filter:drop-shadow(0 0 10px var(--teal)); }
 
-  /* Combined Wide Humidity/Daylight Styles */
   .gauge-fill.humidity-glow {
     stroke:var(--teal);
     stroke-width:14;
@@ -256,24 +255,23 @@
     letter-spacing:0.03em;
   }
 
-  /* Wide Daylight Footer Spacing */
   .daylight-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    width: 98%;
+    width: 96%;
     position: absolute;
     bottom: 2%;
   }
   .daylight-footer span {
-    font-size: 11px;
+    flex: 1;
+    font-size: 10px;
     font-weight: 700;
     color: var(--muted);
-    white-space: nowrap;
   }
-  .daylight-footer span:nth-child(1) { text-align: left; }
-  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 12px; margin-bottom: -1px; }
-  .daylight-footer span:nth-child(3) { text-align: right; }
+  .daylight-footer span:nth-child(1) { text-align: left; padding-left: 2px; }
+  .daylight-footer span:nth-child(2) { text-align: center; color: var(--amber); font-size: 11px; margin-bottom: -1px; }
+  .daylight-footer span:nth-child(3) { text-align: right; padding-right: 2px; }
 
   .purple { color: var(--violet); transition: color 0.3s; }
   .amber { color: var(--amber); transition: color 0.3s; }
@@ -538,7 +536,7 @@
   }
 
   /* ==========================================================================
-     MOBILE RESPONSIVE OVERHAUL (SINGLE-COLUMN EDGE-TO-EDGE)
+     MOBILE RESPONSIVE OVERHAUL
      ========================================================================== */
   @media (max-width:520px){
     .gauge-row{grid-template-columns:1fr; gap:12px;}
@@ -546,15 +544,15 @@
     
     .gauge-svg-wrap{width:100%; max-width:none;}
     .gauge-label{display:block;}
-    .humidity-data-stack { padding-bottom: 12px; }
+    .humidity-data-stack { padding-bottom: 12%; }
     
     header.brief-header{
       flex-direction:column; 
       align-items:flex-start; 
-      padding:24px 20px;
-      min-height: 185px;
+      padding:22px 20px;
+      min-height: 180px;
     }
-    .clock-block{text-align:left; margin-top:8px;}
+    .clock-block{text-align:left; margin-top:6px;}
     
     .hero-ghost-number { 
       right: 15px; 
@@ -565,33 +563,31 @@
     .hero-gauge-container{
       position:absolute;
       right: 15px;
-      bottom: 10px;
+      bottom: 8px;
       width: 170px; 
       margin: 0;
     }
     
-    .hero-val{font-size:44px;}
+    .hero-val{font-size:42px;}
     .hero-subtext{font-size:11px; gap:6px;}
     
-    .standard-val{font-size:42px;}
-    .standard-unit{font-size:15px;}
-    .standard-subtext{font-size:13px;}
+    .standard-val{font-size:40px;}
+    .standard-unit{font-size:14px;}
+    .standard-subtext{font-size:12px;}
     
-    .daylight-footer { width: 98%; bottom: 6px; }
-    .daylight-footer span { font-size: 11px; }
-    .daylight-footer span:nth-child(2) { font-size: 13px; }
+    .daylight-footer { width: 94%; bottom: 4%; }
+    .daylight-footer span { font-size: 10.5px; }
+    .daylight-footer span:nth-child(2) { font-size: 12px; }
     
     .split-card{min-height:130px; padding:0;}
     .split-top-left { top: 18px; left: 20px; }
     .split-bottom-right { bottom: 18px; right: 20px; }
-    .split-val-large, .split-val-small { font-size: 32px; }
+    .split-val-large, .split-val-small { font-size: 34px; }
   }
 
   a{color:var(--cyan);}
   :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
 </style>
-
-<link rel="canonical" href="https://morningst.art/guides/toledo.html">
 </head>
 <body>
 <div class="wrap">
@@ -600,9 +596,9 @@
     <div class="hero-ghost-number" id="hero-ghost-val">--</div>
     <div class="header-info">
       <div class="brand">
-        <div class="eyebrow" id="city-eyebrow">Loading Brief</div>
-        <h1 id="city-name">Loading City...</h1>
-        <div class="location-line"><span class="dot"></span><span id="region-name">California, USA</span></div>
+        <div class="eyebrow" id="city-eyebrow">Toledo Morning Brief</div>
+        <h1 id="city-name">Toledo</h1>
+        <div class="location-line"><span class="dot"></span><span id="region-name">OH, USA</span></div>
       </div>
       <div class="clock-block">
         <div class="clock-time" id="clock-time">--:--</div>
@@ -610,7 +606,6 @@
       </div>
     </div>
     
-    <!-- Hero Temperature Arc -->
     <div class="hero-gauge-container">
       <div class="gauge-svg-wrap">
         <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
@@ -632,14 +627,17 @@
     </div>
   </header>
 
-  <section class="gauge-row" style="grid-template-columns: 1fr;">
-    <!-- 1. Wide Combined Humidity & Sunrise Gauge -->
+  <div class="intro-section" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-lg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); padding:22px 24px; margin-bottom:8px; font-size:15.5px; line-height:1.65; color:var(--text);">
+    <h1 style="margin:0 0 16px 0; font-size:28px; font-weight:800; letter-spacing:-0.02em; color:var(--text);">Toledo Morning Weather Brief</h1>
+    <p style="margin:0;">Live morning weather intelligence, local hazard alerts, and real-time commute conditions for the <strong>Toledo, OH</strong> area.</p>
+  </div>
+
+  <section class="gauge-row">
     <div class="gauge-card">
       <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 280 130" aria-label="Wide Humidity and Daylight gauge">
-          <!-- Scaled wide path from x=20 to x=260 (Radius 120) -->
-          <path class="gauge-track" d="M 20 100 A 120 120 0 0 1 260 100"/>
-          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 120 120 0 0 1 260 100"/>
+        <svg viewBox="0 0 200 130" aria-label="Humidity and Daylight gauge">
+          <path class="gauge-track" d="M 20 100 A 80 80 0 0 1 180 100"/>
+          <path class="gauge-fill humidity-glow" id="gauge-humidity-arc" d="M 20 100 A 80 80 0 0 1 180 100"/>
           <circle id="sun-dot" class="sun-dot-punched" cx="20" cy="100" r="7" />
         </svg>
         
@@ -649,7 +647,7 @@
           </div>
           <div class="standard-subtext teal" id="gauge-dew-val">Dew Pt --°</div>
           
-          <div class="daylight-footer" style="width: 96%; left: 2%;">
+          <div class="daylight-footer">
             <span id="sun-rise-time">--:--</span>
             <span class="daylight-status amber" id="sun-status-text">--</span>
             <span id="sun-set-time">--:--</span>
@@ -659,7 +657,6 @@
       <div class="gauge-label">Humidity & Sunrise</div>
     </div>
 
-    <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="rain-watermark">🌧️</div>
       <div class="split-section split-top-left">
@@ -685,11 +682,10 @@
     <div class="advice-icon" id="advice-icon">🌤️</div>
     <div class="advice-text-block">
       <div class="advice-eyebrow">Morning Advice</div>
-      <div class="advice-text" id="advice-text">Reading today's conditions…</div>
+      <div class="advice-text" id="advice-text">Loading conditions for Toledo...</div>
     </div>
   </section>
 
-  <!-- Stacked Ticker + UV Bar -->
   <section class="status-stack" role="status" aria-live="polite">
     <div class="ticker">
       <div class="live-tag"><span class="pulse"></span>HAZARDS</div>
@@ -709,17 +705,40 @@
     </div>
   </section>
 
-  <div style="margin-top:20px; padding:18px; border:1px dashed var(--panel-border); border-radius:var(--radius-md); text-align:center; background:rgba(15,23,42,0.4); color:var(--muted-dim); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
-     <!-- Advertisement Space -->
-  </div>
-
   <section style="margin-top:24px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
       <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Commuter Guides</h2>
       <span style="font-size:11px; color:var(--muted-dim);">Editorial Series</span>
     </div>
-    <!-- NAV.JS INJECTS GUIDES HERE -->
-    <div id="guide-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;"></div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;">
+      <a href="marine-layer.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">🌫️</div>
+        <div>
+          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); font-weight:700;">Coastal Weather</span>
+          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Coastal Marine Layer & Fog</h3>
+          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">"The marine layer is a shallow, cool, moist blanket of air that forms near the ocean surface..."</p>
+        </div>
+      </a>
+
+      <a href="morning-wind-driving.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">💨</div>
+        <div>
+          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); font-weight:700;">Commuter Safety</span>
+          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Navigating Morning Winds</h3>
+          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">"Wind speed alone doesn't tell the whole story of how dangerous a gusty morning will be..."</p>
+        </div>
+      </a>
+
+      <a href="dew-point-humidity.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
+        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">🌡️</div>
+        <div>
+          <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--violet); font-weight:700;">Weather Literacy</span>
+          <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Dew Point vs. Humidity</h3>
+          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">"Two numbers on every forecast claim to describe 'how muggy it feels' — only one of them actually does..."</p>
+        </div>
+      </a>
+    </div>
   </section>
 
   <section style="margin-top:24px;">
@@ -727,13 +746,21 @@
       <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Featured Local Commute Briefs</h2>
       <span style="font-size:11px; color:var(--muted-dim);">Dedicated Regional Dashboards</span>
     </div>
-    <!-- NAV.JS INJECTS CITIES HERE -->
-    <div id="city-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;"></div>
+
+    <div style="margin-bottom:18px;">
+      <input type="search" id="city-search" placeholder="Search cities..." 
+        style="width:100%; padding:12px 16px; background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); color:var(--text); font-size:14px; outline:none; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);"
+        autocomplete="off" spellcheck="false">
+    </div>
+    
+    <div id="regional-cities-container">
+      <p style="color:var(--muted); font-size:13px; font-style:italic;">Loading regional hubs...</p>
+    </div>
   </section>
 
   <footer class="foot-note" style="margin-top:28px; border-top:1px solid var(--panel-border); padding-top:16px;">
     <div style="margin-bottom:10px; display:flex; justify-content:center; gap:16px; font-size:12px;">
-      <a href="../index.html" style="color:var(--cyan); text-decoration:none;">← Global Dashboard</a>
+      <a href="../index.html" style="color:var(--cyan); text-decoration:none;">&larr; Global Dashboard</a>
       <span style="color:var(--muted-dim);">&middot;</span>
       <a href="../about.html" style="color:var(--cyan); text-decoration:none;">About</a>
       <span style="color:var(--muted-dim);">&middot;</span>
@@ -742,45 +769,36 @@
       <a href="../terms.html" style="color:var(--cyan); text-decoration:none;">Terms of Service</a>
     </div>
     <div style="font-size:11px; color:var(--muted-dim); text-align:center;">
-      Morning Weather Brief &middot; Refreshes every 15 minutes
+      Morning Weather Brief &middot; Toledo Edition &middot; Refreshes every 15 minutes
     </div>
   </footer>
 
 </div>
 
-<!-- INJECT YOUR NEW NAV FILE HERE -->
-<script src="../nav.js"></script>
-
 <script>
 (function(){
   "use strict";
 
-  var CACHE_KEY = "morningWeatherBrief.cache"; // Gets overwritten below based on filename
+  var CACHE_KEY = "morningWeatherBrief_toledo.html.cache";
   var CACHE_TTL_MS = 15 * 60 * 1000;
   var GAUGE_RADIUS = 80;
   var ARC_LENGTH = Math.PI * GAUGE_RADIUS;
 
-  /* --- WIDE ARC METRICS FOR COMBINED GAUGE --- */
-  var WIDE_RADIUS = 120;
-  var WIDE_ARC_LENGTH = Math.PI * WIDE_RADIUS;
-
   var els = {
     city: document.getElementById("city-name"),
     region: document.getElementById("region-name"),
+    eyebrow: document.getElementById("city-eyebrow"),
     time: document.getElementById("clock-time"),
     date: document.getElementById("clock-date"),
+    ghostVal: document.getElementById("hero-ghost-val"),
     adviceIcon: document.getElementById("advice-icon"),
     adviceText: document.getElementById("advice-text"),
     ticker: document.getElementById("ticker-track"),
-    ghostVal: document.getElementById("hero-ghost-val"),
     gauges: {
-      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120, radius: GAUGE_RADIUS, len: ARC_LENGTH },
-      feelsGlow: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120, radius: GAUGE_RADIUS, len: ARC_LENGTH },
-      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100, radius: WIDE_RADIUS, len: WIDE_ARC_LENGTH }
-    },
-    tempHigh: {
-      arc: document.getElementById("gauge-temp-high-arc"),
-      val: document.getElementById("gauge-temp-high-val")
+      temp:      { arc: document.getElementById("gauge-temp-arc"),       val: document.getElementById("gauge-temp-val"),       min:0, max:120 },
+      tempHigh:  { arc: document.getElementById("gauge-temp-high-arc"),  val: document.getElementById("gauge-temp-high-val"),  min:0, max:120 },
+      tempFeels: { arc: document.getElementById("gauge-temp-feels-arc"), val: document.getElementById("gauge-temp-feels-val"), min:0, max:120 },
+      humidity:  { arc: document.getElementById("gauge-humidity-arc"),   val: document.getElementById("gauge-humidity-val"),   min:0, max:100 }
     },
     dewPointVal: document.getElementById("gauge-dew-val"),
     split: {
@@ -800,21 +818,14 @@
     }
   };
 
-  // Setup Standard Arcs
   Object.keys(els.gauges).forEach(function(key){
     var g = els.gauges[key];
-    if(g.arc){
-      g.arc.style.strokeDasharray = g.len;
-      g.arc.style.strokeDashoffset = g.len;
+    if(g.arc) {
+      g.arc.style.strokeDasharray = ARC_LENGTH;
+      g.arc.style.strokeDashoffset = ARC_LENGTH;
     }
   });
 
-  if (els.tempHigh.arc) {
-    els.tempHigh.arc.style.strokeDasharray = ARC_LENGTH;
-    els.tempHigh.arc.style.strokeDashoffset = ARC_LENGTH;
-  }
-
-  // ---------------- Clock ----------------
   function tickClock(){
     var now = new Date();
     els.time.textContent = now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
@@ -823,7 +834,6 @@
   tickClock();
   setInterval(tickClock, 1000);
 
-  // ---------------- Render Functions ----------------
   function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
 
   function setGauge(key, rawValue, displayValue){
@@ -833,36 +843,20 @@
 
     var v = clamp(rawValue, g.min, g.max);
     var frac = (v - g.min) / (g.max - g.min);
-    var offset = g.len * (1 - frac);
+    var offset = ARC_LENGTH * (1 - frac);
     
-    if(key === 'feelsGlow'){
-      g.val.textContent = "Feels " + (displayValue !== undefined ? displayValue : Math.round(rawValue)) + "°";
-    } else {
-      g.val.textContent = (displayValue !== undefined ? displayValue : Math.round(rawValue));
-      if(key === 'temp' && els.ghostVal) {
-        els.ghostVal.textContent = Math.round(rawValue);
+    if(g.val) {
+      if(key === 'tempHigh') {
+         g.val.textContent = "High " + Math.round(rawValue) + "°";
+      } else if (key === 'tempFeels') {
+         g.val.textContent = "Feels " + Math.round(rawValue) + "°";
+      } else {
+         g.val.textContent = (displayValue !== undefined ? displayValue : Math.round(rawValue));
       }
     }
     
     requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        g.arc.style.strokeDashoffset = offset;
-      });
-    });
-  }
-
-  function setTempHighGauge(tempMax){
-    if (!els.tempHigh.arc || !els.tempHigh.val || tempMax === null || tempMax === undefined) return;
-    var minTemp = 0, maxTemp = 120;
-    var clampedHigh = clamp(tempMax, minTemp, maxTemp);
-    var frac = (clampedHigh - minTemp) / (maxTemp - minTemp);
-    var offset = ARC_LENGTH * (1 - frac);
-    
-    els.tempHigh.val.textContent = "High " + Math.round(tempMax) + "°";
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        els.tempHigh.arc.style.strokeDashoffset = offset;
-      });
+      requestAnimationFrame(function(){ g.arc.style.strokeDashoffset = offset; });
     });
   }
   
@@ -887,8 +881,8 @@
 
     var clampedProgress = Math.max(0, Math.min(1, progress));
     var angle = Math.PI - (clampedProgress * Math.PI);
-    var cx = 140 + WIDE_RADIUS * Math.cos(angle);
-    var cy = 100 - WIDE_RADIUS * Math.sin(angle);
+    var cx = 100 + GAUGE_RADIUS * Math.cos(angle);
+    var cy = 100 - GAUGE_RADIUS * Math.sin(angle);
     
     requestAnimationFrame(function(){
       els.solar.dot.setAttribute("cx", cx);
@@ -898,15 +892,9 @@
 
   function renderUV(uvIndex){
     var uv = (uvIndex !== null && uvIndex !== undefined) ? uvIndex : 0;
-    if (els.uv.valText) {
-      els.uv.valText.textContent = Math.round(uv);
-    }
-    if (els.uv.dot) {
-      var uvPct = Math.min(100, Math.max(0, (uv / 11) * 100));
-      requestAnimationFrame(function(){
-        els.uv.dot.style.left = uvPct + "%";
-      });
-    }
+    els.uv.valText.textContent = Math.round(uv);
+    var uvPct = Math.min(100, Math.max(0, (uv / 11) * 100));
+    requestAnimationFrame(function(){ els.uv.dot.style.left = uvPct + "%"; });
   }
 
   function degToCompass(num) {
@@ -935,51 +923,35 @@
     return { icon:"🌤️", msg:"Standard-issue morning out there — nothing wild, just get out the door." };
   }
 
-  function buildHazards(c){
+  function buildHazards(c, cityName){
     var hazards = [];
-    if (c.visibilityMiles !== null && c.visibilityMiles < 3){
-      hazards.push({ text:"FOG ALERT: Reduced morning visibility.", type:"hazard" });
-    }
-    if (c.precipProb > 20 || c.precip > 0.01){
-      hazards.push({ text:"SLIPPERY ROADS: Drizzle/rain expected on the morning commute.", type:"hazard" });
-    }
-    if (c.wind > 18){
-      hazards.push({ text:"HIGH WIND CAUTION: Watch for gusts on the highway.", type:"hazard" });
-    }
-    if (c.uv > 6){
-      hazards.push({ text:"HIGH UV INDEX: Peak sun intensity during daylight hours today.", type:"hazard" });
-    }
-    if (c.feels > 88 || c.temp > 85){
-      hazards.push({ text:"HEAT ADVISORY: High apparent temperature. Expect warm cabin temps.", type:"hazard" });
-    }
-    if (hazards.length === 0){
-      hazards.push({ text:"WEATHER CLEAR: Optimal driving conditions. No weather hazards reported.", type:"clear" });
-    }
+    if (c.visibilityMiles !== null && c.visibilityMiles < 3){ hazards.push({ text:"FOG ALERT: Reduced morning visibility reported.", type:"hazard" }); }
+    if (c.precipProb > 20 || c.precip > 0.01){ hazards.push({ text:"SLIPPERY ROADS: Precipitation risk on morning routes.", type:"hazard" }); }
+    if (c.wind > 18){ hazards.push({ text:"HIGH WIND CAUTION: Watch for highway gusts.", type:"hazard" }); }
+    if (c.uv > 6){ hazards.push({ text:"HIGH UV INDEX: Peak sun intensity during daylight hours today.", type:"hazard" }); }
+    if (c.feels > 88 || c.temp > 85){ hazards.push({ text:"HEAT ADVISORY: High apparent temperature. Expect warm cabin temps.", type:"hazard" }); }
+    if (hazards.length === 0){ hazards.push({ text:"WEATHER CLEAR: Good driving conditions in " + cityName + ".", type:"clear" }); }
     return hazards;
   }
 
   function renderTicker(hazards){
-    var html = hazards.map(function(hz){
-      return '<span class="' + hz.type + '">' + hz.text + '</span>';
-    }).join("");
+    var html = hazards.map(function(hz){ return '<span class="' + hz.type + '">' + hz.text + '</span>'; }).join("");
     els.ticker.innerHTML = html + html;
   }
 
-  function readCache(){
+  function readCache(citySlug){
     try{
-      var raw = localStorage.getItem(CACHE_KEY);
+      var raw = localStorage.getItem("mw_cache_" + citySlug);
       if (!raw) return null;
       var parsed = JSON.parse(raw);
       var fresh = (Date.now() - parsed.timestamp) < CACHE_TTL_MS;
-      if (fresh) return parsed.weather;
+      if (fresh) return parsed;
       return null;
     }catch(e){ return null; }
   }
 
-  function writeCache(weatherData){
-    try{
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), weather: weatherData }));
-    }catch(e){ }
+  function writeCache(citySlug, weatherData){
+    try{ localStorage.setItem("mw_cache_" + citySlug, JSON.stringify({ timestamp: Date.now(), weather: weatherData })); }catch(e){ }
   }
 
   function findCurrentHourIndex(hourly, currentIsoHour){
@@ -989,7 +961,7 @@
   }
 
   function applyFeelsLikeLogic(temp, feels){
-    var glowArc = els.gauges.feelsGlow.arc;
+    var glowArc = els.gauges.tempFeels.arc;
     var feelsLabel = document.getElementById("gauge-temp-feels-val");
     if(!glowArc || !feelsLabel) return;
     
@@ -999,25 +971,14 @@
     var t = Math.round(temp);
     var f = Math.round(feels);
 
-    if (f > t) {
-      glowArc.classList.add("glow-hot");
-      feelsLabel.classList.add("red");
-    } else if (f < t) {
-      glowArc.classList.add("glow-cool");
-      feelsLabel.classList.add("teal");
-    } else {
-      glowArc.classList.add("glow-neutral");
-      feelsLabel.classList.add("purple");
-    }
+    if (f > t) { glowArc.classList.add("glow-hot"); feelsLabel.classList.add("red"); } 
+    else if (f < t) { glowArc.classList.add("glow-cool"); feelsLabel.classList.add("teal"); } 
+    else { glowArc.classList.add("glow-neutral"); feelsLabel.classList.add("purple"); }
   }
 
-  function renderWeather(weatherData){
-    var current = weatherData.current;
-    var hourly = weatherData.hourly;
-    var daily = weatherData.daily;
-
-    var now = new Date();
-    var pad = function(n){ return String(n).padStart(2,"0"); };
+  function renderWeather(weatherData, cityName){
+    var current = weatherData.current, hourly = weatherData.hourly, daily = weatherData.daily;
+    var now = new Date(), pad = function(n){ return String(n).padStart(2,"0"); };
     var currentIsoHour = now.getFullYear() + "-" + pad(now.getMonth()+1) + "-" + pad(now.getDate()) + "T" + pad(now.getHours()) + ":00";
     var hIdx = findCurrentHourIndex(hourly, currentIsoHour);
 
@@ -1040,26 +1001,25 @@
     var visibilityMiles = (visibilityMeters !== null && visibilityMeters !== undefined) ? (visibilityMeters / 1609.34) : null;
 
     applyFeelsLikeLogic(temp, feels);
-
     setGauge("temp", temp, Math.round(temp));
-    setGauge("feelsGlow", feels, Math.round(feels));
-    setTempHighGauge(tempMax);
-    setGauge("humidity", humidity, Math.round(humidity));
-    
-    els.dewPointVal.textContent = "Dew Pt " + Math.round(dewPoint) + "°";
+    setGauge("tempFeels", feels, Math.round(feels));
+    setGauge("tempHigh", tempMax);
+    els.ghostVal.textContent = Math.round(temp);
 
+    setGauge("humidity", humidity, Math.round(humidity));
+    els.dewPointVal.textContent = "Dew Pt " + Math.round(dewPoint) + "°";
     renderSolarArc(sunriseIso, sunsetIso);
     renderUV(uv);
 
     els.split.windSpeed.textContent = Math.round(wind);
     els.split.windDir.textContent = degToCompass(windDirDegrees);
-    els.split.rainVal.innerHTML = Math.round(precipProb) + ' <span style="font-size:12px; color:var(--muted);">%</span>';
+    els.split.rainVal.innerHTML = Math.round(precipProb) + ' <span style="font-size:13px; color:var(--muted);">%</span>';
     
     var advice = getAdvice({ temp:temp, feels:feels, humidity:humidity, wind:wind, precipProb:precipProb, code:code });
     els.adviceIcon.textContent = advice.icon;
     els.adviceText.textContent = advice.msg;
 
-    var hazards = buildHazards({ temp:temp, feels:feels, uv:uv, wind:wind, precip:precip, precipProb:precipProb, visibilityMiles:visibilityMiles });
+    var hazards = buildHazards({ temp:temp, feels:feels, uv:uv, wind:wind, precip:precip, precipProb:precipProb, visibilityMiles:visibilityMiles }, cityName);
     renderTicker(hazards);
   }
 
@@ -1069,52 +1029,123 @@
       "&hourly=temperature_2m,precipitation_probability,visibility" +
       "&daily=temperature_2m_max,sunrise,sunset" +
       "&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto";
-    return fetch(url).then(function(r){
-      if (!r.ok) throw new Error("Open-Meteo request failed");
-      return r.json();
+    return fetch(url).then(function(r){ if (!r.ok) throw new Error("API failed"); return r.json(); });
+  }
+
+  function loadWeather(){
+    var slug = "toledo.html";
+    var lat = parseFloat("41.6528");
+    var lon = parseFloat("-83.5379");
+
+    if (isNaN(lat) || isNaN(lon)) {
+      lat = 33.66;
+      lon = -117.999;
+      slug = "preview-mode";
+      document.getElementById("city-name").textContent = "Huntington Beach";
+      document.getElementById("region-name").textContent = "CA, USA";
+      document.getElementById("city-eyebrow").textContent = "Huntington Beach Morning Brief";
+    }
+
+    var cached = readCache(slug);
+    if (cached){ renderWeather(cached.weather, "Toledo"); return; }
+
+    fetchWeather(lat, lon).then(function(weatherData){
+      renderWeather(weatherData, "Toledo");
+      writeCache(slug, weatherData);
+    }).catch(function(){
+      els.adviceText.textContent = "Live weather data is unavailable right now — check back shortly.";
+      renderTicker([{ text:"DATA UNAVAILABLE: Unable to reach the weather service.", type:"hazard" }]);
     });
   }
 
-  function loadCityData(){
-    // 1. Get the current filename (e.g. irvine.html)
-    var currentFilename = window.location.pathname.split('/').pop() || 'huntington-beach.html';
+  function loadRegionalCities() {
+    fetch('../cities.json')
+      .then(function(res) { return res.json(); })
+      .then(function(citiesArray) {
+        var container = document.getElementById("regional-cities-container");
+        if (!container) return;
 
-    // 2. Cross-reference cities.json
-    fetch("../cities.json")
-      .then(function(r){ return r.json(); })
-      .then(function(cities){
-        var cityData = cities.find(function(c){ return c.slug === currentFilename; });
-        if(!cityData) cityData = cities[0]; // Fallback to the first city if not found
+        // Preferred order for the finer regions
+        var regionOrder = [
+          "SoCal", "NorCal", "Central Valley", "Desert",
+          "North Texas", "Houston Area", "Central Texas", "West / South Texas",
+          "Pacific Northwest", "Mountain West", "Southwest",
+          "Florida", "Southeast", "South Central",
+          "Midwest", "Mid-Atlantic", "Northeast",
+          "Alaska & Hawaii"
+        ];
 
-        // 3. Populate HTML Metadata
-        document.getElementById("city-name").textContent = cityData.name;
-        document.getElementById("city-eyebrow").textContent = cityData.name + " Morning Brief";
-        document.title = cityData.name + " Morning Commute Weather Brief & Road Hazards";
-        
-        // 4. Set Unique Cache Key and Fetch Weather
-        CACHE_KEY = "morningWeatherBrief_" + cityData.slug.split('.')[0] + ".cache";
-        
-        var cachedWeather = readCache();
-        if(cachedWeather) {
-          renderWeather(cachedWeather);
-        } else {
-          fetchWeather(cityData.lat, cityData.lon).then(function(weatherData){
-            renderWeather(weatherData);
-            writeCache(weatherData);
-          }).catch(function(){
-            els.adviceText.textContent = "Live weather data is unavailable right now — check back shortly.";
-            renderTicker([{ text:"DATA UNAVAILABLE: Unable to reach the weather service.", type:"hazard" }]);
+        var grouped = citiesArray.reduce(function(acc, city) {
+          // Use the new "region" field if present, otherwise fall back to old state map
+          var region = city.region || "Other";
+          if (!acc[region]) acc[region] = [];
+          acc[region].push(city);
+          return acc;
+        }, {});
+
+        var html = "";
+        // Render in preferred order first
+        regionOrder.forEach(function(regionName) {
+          if (grouped[regionName] && grouped[regionName].length) {
+            html += '<div style="margin-top:28px;"><h3 style="margin:0 0 12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:700;">' + regionName + '</h3><div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">';
+            grouped[regionName].forEach(function(c) {
+              html += '<a href="' + c.slug + '" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;"><span style="font-size:22px;">' + (c.emoji || '🏙️') + '</span><div><h4 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">' + c.name + '</h4><span style="font-size:11px; color:var(--muted);">' + c.desc + '</span></div></a>';
+            });
+            html += '</div></div>';
+            delete grouped[regionName];
+          }
+        });
+        // Any leftover regions
+        for (var regionName in grouped) {
+          if (grouped.hasOwnProperty(regionName) && grouped[regionName].length) {
+            html += '<div style="margin-top:28px;"><h3 style="margin:0 0 12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:700;">' + regionName + '</h3><div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">';
+            grouped[regionName].forEach(function(c) {
+              html += '<a href="' + c.slug + '" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:14px; text-decoration:none; display:flex; align-items:center; gap:12px; backdrop-filter:blur(14px); transition:border-color 0.2s;"><span style="font-size:22px;">' + (c.emoji || '🏙️') + '</span><div><h4 style="margin:0; font-size:14px; color:var(--text); font-weight:700;">' + c.name + '</h4><span style="font-size:11px; color:var(--muted);">' + c.desc + '</span></div></a>';
+            });
+            html += '</div></div>';
+          }
+        }
+        container.innerHTML = html;
+
+        // Live search filter
+        var searchInput = document.getElementById("city-search");
+        if (searchInput) {
+          searchInput.addEventListener("input", function() {
+            var q = this.value.trim().toLowerCase();
+            var cards = container.querySelectorAll("a");
+            var headers = container.querySelectorAll("h3");
+            var sections = container.querySelectorAll("div[style*='margin-top:28px']");
+
+            if (!q) {
+              // Show everything
+              cards.forEach(function(c){ c.style.display = ""; });
+              sections.forEach(function(s){ s.style.display = ""; });
+              return;
+            }
+
+            sections.forEach(function(section) {
+              var sectionCards = section.querySelectorAll("a");
+              var anyVisible = false;
+              sectionCards.forEach(function(card) {
+                var name = (card.querySelector("h4") || {}).textContent || "";
+                var desc = (card.querySelector("span") || {}).textContent || "";
+                var match = name.toLowerCase().indexOf(q) !== -1 || desc.toLowerCase().indexOf(q) !== -1;
+                card.style.display = match ? "" : "none";
+                if (match) anyVisible = true;
+              });
+              section.style.display = anyVisible ? "" : "none";
+            });
           });
         }
       })
-      .catch(function(){
-        els.adviceText.textContent = "Unable to load city routing data.";
+      .catch(function(err) {
+        var container = document.getElementById("regional-cities-container");
+        if (container) container.innerHTML = '<p style="color:var(--red); font-size:13px;">Error loading cities list.</p>';
       });
   }
 
-  // Auto-initialize
-  loadCityData();
-
+  function init(){ loadWeather(); loadRegionalCities(); }
+  init();
 })();
 </script>
 </body>
