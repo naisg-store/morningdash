@@ -74,16 +74,17 @@
 
   .hero-ghost-number {
     position: absolute;
-    right: 140px;
+    right: 180px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: clamp(70px, 14vw, 110px);
+    font-size: clamp(100px, 18vw, 150px);
     font-weight: 900;
     color: var(--cyan);
     opacity: 0.05;
     pointer-events: none;
     line-height: 1;
     z-index: 1;
+    white-space: nowrap;
   }
 
   .header-info{
@@ -140,9 +141,9 @@
 
   .hero-gauge-container{
     position:relative;
-    width:190px;
+    width: 240px;
     flex-shrink:0;
-    margin:-10px -15px -20px 0;
+    margin:-15px -25px -25px 0;
     z-index: 2;
   }
 
@@ -211,16 +212,16 @@
     line-height:1;
   }
   .hero-val{
-    font-size:52px;
+    font-size:64px;
     font-weight:800;
     color:var(--text);
     letter-spacing:-0.04em;
   }
   .hero-unit{
-    font-size:18px;
+    font-size:22px;
     font-weight:700;
     color:var(--muted);
-    margin:6px 0 0 2px;
+    margin:8px 0 0 2px;
   }
   .hero-subtext{
     display:flex;
@@ -555,20 +556,20 @@
     .clock-block{text-align:left; margin-top:6px;}
     
     .hero-ghost-number { 
-      right: 15px; 
+      right: 10px; 
       top: 50%; 
-      font-size: 140px; 
+      font-size: 160px; 
       opacity: 0.07;
     }
     .hero-gauge-container{
       position:absolute;
-      right: 15px;
-      bottom: 8px;
-      width: 170px; 
+      right: 5px;
+      bottom: 0px;
+      width: 210px; 
       margin: 0;
     }
     
-    .hero-val{font-size:42px;}
+    .hero-val{font-size:54px;}
     .hero-subtext{font-size:11px; gap:6px;}
     
     .standard-val{font-size:40px;}
@@ -627,10 +628,6 @@
     </div>
   </header>
 
-  <div class="intro-section" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-lg); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); padding:22px 24px; margin-bottom:8px; font-size:15.5px; line-height:1.65; color:var(--text);">
-    <h1 style="margin:0 0 16px 0; font-size:28px; font-weight:800; letter-spacing:-0.02em; color:var(--text);">Hattiesburg Morning Weather Brief</h1>
-    <p style="margin:0;">Live morning weather intelligence, local hazard alerts, and real-time commute conditions for the <strong>Hattiesburg, MS</strong> area.</p>
-  </div>
 
   <section class="gauge-row">
     <div class="gauge-card">
@@ -683,6 +680,14 @@
     <div class="advice-text-block">
       <div class="advice-eyebrow">Morning Advice</div>
       <div class="advice-text" id="advice-text">Loading conditions for Hattiesburg...</div>
+    </div>
+  </section>
+
+  <section class="advice-box launch-card" id="launch-tidbit" style="display: none; border-color: rgba(56,189,248,0.4); background: linear-gradient(145deg, var(--panel), rgba(56,189,248,0.05));">
+    <div class="advice-icon">🚀</div>
+    <div class="advice-text-block">
+      <div class="advice-eyebrow" style="color: var(--cyan);">SpaceX West Coast Launch Watch</div>
+      <div class="advice-text" id="launch-text">Checking local visibility windows...</div>
     </div>
   </section>
 
@@ -1062,6 +1067,66 @@
     fetch('../cities.json')
       .then(function(res) { return res.json(); })
       .then(function(citiesArray) {
+        
+        // --- SpaceX Launch Dynamic Check (Live API + Dev Preview) ---
+        var currentCity = null;
+        for (var i = 0; i < citiesArray.length; i++) {
+          if (citiesArray[i].slug === 'hattiesburg.html' || citiesArray[i].name === 'Hattiesburg' || ( 'hattiesburg.html' === 'preview-mode' && citiesArray[i].name === 'Huntington Beach' )) {
+            currentCity = citiesArray[i];
+            break;
+          }
+        }
+        
+        // 1. Dev fallback: Visualize the UI when editing the raw _template.html file locally
+        if (!currentCity && 'hattiesburg.html'.indexOf('CITY_SLUG') !== -1) {
+            var launchBox = document.getElementById('launch-tidbit');
+            var launchText = document.getElementById('launch-text');
+            if (launchBox && launchText) {
+                launchText.innerHTML = '<strong>Falcon 9 Starlink (Local Preview)</strong> scheduled for <strong>5:45 AM</strong>. Look <strong>NW</strong> for optimal visibility!';
+                launchBox.style.display = 'flex';
+            }
+        }
+        // 2. Live API: For actual rendered pages in visibility regions (CA, NV, AZ, OR)
+        else if (currentCity && (currentCity.state === 'CA' || currentCity.state === 'NV' || currentCity.state === 'AZ' || currentCity.state === 'OR')) {
+            fetch('https://api.spacexdata.com/v4/launches/upcoming')
+              .then(function(res){ return res.json(); })
+              .then(function(launches){
+                  // Vandenberg SLC-4E exact launchpad ID
+                  var vandenbergId = '5e9e4502f509094188566f88';
+                  var nextLaunch = null;
+                  
+                  // Find the next scheduled launch from Vandenberg
+                  for(var j = 0; j < launches.length; j++){
+                      if(launches[j].launchpad === vandenbergId){
+                          nextLaunch = launches[j];
+                          break;
+                      }
+                  }
+                  
+                  if(nextLaunch){
+                      var launchDate = new Date(nextLaunch.date_utc);
+                      var now = new Date();
+                      var diffHours = (launchDate - now) / (1000 * 60 * 60);
+                      
+                      // Only trigger the UI alert if the launch is within the next 72 hours
+                      if(diffHours > -1 && diffHours < 72){
+                          var timeStr = launchDate.toLocaleTimeString([], {hour: 'numeric', minute:'2-digit'});
+                          var dateStr = launchDate.toLocaleDateString([], {weekday: 'short', month: 'short', day: 'numeric'});
+                          
+                          var launchBox = document.getElementById('launch-tidbit');
+                          var launchText = document.getElementById('launch-text');
+                          if (launchBox && launchText) {
+                              launchText.innerHTML = '<strong>' + nextLaunch.name + '</strong> scheduled for <strong>' + dateStr + ' at ' + timeStr + '</strong>. Look <strong>NW</strong> for optimal visibility!';
+                              launchBox.style.display = 'flex';
+                          }
+                      }
+                  }
+              }).catch(function(){ 
+                  // Silently fail if the SpaceX API is down so it doesn't break the weather board
+              });
+        }
+        // ------------------------------------
+
         var container = document.getElementById("regional-cities-container");
         if (!container) return;
 
