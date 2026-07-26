@@ -74,16 +74,17 @@
 
   .hero-ghost-number {
     position: absolute;
-    right: 140px;
+    right: 180px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: clamp(70px, 14vw, 110px);
+    font-size: clamp(100px, 18vw, 150px);
     font-weight: 900;
     color: var(--cyan);
     opacity: 0.05;
     pointer-events: none;
     line-height: 1;
     z-index: 1;
+    white-space: nowrap;
   }
 
   .header-info{
@@ -140,9 +141,9 @@
 
   .hero-gauge-container{
     position:relative;
-    width:190px;
+    width: 240px;
     flex-shrink:0;
-    margin:-10px -15px -20px 0;
+    margin:-15px -25px -25px 0;
     z-index: 2;
   }
 
@@ -211,16 +212,16 @@
     line-height:1;
   }
   .hero-val{
-    font-size:52px;
+    font-size:64px;
     font-weight:800;
     color:var(--text);
     letter-spacing:-0.04em;
   }
   .hero-unit{
-    font-size:18px;
+    font-size:22px;
     font-weight:700;
     color:var(--muted);
-    margin:6px 0 0 2px;
+    margin:8px 0 0 2px;
   }
   .hero-subtext{
     display:flex;
@@ -555,20 +556,20 @@
     .clock-block{text-align:left; margin-top:6px;}
     
     .hero-ghost-number { 
-      right: 15px; 
+      right: 10px; 
       top: 50%; 
-      font-size: 140px; 
+      font-size: 160px; 
       opacity: 0.07;
     }
     .hero-gauge-container{
       position:absolute;
-      right: 15px;
-      bottom: 8px;
-      width: 170px; 
+      right: 5px;
+      bottom: 0px;
+      width: 210px; 
       margin: 0;
     }
     
-    .hero-val{font-size:42px;}
+    .hero-val{font-size:54px;}
     .hero-subtext{font-size:11px; gap:6px;}
     
     .standard-val{font-size:40px;}
@@ -683,6 +684,14 @@
     <div class="advice-text-block">
       <div class="advice-eyebrow">Morning Advice</div>
       <div class="advice-text" id="advice-text">Loading conditions for Downey...</div>
+    </div>
+  </section>
+
+  <section class="advice-box launch-card" id="launch-tidbit" style="display: none; border-color: rgba(56,189,248,0.4); background: linear-gradient(145deg, var(--panel), rgba(56,189,248,0.05));">
+    <div class="advice-icon">🚀</div>
+    <div class="advice-text-block">
+      <div class="advice-eyebrow" style="color: var(--cyan);">SpaceX West Coast Launch Watch</div>
+      <div class="advice-text" id="launch-text">Checking local visibility windows...</div>
     </div>
   </section>
 
@@ -1062,6 +1071,31 @@
     fetch('../cities.json')
       .then(function(res) { return res.json(); })
       .then(function(citiesArray) {
+        
+        // --- SpaceX Launch Dynamic Check ---
+        var currentCity = null;
+        for (var i = 0; i < citiesArray.length; i++) {
+          if (citiesArray[i].slug === 'downey.html' || citiesArray[i].name === 'Downey' || ( 'downey.html' === 'preview-mode' && citiesArray[i].name === 'Huntington Beach' )) {
+            currentCity = citiesArray[i];
+            break;
+          }
+        }
+        
+        // Dev fallback to visualize during unrendered template previews
+        if (!currentCity && 'downey.html'.indexOf('CITY_SLUG') !== -1) {
+           currentCity = { launch: { name: "Falcon 9 Starlink", time: "5:45 AM", direction: "NW" } };
+        }
+        
+        if (currentCity && currentCity.launch) {
+            var launchBox = document.getElementById('launch-tidbit');
+            var launchText = document.getElementById('launch-text');
+            if (launchBox && launchText) {
+                launchText.innerHTML = '<strong>' + currentCity.launch.name + '</strong> scheduled for <strong>' + currentCity.launch.time + '</strong>. Look <strong>' + currentCity.launch.direction + '</strong> for optimal visibility!';
+                launchBox.style.display = 'flex';
+            }
+        }
+        // ------------------------------------
+
         var container = document.getElementById("regional-cities-container");
         if (!container) return;
 
