@@ -7,6 +7,7 @@
 <meta name="description" content="Live morning commute weather for Carson, CA. Real-time conditions, marine layer fog alerts, rain probability, and local highway visibility for I-405 & I-110.">
 <link rel="canonical" href="https://morningst.art/guides/carson.html">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="manifest" href="../manifest.json">
 <style>
   :root{
     --bg:#0F172A;
@@ -1230,6 +1231,20 @@
   function init(){ loadWeather(); loadRegionalCities(); }
   init();
 })();
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Use absolute path to ensure scope is at the root
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.log('ServiceWorker registration failed:', error);
+        });
+    });
+  }
 </script>
 </body>
 </html>
