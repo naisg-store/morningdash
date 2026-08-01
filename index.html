@@ -892,7 +892,7 @@
           var data = await response.json();
           
           if (data.results && data.results.length > 0) {
-              var launchInfo = { window_start: data.results[0].window_start };
+              var launchInfo = { window_start: data.results[0].net };
               localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), launch: launchInfo }));
               return launchInfo;
           } else {
