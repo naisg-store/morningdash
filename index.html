@@ -872,19 +872,22 @@
   tickClock();
   setInterval(tickClock, 1000);
 
-  // ---------------- SpaceX LL2 API ----------------
+// ---------------- SpaceX LL2 API ----------------
   async function getNextVandenbergLaunch() {
-      var cacheKey = 'spacex_vandenberg_launch';
+      // 1. Changed the cache key name to instantly clear out the bad 7 AM data
+      var cacheKey = 'spacex_vandenberg_launch_v2';
       var cachedData = localStorage.getItem(cacheKey);
 
       if (cachedData) {
           var parsed = JSON.parse(cachedData);
-          var twelveHours = 12 * 60 * 60 * 1000;
-          if (Date.now() - parsed.timestamp < twelveHours) return parsed.launch; 
+          // 2. Reduced cache memory from 12 hours to 4 hours to catch same-day delays
+          var fourHours = 4 * 60 * 60 * 1000;
+          if (Date.now() - parsed.timestamp < fourHours) return parsed.launch; 
       }
 
       try {
-          var response = await fetch('https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?location__ids=11&lsp__id=121&limit=1');
+          // 3. Upgraded the URL to the LIVE production server (removed "lldev")
+          var response = await fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?location__ids=11&lsp__id=121&limit=1');
           if (!response.ok) throw new Error('LL2 API failed');
           var data = await response.json();
           
