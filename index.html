@@ -627,6 +627,7 @@
       </div>
     </div>
     
+    <!-- Hero Temperature Arc -->
     <div class="hero-gauge-container">
       <div class="gauge-svg-wrap">
         <svg viewBox="0 0 200 130" aria-label="Temperature gauge">
@@ -648,7 +649,11 @@
     </div>
   </header>
 
+  <!-- SpaceX Alert Container -->
+  <div id="launch-container" style="display: none;"></div>
+
   <section class="gauge-row">
+    <!-- 1. Combined Humidity & Sunrise Gauge -->
     <div class="gauge-card">
       <div class="gauge-svg-wrap">
         <svg viewBox="0 0 200 130" aria-label="Humidity and Daylight gauge">
@@ -673,6 +678,7 @@
       <div class="gauge-label">Humidity & Sunrise</div>
     </div>
 
+    <!-- 2. Split Card (Wind & Rain) -->
     <div class="gauge-card split-card">
       <div class="rain-watermark">🌧️</div>
       <div class="split-section split-top-left">
@@ -702,6 +708,7 @@
     </div>
   </section>
 
+  <!-- Stacked Ticker + UV Bar -->
   <section class="status-stack" role="status" aria-live="polite">
     <div class="ticker">
       <div class="live-tag"><span class="pulse"></span>HAZARDS</div>
@@ -721,8 +728,6 @@
     </div>
   </section>
 
-    <div id="launch-container" style="display: none;"></div>
-
   <section style="margin-top:24px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; border-bottom:1px solid var(--panel-border); padding-bottom:8px;">
       <h2 style="margin:0; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); font-weight:700;">Morning Dispatch &middot; Commuter Guides</h2>
@@ -730,46 +735,30 @@
     </div>
 
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px;">
-      
       <a href="guides/marine-layer.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          🌫️
-        </div>
+        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">🌫️</div>
         <div>
           <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); font-weight:700;">Coastal Weather</span>
           <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Coastal Marine Layer & Fog</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "The marine layer is a shallow, cool, moist blanket of air that forms near the ocean surface..."
-          </p>
+          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">"The marine layer is a shallow, cool, moist blanket of air that forms near the ocean surface..."</p>
         </div>
       </a>
-
       <a href="guides/morning-wind-driving.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          💨
-        </div>
+        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">💨</div>
         <div>
           <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); font-weight:700;">Commuter Safety</span>
           <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Navigating Morning Winds</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "Wind speed alone doesn't tell the whole story of how dangerous a gusty morning will be..."
-          </p>
+          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">"Wind speed alone doesn't tell the whole story of how dangerous a gusty morning will be..."</p>
         </div>
       </a>
-
       <a href="guides/dew-point-humidity.html" style="background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-md); padding:16px; text-decoration:none; display:flex; flex-direction:column; gap:10px; backdrop-filter:blur(14px); transition:border-color 0.2s;">
-        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">
-          🌡️
-        </div>
+        <div style="width:100%; height:110px; background:var(--bg-deep); border:1px solid var(--panel-border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--muted-dim); font-size:24px;">🌡️</div>
         <div>
           <span style="font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--violet); font-weight:700;">Weather Literacy</span>
           <h3 style="margin:4px 0 6px; font-size:15px; color:var(--text); font-weight:700; line-height:1.3;">Dew Point vs. Humidity</h3>
-          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
-            "Two numbers on every forecast claim to describe 'how muggy it feels' — only one of them actually does..."
-          </p>
+          <p style="margin:0; font-size:12px; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">"Two numbers on every forecast claim to describe 'how muggy it feels' — only one of them actually does..."</p>
         </div>
       </a>
-
     </div>
   </section>
 
@@ -872,9 +861,8 @@
   tickClock();
   setInterval(tickClock, 1000);
 
-// ---------------- SpaceX LL2 API ----------------
+  // ---------------- SpaceX LL2 API ----------------
   async function getNextVandenbergLaunch() {
-      // Upgraded to v3 to clear out old cache data
       var cacheKey = 'spacex_vandenberg_launch_v3';
       var cachedData = localStorage.getItem(cacheKey);
 
@@ -890,7 +878,6 @@
           var data = await response.json();
           
           if (data.results && data.results.length > 0) {
-              // Using "net" for the exact targeted liftoff time
               var launchInfo = { window_start: data.results[0].net };
               localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), launch: launchInfo }));
               return launchInfo;
@@ -912,53 +899,12 @@
                   var hoursUntilLaunch = (launchDate.getTime() - Date.now()) / (1000 * 3600);
                   
                   if (hoursUntilLaunch > 0 && hoursUntilLaunch <= 72) {
-                      // Format the time and the date
                       var timeString = launchDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
                       var dateString = launchDate.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
                       
                       var container = document.getElementById('launch-container');
                       if (container) {
                           container.innerHTML = '<div class="spacex-alert-card"><span class="rocket-icon">🚀</span><div class="spacex-details"><strong>SpaceX Launch Alert</strong><span>' + dateString + ' at ' + timeString + ' from Vandenberg</span></div></div>';
-                          container.style.display = 'block';
-                      }
-                  }
-              }
-          });
-      }
-  }
-
-   try {
-          // 3. Upgraded the URL to the LIVE production server (removed "lldev")
-          var response = await fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?location__ids=11&lsp__id=121&limit=1');
-          if (!response.ok) throw new Error('LL2 API failed');
-          var data = await response.json();
-          
-          if (data.results && data.results.length > 0) {
-              var launchInfo = { window_start: data.results[0].net };
-              localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), launch: launchInfo }));
-              return launchInfo;
-          } else {
-              localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), launch: null }));
-              return null;
-          }
-      } catch (error) {
-          return null; 
-      }
-  }
-
-  function triggerSpaceXLaunchCheck(place) {
-      var soCalCities = ['Los Angeles', 'Irvine', 'San Diego', 'Santa Barbara', 'Bakersfield', 'Carson', 'Huntington Beach', 'Long Beach', 'Anaheim'];
-      if (soCalCities.includes(place.city)) {
-          getNextVandenbergLaunch().then(function(launchData) {
-              if (launchData) {
-                  var launchDate = new Date(launchData.window_start);
-                  var hoursUntilLaunch = (launchDate.getTime() - Date.now()) / (1000 * 3600);
-                  
-                  if (hoursUntilLaunch > 0 && hoursUntilLaunch <= 72) {
-                      var timeString = launchDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-                      var container = document.getElementById('launch-container');
-                      if (container) {
-                          container.innerHTML = '<div class="spacex-alert-card"><span class="rocket-icon">🚀</span><div class="spacex-details"><strong>SpaceX Launch Alert</strong><span>' + timeString + ' from Vandenberg SLC-4E</span></div></div>';
                           container.style.display = 'block';
                       }
                   }
@@ -1240,8 +1186,8 @@
     var cached = readCache(lat, lon);
     if (cached){
       renderPlace(cached.place);
-      renderWeather(cached.weather);
       triggerSpaceXLaunchCheck(cached.place);
+      renderWeather(cached.weather);
       return;
     }
     var placePromise = placeHint ? Promise.resolve(placeHint) : reverseGeocode(lat, lon);
