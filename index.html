@@ -874,16 +874,58 @@
 
 // ---------------- SpaceX LL2 API ----------------
   async function getNextVandenbergLaunch() {
-      // 1. Changed the cache key name to instantly clear out the bad 7 AM data
-      var cacheKey = 'spacex_vandenberg_launch_v2';
+      // Upgraded to v3 to clear out old cache data
+      var cacheKey = 'spacex_vandenberg_launch_v3';
       var cachedData = localStorage.getItem(cacheKey);
 
       if (cachedData) {
           var parsed = JSON.parse(cachedData);
-          // 2. Reduced cache memory from 12 hours to 4 hours to catch same-day delays
           var fourHours = 4 * 60 * 60 * 1000;
           if (Date.now() - parsed.timestamp < fourHours) return parsed.launch; 
       }
+
+      try {
+          var response = await fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?location__ids=11&lsp__id=121&limit=1');
+          if (!response.ok) throw new Error('LL2 API failed');
+          var data = await response.json();
+          
+          if (data.results && data.results.length > 0) {
+              // Using "net" for the exact targeted liftoff time
+              var launchInfo = { window_start: data.results[0].net };
+              localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), launch: launchInfo }));
+              return launchInfo;
+          } else {
+              localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), launch: null }));
+              return null;
+          }
+      } catch (error) {
+          return null; 
+      }
+  }
+
+  function triggerSpaceXLaunchCheck(place) {
+      var soCalCities = ['Los Angeles', 'Irvine', 'San Diego', 'Santa Barbara', 'Bakersfield', 'Carson', 'Huntington Beach', 'Long Beach', 'Anaheim'];
+      if (soCalCities.includes(place.city)) {
+          getNextVandenbergLaunch().then(function(launchData) {
+              if (launchData) {
+                  var launchDate = new Date(launchData.window_start);
+                  var hoursUntilLaunch = (launchDate.getTime() - Date.now()) / (1000 * 3600);
+                  
+                  if (hoursUntilLaunch > 0 && hoursUntilLaunch <= 72) {
+                      // Format the time and the date
+                      var timeString = launchDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+                      var dateString = launchDate.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+                      
+                      var container = document.getElementById('launch-container');
+                      if (container) {
+                          container.innerHTML = '<div class="spacex-alert-card"><span class="rocket-icon">🚀</span><div class="spacex-details"><strong>SpaceX Launch Alert</strong><span>' + dateString + ' at ' + timeString + ' from Vandenberg</span></div></div>';
+                          container.style.display = 'block';
+                      }
+                  }
+              }
+          });
+      }
+  }
 
       try {
           // 3. Upgraded the URL to the LIVE production server (removed "lldev")
