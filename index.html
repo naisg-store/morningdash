@@ -927,7 +927,7 @@
       }
   }
 
-      try {
+   try {
           // 3. Upgraded the URL to the LIVE production server (removed "lldev")
           var response = await fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?location__ids=11&lsp__id=121&limit=1');
           if (!response.ok) throw new Error('LL2 API failed');
